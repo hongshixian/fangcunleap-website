@@ -10,9 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: '通用人工智能基础设施服务商 | 无问芯穹 INFINIGENCE',
+  title: '守护人工智能的安全未来 | 方寸跃迁 FANGCUN LEAP',
   description:
-    '无问芯穹致力于成为通用人工智能基础设施服务商，提供多元异构基座、大模型训练与推理、企业级智能体及具身智能工具链等 Agentic AI 基础设施与服务。',
+    '方寸跃迁是一家研究驱动的 AI 安全公司，构建防御系统，保护 AI 模型、大语言模型和自主智能体免受对抗性威胁，让企业无畏创新。',
   generator: 'v0.app',
   icons: {
     icon: [

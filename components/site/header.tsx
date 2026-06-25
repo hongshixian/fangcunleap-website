@@ -31,7 +31,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
-        <a href="#top" aria-label="无问芯穹首页">
+        <a href="#top" aria-label="方寸跃迁首页">
           <Logo light={light} />
         </a>
 

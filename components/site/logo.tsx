@@ -4,8 +4,8 @@ export function Logo({ light = false }: { light?: boolean }) {
   return (
     <div className="flex items-center gap-2">
       <Image
-        src="/brand-mark.png"
-        alt="无问芯穹 logo"
+        src="/fangcun-logo.png"
+        alt="方寸跃迁 logo"
         width={34}
         height={34}
         className="h-8 w-8 object-contain"
@@ -17,14 +17,14 @@ export function Logo({ light = false }: { light?: boolean }) {
             light ? "text-white" : "text-foreground"
           }`}
         >
-          无问芯穹
+          方寸跃迁
         </span>
         <span
           className={`text-[10px] font-medium tracking-[0.2em] ${
             light ? "text-white/70" : "text-muted-foreground"
           }`}
         >
-          INFINIGENCE
+          FANGCUN LEAP
         </span>
       </div>
     </div>

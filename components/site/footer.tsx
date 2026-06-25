@@ -88,7 +88,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 无问芯穹 INFINIGENCE. All Rights Reserved.</p>
+          <p>© 2026 方寸跃迁 FANGCUN LEAP. All Rights Reserved.</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <a href="#" className="hover:text-white">沪 ICP 备 2024070257 号-2</a>
             <a href="#" className="hover:text-white">沪公网安备 31010402336716 号</a>
