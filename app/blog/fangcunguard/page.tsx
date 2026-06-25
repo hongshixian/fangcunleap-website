@@ -108,7 +108,7 @@ export default function FangcunGuardArticle() {
       </p>
 
       <ImgFigure
-        src="/blog/blog-fangcunguard-bench.png"
+        src="/images/blog-fangcunguard-bench.png"
         alt="FangcunGuard 在 6 个基准测试上的性能"
         caption="FangcunGuard 在所有基准测试中均取得最佳或接近最佳的 F1 分数"
       />
@@ -137,7 +137,7 @@ export default function FangcunGuardArticle() {
 
       <H3>准确率 vs 延迟</H3>
       <ImgFigure
-        src="/blog/blog-fangcunguard-overview.png"
+        src="/images/blog-fangcunguard-overview.png"
         alt="F1 分数与延迟的权衡曲线"
         caption="FangcunGuard 在准确率和延迟之间取得最佳平衡"
       />

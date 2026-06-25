@@ -93,7 +93,7 @@ export default function PluginArticle() {
       </ul>
 
       <ImgFigure
-        src="/blog/blog-plugin-architecture.png"
+        src="/images/blog-plugin-architecture.png"
         alt="AgentPlugin 四层拦截架构"
         caption="AgentPlugin 在智能体生命周期的四个关键节点提供拦截和决策能力"
       />
@@ -317,7 +317,7 @@ side_effect:
       </p>
 
       <VideoFigure
-        src="/blog/blog-plugin-demo.mp4"
+        src="/images/blog-plugin-demo.mp4"
         caption="AgentPlugin 实时监控面板演示：查看拦截事件、审批请求和统计数据"
       />
 

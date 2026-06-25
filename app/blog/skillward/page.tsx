@@ -45,7 +45,7 @@ export default function SkillWardArticle() {
       </p>
 
       <ImgFigure
-        src="/blog/skillward-architecture.png"
+        src="/images/skillward-architecture.png"
         alt="SkillWard 三阶段扫描架构"
         caption="静态分析 → LLM 推理 → 沙箱验证，逐层过滤可疑 Skill"
       />
@@ -186,13 +186,13 @@ def translate(text, target_lang):
       <H2>SkillWard 演示</H2>
 
       <ImgFigure
-        src="/blog/skillward-demo.webp"
+        src="/images/skillward-demo.webp"
         alt="SkillWard 扫描演示"
         caption="SkillWard 对单个 Skill 进行三阶段扫描的完整流程"
       />
 
       <ImgFigure
-        src="/blog/skillward-batch-demo.webp"
+        src="/images/skillward-batch-demo.webp"
         alt="SkillWard 批量扫描"
         caption="批量模式下同时扫描数百个 Skill，显示各阶段处理进度"
       />
@@ -200,13 +200,13 @@ def translate(text, target_lang):
       <H2>详细扫描报告</H2>
 
       <ImgFigure
-        src="/blog/skillward-screenshot-detail.png"
+        src="/images/skillward-screenshot-detail.png"
         alt="SkillWard 扫描报告详情"
         caption="每个 Skill 的详细扫描报告，包含各阶段发现的具体问题"
       />
 
       <ImgFigure
-        src="/blog/skillward-screenshot-detail2.png"
+        src="/images/skillward-screenshot-detail2.png"
         alt="SkillWard 沙箱行为记录"
         caption="沙箱执行阶段的详细行为记录：网络请求、文件操作、API 调用"
       />

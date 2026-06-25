@@ -39,7 +39,7 @@ export default function ObserverArticle() {
       </ul>
 
       <ImgFigure
-        src="/blog/blog-observer-side-effect.png"
+        src="/images/blog-observer-side-effect.png"
         alt="智能体副作用传播示意图"
         caption="智能体工具调用的副作用会在多步推理中累积和传播"
       />
@@ -175,7 +175,7 @@ await db.execute("DROP TABLE users");
       </CodeBlock>
 
       <ImgFigure
-        src="/blog/blog-observer-multi-agent.png"
+        src="/images/blog-observer-multi-agent.png"
         alt="Observer 多智能体监控架构"
         caption="Observer 可同时监控多个智能体实例，统一管理证据和决策"
       />

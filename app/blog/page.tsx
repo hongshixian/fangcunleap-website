@@ -24,7 +24,7 @@ const posts: BlogPost[] = [
     title: 'Observer：AI 智能体的运行时安全守护者',
     excerpt: '在 AI 智能体运行时实现零代码改动的安全防护，通过四个证据维度实时介入，确保本地优先的证据链追踪。',
     date: '2026年5月6日',
-    image: '/blog/blog-observer-side-effect.png',
+    image: '/images/blog-observer-side-effect.png',
     readTime: '8 分钟阅读',
   },
   {
@@ -32,7 +32,7 @@ const posts: BlogPost[] = [
     title: 'AgentPlugin：一行代码为智能体添加运行时防护',
     excerpt: '基于 OpenClaw 规范的运行时防护插件，支持四个拦截面、两种模式、五个决策点，一行安装即可使用。',
     date: '2026年5月1日',
-    image: '/blog/blog-plugin-architecture.png',
+    image: '/images/blog-plugin-architecture.png',
     readTime: '6 分钟阅读',
   },
   {
@@ -40,7 +40,7 @@ const posts: BlogPost[] = [
     title: 'FangcunGuard：高性能 Prompt 注入检测基准',
     excerpt: '在 6 个基准测试中取得 91.1 F1 分数，p99 延迟仅 8ms，超越 7 个开源基线模型的检测性能。',
     date: '2026年4月24日',
-    image: '/blog/blog-fangcunguard-overview.png',
+    image: '/images/blog-fangcunguard-overview.png',
     readTime: '10 分钟阅读',
   },
   {
@@ -48,7 +48,7 @@ const posts: BlogPost[] = [
     title: 'SkillWard：三阶段扫描器守护 Skill 安全',
     excerpt: '通过静态分析、LLM 推理和沙箱验证三个阶段，从 5000 个真实 Skill 中识别威胁，沙箱率约 38%，成功率达 99%。',
     date: '2026年4月10日',
-    image: '/blog/skillward-architecture.png',
+    image: '/images/skillward-architecture.png',
     readTime: '12 分钟阅读',
   },
 ];
