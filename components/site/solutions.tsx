@@ -9,25 +9,25 @@ const solutions = [
     title: "数据泄露防护",
     desc: "大语言模型会产生幻觉、泄露数据，并默默执行对抗性指令。方寸 Guard 提供实时内容护栏，在输出层拦截风险，F1 91.1，p99 8ms，让每一次 AI 交互都可信。",
     tags: ["内容护栏", "实时拦截", "风险分类", "中文优化"],
-    image: "/illustrations/card-data-leakage.jpg",
+    image: "/images/pic-m1.png",
   },
   {
     title: "智能体越权防护",
     desc: "自主智能体超越权限行动，缺乏审计追踪和紧急终止机制。方寸 Observer 零代码接入，对工具调用、出网请求、敏感文件访问全程留痕，任意会话可回放，事后追责有据可查。",
     tags: ["运行时监控", "审计追踪", "会话回放", "零代码接入"],
-    image: "/illustrations/card-agent-overreach.jpg",
+    image: "/images/pic-m2.png",
   },
   {
     title: "供应链安全扫描",
     desc: "AI 供应链引入隐藏依赖——被污染的模型、受损的插件和未审查的第三方工具。SkillWard 通过静态分析 + LLM 研判 + Docker 沙箱三阶段扫描，揪出纯审阅流水线看不见的运行时威胁。",
     tags: ["静态分析", "LLM 研判", "Docker 沙箱", "开源 Apache 2.0"],
-    image: "/illustrations/card-supply-chain.jpg",
+    image: "/images/pic-m3.png",
   },
   {
     title: "自动红队测试",
     desc: "方寸 RedTeam 面向 AI 应用进行自动化对抗测试，根据你的护栏策略生成定向越狱样本，输出可验证的安全报告，帮助企业在上线前发现护栏盲区。",
     tags: ["越狱样本生成", "安全报告", "定向测试", "研究预览"],
-    image: "/illustrations/solution.png",
+    image: "/images/pic-m4.png",
   },
 ]
 
