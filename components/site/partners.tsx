@@ -16,7 +16,7 @@ function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolea
             className="flex h-20 w-48 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-6 transition-colors hover:border-primary/50 hover:bg-white/[0.06]"
           >
             <img
-              src={src || "/placeholder.svg"}
+              src={src}
               alt="生态合作伙伴"
               className="max-h-12 w-auto max-w-[140px] object-contain"
               loading="lazy"
