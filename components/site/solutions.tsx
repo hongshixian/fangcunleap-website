@@ -93,7 +93,7 @@ export function Solutions() {
             })}
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-6">
+          <div className="relative flex items-center overflow-hidden rounded-3xl border border-border bg-card p-6 lg:self-stretch">
             <Image
               key={open}
               src={solutions[open].image}

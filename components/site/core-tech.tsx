@@ -54,7 +54,7 @@ export function CoreTech() {
         <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
           <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
             <Image
-              src="/illustrations/core-tech.png"
+              src="/images/pic_main.png"
               alt="方寸跃迁 AI 安全架构示意图"
               fill
               sizes="(max-width: 768px) 100vw, 1200px"

@@ -2,99 +2,74 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { ArrowRight, Newspaper, Radio } from "lucide-react"
+import { ArrowRight, Newspaper, Radio, FileCheck, Shield } from "lucide-react"
 
 const newsData = {
   动态: [
     {
-      img: "/news/n1.png",
+      img: "/images/blog-observer-side-effect.png",
       tag: "Engineering",
-      date: "2026年05月",
-      title: "Fangcun Observer: runtime safety for AI agents — 运行时监控与审计正式发布",
+      date: "2026年5月6日",
+      title: "Observer：AI 智能体的运行时安全守护者",
       href: "/blog/observer",
     },
     {
-      img: "/news/n2.png",
+      img: "/images/blog-plugin-architecture.png",
       tag: "Engineering",
-      date: "2026年05月",
-      title: "Fangcun AgentPlugin: a runtime guardrail for OpenClaw — 一行命令装完的护栏 SDK",
+      date: "2026年5月1日",
+      title: "AgentPlugin：一行代码为智能体添加运行时防护",
       href: "/blog/plugin",
     },
     {
-      img: "/news/n3.png",
+      img: "/images/blog-fangcunguard-overview.png",
       tag: "Engineering",
-      date: "2026年04月",
-      title: "Fangcun Guard: guarding the safety floor of every agent — 实时内容护栏正式上线",
+      date: "2026年4月24日",
+      title: "FangcunGuard：高性能 Prompt 注入检测基准",
       href: "/blog/fangcunguard",
     },
     {
-      img: "/news/n4.png",
+      img: "/images/skillward-architecture.png",
       tag: "Research",
-      date: "2026年04月",
-      title: "SkillWard: trading uncertain warnings for runtime evidence — 开源 Skill 安全扫描工具发布",
+      date: "2026年4月10日",
+      title: "SkillWard：三阶段扫描器守护 Skill 安全",
       href: "/blog/skillward",
-    },
-    {
-      img: "/news/n5.jpg",
-      tag: "新闻动态",
-      date: "2026年04月",
-      title: "智能助理智能体（Claw）可信能力技术规范发布 — 人工智能产业发展联盟 AIIA",
-      href: "/news",
-    },
-    {
-      img: "/news/n6.png",
-      tag: "新闻动态",
-      date: "2026年03月",
-      title: "OpenClaw 类智能体部署使用安全指引征求意见 — 全国网安标委",
-      href: "/news",
     },
   ],
   媒体: [
     {
-      img: "/media/m1.png",
+      img: "/images/news-xinzhiyuan.webp",
       tag: "新智元",
-      date: "2026年05月",
+      date: "2026年5月7日",
       title: "细思极恐！Agent 暗藏风险，清华团队打出组合拳，全链路一网打尽",
       href: "/news",
+      type: "image",
     },
     {
-      img: "/media/m2.png",
-      tag: "媒体报道",
-      date: "2026年04月",
-      title: "SkillWard 开源发布：5000 个真实 Skill 评测，25% 被判不安全",
-      href: "/blog/skillward",
+      tag: "人工智能产业发展联盟 AIIA",
+      date: "2026年4月13日",
+      title: "智能助理智能体（Claw）可信能力技术规范正式发布",
+      href: "/news",
+      type: "badge",
+      badge: { text: "权威发布", gradient: "from-blue-600 via-blue-700 to-indigo-800" },
     },
     {
-      img: "/media/m3.png",
-      tag: "媒体报道",
-      date: "2026年04月",
-      title: "方寸跃迁方寸 Guard 上线：AI Agent 实时内容护栏，p99 8ms，F1 91.1",
-      href: "/blog/fangcunguard",
-    },
-    {
-      img: "/media/m4.png",
-      tag: "媒体报道",
-      date: "2026年05月",
-      title: "方寸 Observer 发布 Beta：零代码接入 Agent 运行时监控与审计追踪",
-      href: "/blog/observer",
-    },
-    {
-      img: "/media/m5.webp",
-      tag: "媒体报道",
-      date: "2026年05月",
-      title: "AgentPlugin 发布：给 OpenClaw 装上运行时护栏，单行命令完成部署",
-      href: "/blog/plugin",
+      tag: "全国网安标委",
+      date: "2026年3月31日",
+      title: "关于对《网络安全标准实践指南——OpenClaw 类智能体部署使用安全指引（征求意见稿）》公开征求意见的通知",
+      href: "/news",
+      type: "badge",
+      badge: { text: "重磅发布", gradient: "from-red-600 via-red-700 to-rose-800" },
     },
   ],
 }
 
 const tabs = [
-  { key: "动态" as const, label: "最新动态", icon: Newspaper },
   { key: "媒体" as const, label: "媒体报道", icon: Radio },
+  { key: "动态" as const, label: "最新动态", icon: Newspaper },
 ]
 
 export function News() {
-  const [tab, setTab] = useState<"动态" | "媒体">("动态")
+  const [tab, setTab] = useState<"动态" | "媒体">("媒体")
   const items = newsData[tab]
 
   return (
@@ -112,7 +87,7 @@ export function News() {
               return (
                 <button
                   key={t.key}
-                  onClick={() => setTab(t.key)}
+                  onMouseEnter={() => setTab(t.key)}
                   className={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors ${
                     active
                       ? "bg-accent text-primary"
@@ -135,13 +110,21 @@ export function News() {
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={n.img}
-                  alt={n.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {n.type === "badge" ? (
+                  <div className={`h-full w-full bg-gradient-to-br ${n.badge.gradient} flex items-center justify-center`}>
+                    <span className="text-white text-xl font-bold text-center px-4 leading-tight">
+                      {n.badge.text}
+                    </span>
+                  </div>
+                ) : (
+                  <Image
+                    src={n.img}
+                    alt={n.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
               </div>
               <div className="flex flex-1 flex-col p-5">
                 <h3 className="line-clamp-3 flex-1 text-sm font-semibold leading-relaxed transition-colors group-hover:text-primary">
