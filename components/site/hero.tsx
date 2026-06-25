@@ -1,11 +1,24 @@
-import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="hero-gradient relative pb-20 pt-16">
-        <div className="absolute inset-0 grid-mask opacity-60" aria-hidden />
+      <div className="relative pb-20 pt-16">
+        {/* Video background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/videos/hero-bg-loop.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" aria-hidden />
+        <div className="absolute inset-0 grid-mask opacity-40" aria-hidden />
+
         <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pt-16 md:px-6 lg:grid-cols-2">
           <div className="text-white">
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-white/70">
@@ -35,15 +48,8 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative">
-            <Image
-              src="/illustrations/hero-isometric.png"
-              alt="AI 安全防护示意图"
-              width={760}
-              height={620}
-              priority
-              className="mx-auto w-full max-w-xl drop-shadow-2xl"
-            />
+          <div className="relative h-[400px] lg:h-[500px]">
+            {/* Right side can be empty or contain overlay content */}
           </div>
         </div>
       </div>
