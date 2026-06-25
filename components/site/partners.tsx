@@ -53,10 +53,10 @@ export function Partners() {
         <p className="mx-auto mt-3 max-w-2xl text-pretty text-center text-sm leading-relaxed text-primary-foreground/70">
           核心成员来自清华大学和加州大学伯克利分校，与全球顶级学术机构及企业深度合作
         </p>
-        <div className="mt-12 flex flex-col gap-5">
-          <Marquee items={row1} />
-          <Marquee items={row2} reverse />
-        </div>
+      </div>
+      <div className="relative mt-12 flex flex-col gap-5">
+        <Marquee items={row1} />
+        <Marquee items={row2} reverse />
       </div>
     </section>
   )

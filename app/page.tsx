@@ -14,9 +14,9 @@ export default function Page() {
     <main className="min-h-screen bg-background">
       <Header />
       <Hero />
+      <Solutions />
       <Products />
       <CoreTech />
-      <Solutions />
       <Partners />
       <News />
       <ContactCta />
