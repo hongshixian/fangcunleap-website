@@ -8,77 +8,77 @@ const newsData = {
   动态: [
     {
       img: "/news/n1.png",
-      tag: "新闻动态",
-      date: "2026年04月",
-      title: "习近平总书记调研上海“模速空间”，无问芯穹首席执行官夏立雪向总书记作重点汇报",
+      tag: "Engineering",
+      date: "2026年05月",
+      title: "Fangcun Observer: runtime safety for AI agents — 运行时监控与审计正式发布",
     },
     {
       img: "/news/n2.png",
-      tag: "新闻动态",
-      date: "2026年03月",
-      title: "2026 中关村论坛实录 | 杨植麟 / 张鹏 / 夏立雪 / 罗福莉 / 黄超，谈“Token 经济学”",
+      tag: "Engineering",
+      date: "2026年05月",
+      title: "Fangcun AgentPlugin: a runtime guardrail for OpenClaw — 一行命令装完的护栏 SDK",
     },
     {
       img: "/news/n3.png",
-      tag: "新闻动态",
-      date: "2026年03月",
-      title: "智能体生态论坛圆满举办！无问芯穹发布企业级智能体服务平台，共话智能体创新生态",
+      tag: "Engineering",
+      date: "2026年04月",
+      title: "Fangcun Guard: guarding the safety floor of every agent — 实时内容护栏正式上线",
     },
     {
       img: "/news/n4.png",
-      tag: "新闻动态",
-      date: "2026年03月",
-      title: "夏立雪：从视 Agent 为工具到视为协作者，Agentic AI 是基础设施必须跟上的系统性革命",
+      tag: "Research",
+      date: "2026年04月",
+      title: "SkillWard: trading uncertain warnings for runtime evidence — 开源 Skill 安全扫描工具发布",
     },
     {
       img: "/news/n5.jpg",
       tag: "新闻动态",
-      date: "2026年05月",
-      title: "无问芯穹再获超 7 亿融资，首发 AI 生产力公式 跻身 Token 经济枢纽",
+      date: "2026年04月",
+      title: "智能助理智能体（Claw）可信能力技术规范发布 — 人工智能产业发展联盟 AIIA",
     },
     {
       img: "/news/n6.png",
       tag: "新闻动态",
-      date: "2026年05月",
-      title: "无问芯穹与 AMD 共建云边端全链路开源生态，赋能“AI 生产力”新纪元",
+      date: "2026年03月",
+      title: "OpenClaw 类智能体部署使用安全指引征求意见 — 全国网安标委",
     },
   ],
   媒体: [
     {
       img: "/media/m1.png",
-      tag: "人民日报",
-      date: "2026年03月",
-      title: "【人民日报】无问芯穹发布企业级智能体服务平台",
+      tag: "新智元",
+      date: "2026年05月",
+      title: "细思极恐！Agent 暗藏风险，清华团队打出组合拳，全链路一网打尽",
     },
     {
       img: "/media/m2.png",
-      tag: "中国日报",
-      date: "2026年03月",
-      title: "【中国日报】首次公开！无问芯穹推出基础设施智能体蜂群，打造新一代 Agentic Infra",
+      tag: "媒体报道",
+      date: "2026年04月",
+      title: "SkillWard 开源发布：5000 个真实 Skill 评测，25% 被判不安全",
     },
     {
       img: "/media/m3.png",
-      tag: "中国新闻网",
-      date: "2026年03月",
-      title: "【中国新闻网】DeepSeek 国际舞台崭露头角，《麻省理工科技评论》点名四家中国 AI 初创企业",
+      tag: "媒体报道",
+      date: "2026年04月",
+      title: "方寸跃迁方寸 Guard 上线：AI Agent 实时内容护栏，p99 8ms，F1 91.1",
     },
     {
       img: "/media/m4.png",
-      tag: "极客公园",
-      date: "2026年03月",
-      title: "【极客公园】张鹏对话夏立雪：中国的 Scaling Law 是场景优势，异构算力解决落地难题",
+      tag: "媒体报道",
+      date: "2026年05月",
+      title: "方寸 Observer 发布 Beta：零代码接入 Agent 运行时监控与审计追踪",
     },
     {
       img: "/media/m5.webp",
-      tag: "量子位",
+      tag: "媒体报道",
       date: "2026年05月",
-      title: "【量子位】Token 需求狂飙千倍，22 亿热钱涌向这家 AGI Infra 头号玩家",
+      title: "AgentPlugin 发布：给 OpenClaw 装上运行时护栏，单行命令完成部署",
     },
   ],
 }
 
 const tabs = [
-  { key: "动态" as const, label: "新闻动态", icon: Newspaper },
+  { key: "动态" as const, label: "最新动态", icon: Newspaper },
   { key: "媒体" as const, label: "媒体报道", icon: Radio },
 ]
 
@@ -90,7 +90,7 @@ export function News() {
     <section id="news" className="bg-background py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <h2 className="text-center text-balance text-3xl font-bold md:text-4xl">
-          精选无穹资讯 与 AI 共同进化
+          方寸跃迁动态 守护 AI 安全前沿
         </h2>
 
         <div className="mt-8 flex justify-center">

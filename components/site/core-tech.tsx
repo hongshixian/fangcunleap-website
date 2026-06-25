@@ -1,21 +1,21 @@
 import Image from "next/image"
-import { ArrowRight, Network, Cpu, Sparkles } from "lucide-react"
+import { ArrowRight, ShieldCheck, ScanSearch, Bot } from "lucide-react"
 
 const cards = [
   {
-    icon: Network,
-    title: "多元异构",
-    desc: "统一调度不同架构的芯片，实现对多样化算力的高效整合与协同",
+    icon: ShieldCheck,
+    title: "实时内容护栏",
+    desc: "方寸 Guard 在 AI 输出层提供实时拦截，10 类风险细分，中文专项优化，p99 8ms，F1 91.1 跨 6 项 benchmark。",
   },
   {
-    icon: Cpu,
-    title: "软硬协同",
-    desc: "通过跨越软件与硬件的深度优化与联合设计，极致挖掘潜在芯片应用算力",
+    icon: ScanSearch,
+    title: "运行时监控审计",
+    desc: "方寸 Observer 零代码接入，对工具调用、出网请求、敏感文件访问全程留痕，任意会话可回放，构建可信证据链。",
   },
   {
-    icon: Sparkles,
-    title: "自主式 AI",
-    desc: "以 AI 深度赋能 AI，结合基础设施智能体集群，让基础设施具备环境感知、决策行动与自进化能力",
+    icon: Bot,
+    title: "供应链安全扫描",
+    desc: "SkillWard 通过静态分析 + LLM 研判 + Docker 沙箱三阶段扫描，完全开源（Apache 2.0），沙箱部署成功率 99%。",
   },
 ]
 
@@ -25,9 +25,9 @@ export function CoreTech() {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center">
           <h2 className="text-balance text-3xl font-bold leading-tight md:text-4xl">
-            全球领先 全栈贯通的
+            研究驱动 全链路覆盖的
             <br className="hidden sm:block" />
-            自主式人工智能基础设施核心技术
+            AI 安全防护核心技术
           </h2>
         </div>
 
@@ -55,7 +55,7 @@ export function CoreTech() {
           <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
             <Image
               src="/illustrations/core-tech.png"
-              alt="多元异构算力互联网络示意图"
+              alt="方寸跃迁 AI 安全架构示意图"
               fill
               sizes="(max-width: 768px) 100vw, 1200px"
               className="object-cover"
@@ -66,7 +66,7 @@ export function CoreTech() {
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5"
             >
-              了解更多 <ArrowRight className="h-4 w-4" />
+              申请演示 <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#news"

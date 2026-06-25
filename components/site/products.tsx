@@ -2,26 +2,26 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { ArrowRight, CheckCircle2, Layers, Boxes } from "lucide-react"
+import { ArrowRight, CheckCircle2, Shield, Eye } from "lucide-react"
 
 const products = [
   {
-    key: "infra",
-    tab: "Agentic Infra 自主式基础设施平台",
-    icon: Layers,
-    title: "Agentic Infra 自主式基础设施平台",
-    subtitle: "面向 AI 原生企业的大规模模型训练推理一体化平台",
+    key: "guard",
+    tab: "方寸 Guard 实时内容护栏",
+    icon: Shield,
+    title: "方寸 Guard",
+    subtitle: "面向 AI Agent 的实时内容护栏",
     image: "/illustrations/product-infra.png",
-    features: ["多元异构算力基座", "万卡级大模型训练服务", "大规模模型推理服务", "Agent 智能化服务体系"],
+    features: ["F1 91.1 综合评分", "p99 8ms 低延迟", "10 类风险细分", "中文专项优化", "按租户独立配阈值", "6 项 benchmark 对齐"],
   },
   {
-    key: "maas",
-    tab: "Agentic MaaS 大模型服务平台",
-    icon: Boxes,
-    title: "Agentic MaaS 大模型服务平台",
-    subtitle: "面向企业与开发者输出大规模 AI 智力的“Token 工厂”",
+    key: "observer",
+    tab: "方寸 Observer 运行时监控",
+    icon: Eye,
+    title: "方寸 Observer",
+    subtitle: "Agent 运行时监控与审计追踪",
     image: "/illustrations/product-maas.png",
-    features: ["模型生态与兼容", "统一接入与流量治理", "推理执行与性能优化", "资源调度与编排", "灵活计费与订阅管理", "智能服务运维"],
+    features: ["零代码改造接入", "工具调用全留痕", "出网请求追踪", "敏感文件访问记录", "任意会话可回放", "本地优先证据留存"],
   },
 ]
 
@@ -34,10 +34,10 @@ export function Products() {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center">
           <h2 className="text-balance text-3xl font-bold md:text-4xl">
-            M 种模型 x N 种芯片技术新范式
+            构建 AI 与人类之间的信任
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-pretty text-muted-foreground">
-            实现多种模型算法与多种芯片硬件间的极致效率与成本优化
+            多层安全架构，全方位保护 AI 交互的每一个维度
           </p>
         </div>
 
