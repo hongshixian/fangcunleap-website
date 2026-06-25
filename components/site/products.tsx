@@ -11,7 +11,7 @@ const products = [
     icon: Shield,
     title: "方寸 Guard",
     subtitle: "面向 AI Agent 的实时内容护栏",
-    image: "/illustrations/product-infra.png",
+    image: "/images/pic-guard.png",
     features: ["F1 91.1 综合评分", "p99 8ms 低延迟", "10 类风险细分", "中文专项优化", "按租户独立配阈值", "6 项 benchmark 对齐"],
   },
   {
@@ -20,7 +20,7 @@ const products = [
     icon: Eye,
     title: "方寸 Observer",
     subtitle: "Agent 运行时监控与审计追踪",
-    image: "/illustrations/product-maas.png",
+    image: "/images/pic-ob.png",
     features: ["零代码改造接入", "工具调用全留痕", "出网请求追踪", "敏感文件访问记录", "任意会话可回放", "本地优先证据留存"],
   },
 ]
