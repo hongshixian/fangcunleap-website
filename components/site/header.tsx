@@ -39,25 +39,36 @@ export function Header() {
         <nav className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <div key={item.label} className="group relative">
-              <button
-                className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                  light
-                    ? "text-white/90 hover:text-white"
-                    : "text-gray-900 hover:text-gray-900"
-                }`}
-              >
-                {item.label}
-                {item.children && (
+              {item.children ? (
+                <button
+                  className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                    light
+                      ? "text-white/90 hover:text-white"
+                      : "text-gray-900 hover:text-gray-900"
+                  }`}
+                >
+                  {item.label}
                   <ChevronDown className="h-3.5 w-3.5 opacity-70 transition-transform group-hover:rotate-180" />
-                )}
-              </button>
+                </button>
+              ) : (
+                <a
+                  href={item.href}
+                  className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                    light
+                      ? "text-white/90 hover:text-white"
+                      : "text-gray-900 hover:text-gray-900"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )}
               {item.children && (
                 <div className="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
                   <div className="rounded-xl border border-border bg-popover p-2 shadow-xl">
                     {item.children.map((c) => (
                       <a
                         key={c.label}
-                        href="#"
+                        href={c.href}
                         className="block rounded-lg px-3 py-2 transition-colors hover:bg-accent"
                       >
                         <span className="block text-sm font-medium text-popover-foreground">
@@ -109,13 +120,16 @@ export function Header() {
         <div className="max-h-[70vh] overflow-y-auto border-t border-border bg-background px-4 py-3 lg:hidden">
           {navItems.map((item) => (
             <div key={item.label} className="border-b border-border/60 py-2">
-              <span className="block px-1 py-1.5 text-sm font-semibold text-foreground">
+              <a
+                href={item.href ?? "#"}
+                className="block px-1 py-1.5 text-sm font-semibold text-foreground"
+              >
                 {item.label}
-              </span>
+              </a>
               {item.children?.map((c) => (
                 <a
                   key={c.label}
-                  href="#"
+                  href={c.href}
                   className="block px-3 py-1.5 text-sm text-muted-foreground"
                 >
                   {c.label}

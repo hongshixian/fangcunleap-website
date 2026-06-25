@@ -5,20 +5,49 @@ const footerCols = [
   {
     title: "产品",
     links: [
-      "方寸 Guard",
-      "方寸 Observer",
-      "SkillWard",
-      "方寸 RedTeam",
-      "AgentPlugin",
+      { label: "方寸 Guard", href: "/blog/fangcunguard" },
+      { label: "方寸 Observer", href: "/blog/observer" },
+      { label: "SkillWard", href: "/blog/skillward" },
+      { label: "方寸 RedTeam", href: "/solutions#redteam" },
+      { label: "AgentPlugin", href: "/blog/plugin" },
     ],
   },
   {
     title: "解决方案",
-    links: ["数据泄露防护", "智能体越权防护", "供应链安全扫描", "自动红队测试"],
+    links: [
+      { label: "数据泄露防护", href: "/solutions#guard" },
+      { label: "智能体越权防护", href: "/solutions#observer" },
+      { label: "供应链安全扫描", href: "/solutions#skillward" },
+      { label: "自动红队测试", href: "/solutions#redteam" },
+    ],
   },
-  { title: "开发者", links: ["快速开始", "API 文档", "GitHub", "SkillWard 在线体验"] },
-  { title: "公司", links: ["关于我们", "博客", "加入我们", "定价"] },
-  { title: "合规与安全", links: ["安全实践", "合规信息", "隐私政策", "服务条款"] },
+  {
+    title: "开发者",
+    links: [
+      { label: "快速开始", href: "/documentation" },
+      { label: "API 文档", href: "/documentation" },
+      { label: "GitHub", href: "https://github.com/Fangcun-AI" },
+      { label: "SkillWard 在线体验", href: "https://skillward.fangcunleap.com" },
+    ],
+  },
+  {
+    title: "公司",
+    links: [
+      { label: "关于我们", href: "/about" },
+      { label: "博客", href: "/blog" },
+      { label: "加入我们", href: "/careers" },
+      { label: "定价", href: "/pricing" },
+    ],
+  },
+  {
+    title: "合规与安全",
+    links: [
+      { label: "安全实践", href: "/security" },
+      { label: "合规信息", href: "/compliance" },
+      { label: "隐私政策", href: "/privacy" },
+      { label: "服务条款", href: "/terms" },
+    ],
+  },
 ]
 
 export function Footer() {
@@ -43,13 +72,15 @@ export function Footer() {
               <div key={col.title}>
                 <h4 className="text-sm font-semibold text-white">{col.title}</h4>
                 <ul className="mt-4 space-y-2.5">
-                  {col.links.map((l) => (
-                    <li key={l}>
+                  {col.links.map((link) => (
+                    <li key={link.label}>
                       <a
-                        href="#"
+                        href={link.href}
                         className="text-xs leading-relaxed text-white/60 transition-colors hover:text-white"
+                        target={link.href.startsWith('http') ? '_blank' : undefined}
+                        rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       >
-                        {l}
+                        {link.label}
                       </a>
                     </li>
                   ))}
@@ -64,8 +95,8 @@ export function Footer() {
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <a href="#" className="hover:text-white">冀ICP备2026005892号</a>
             <a href="#" className="hover:text-white">冀公网安备13310202000276号</a>
-            <a href="#" className="hover:text-white">隐私政策</a>
-            <a href="#" className="hover:text-white">服务条款</a>
+            <a href="/privacy" className="hover:text-white">隐私政策</a>
+            <a href="/terms" className="hover:text-white">服务条款</a>
           </div>
         </div>
       </div>

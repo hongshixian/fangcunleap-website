@@ -11,36 +11,42 @@ const newsData = {
       tag: "Engineering",
       date: "2026年05月",
       title: "Fangcun Observer: runtime safety for AI agents — 运行时监控与审计正式发布",
+      href: "/blog/observer",
     },
     {
       img: "/news/n2.png",
       tag: "Engineering",
       date: "2026年05月",
       title: "Fangcun AgentPlugin: a runtime guardrail for OpenClaw — 一行命令装完的护栏 SDK",
+      href: "/blog/plugin",
     },
     {
       img: "/news/n3.png",
       tag: "Engineering",
       date: "2026年04月",
       title: "Fangcun Guard: guarding the safety floor of every agent — 实时内容护栏正式上线",
+      href: "/blog/fangcunguard",
     },
     {
       img: "/news/n4.png",
       tag: "Research",
       date: "2026年04月",
       title: "SkillWard: trading uncertain warnings for runtime evidence — 开源 Skill 安全扫描工具发布",
+      href: "/blog/skillward",
     },
     {
       img: "/news/n5.jpg",
       tag: "新闻动态",
       date: "2026年04月",
       title: "智能助理智能体（Claw）可信能力技术规范发布 — 人工智能产业发展联盟 AIIA",
+      href: "/news",
     },
     {
       img: "/news/n6.png",
       tag: "新闻动态",
       date: "2026年03月",
       title: "OpenClaw 类智能体部署使用安全指引征求意见 — 全国网安标委",
+      href: "/news",
     },
   ],
   媒体: [
@@ -49,30 +55,35 @@ const newsData = {
       tag: "新智元",
       date: "2026年05月",
       title: "细思极恐！Agent 暗藏风险，清华团队打出组合拳，全链路一网打尽",
+      href: "/news",
     },
     {
       img: "/media/m2.png",
       tag: "媒体报道",
       date: "2026年04月",
       title: "SkillWard 开源发布：5000 个真实 Skill 评测，25% 被判不安全",
+      href: "/blog/skillward",
     },
     {
       img: "/media/m3.png",
       tag: "媒体报道",
       date: "2026年04月",
       title: "方寸跃迁方寸 Guard 上线：AI Agent 实时内容护栏，p99 8ms，F1 91.1",
+      href: "/blog/fangcunguard",
     },
     {
       img: "/media/m4.png",
       tag: "媒体报道",
       date: "2026年05月",
       title: "方寸 Observer 发布 Beta：零代码接入 Agent 运行时监控与审计追踪",
+      href: "/blog/observer",
     },
     {
       img: "/media/m5.webp",
       tag: "媒体报道",
       date: "2026年05月",
       title: "AgentPlugin 发布：给 OpenClaw 装上运行时护栏，单行命令完成部署",
+      href: "/blog/plugin",
     },
   ],
 }
@@ -120,7 +131,7 @@ export function News() {
           {items.map((n) => (
             <a
               key={n.title}
-              href="#"
+              href={n.href}
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -149,7 +160,7 @@ export function News() {
 
         <div className="mt-10 flex justify-center">
           <a
-            href="#"
+            href="/news"
             className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground hover:border-primary/50"
           >
             查看所有动态 <ArrowRight className="h-4 w-4" />
