@@ -29,7 +29,7 @@ function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: bo
             <img
               src={logo.src}
               alt={logo.alt}
-              className="max-h-12 w-auto max-w-[140px] object-contain"
+              className="max-h-12 w-auto max-w-[140px] object-contain grayscale invert brightness-[1.2] contrast-[1.1] opacity-80 transition-opacity hover:opacity-100"
               loading="lazy"
             />
           </div>

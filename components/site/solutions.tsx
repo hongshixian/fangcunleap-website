@@ -9,21 +9,25 @@ const solutions = [
     title: "数据泄露防护",
     desc: "大语言模型会产生幻觉、泄露数据，并默默执行对抗性指令。方寸 Guard 提供实时内容护栏，在输出层拦截风险，F1 91.1，p99 8ms，让每一次 AI 交互都可信。",
     tags: ["内容护栏", "实时拦截", "风险分类", "中文优化"],
+    image: "/illustrations/card-data-leakage.jpg",
   },
   {
     title: "智能体越权防护",
     desc: "自主智能体超越权限行动，缺乏审计追踪和紧急终止机制。方寸 Observer 零代码接入，对工具调用、出网请求、敏感文件访问全程留痕，任意会话可回放，事后追责有据可查。",
     tags: ["运行时监控", "审计追踪", "会话回放", "零代码接入"],
+    image: "/illustrations/card-agent-overreach.jpg",
   },
   {
     title: "供应链安全扫描",
     desc: "AI 供应链引入隐藏依赖——被污染的模型、受损的插件和未审查的第三方工具。SkillWard 通过静态分析 + LLM 研判 + Docker 沙箱三阶段扫描，揪出纯审阅流水线看不见的运行时威胁。",
     tags: ["静态分析", "LLM 研判", "Docker 沙箱", "开源 Apache 2.0"],
+    image: "/illustrations/card-supply-chain.jpg",
   },
   {
     title: "自动红队测试",
     desc: "方寸 RedTeam 面向 AI 应用进行自动化对抗测试，根据你的护栏策略生成定向越狱样本，输出可验证的安全报告，帮助企业在上线前发现护栏盲区。",
     tags: ["越狱样本生成", "安全报告", "定向测试", "研究预览"],
+    image: "/illustrations/solution.png",
   },
 ]
 
@@ -48,22 +52,19 @@ export function Solutions() {
               return (
                 <div
                   key={s.title}
+                  onMouseEnter={() => setOpen(i)}
                   className={`rounded-2xl border transition-colors ${
                     active ? "border-primary/40 bg-card shadow-md" : "border-border bg-card"
                   }`}
                 >
-                  <button
-                    onClick={() => setOpen(i)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-                    aria-expanded={active}
-                  >
+                  <div className="flex w-full items-center justify-between gap-4 px-6 py-5">
                     <span className="text-lg font-bold">{s.title}</span>
                     <ChevronDown
                       className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${
                         active ? "rotate-180 text-primary" : ""
                       }`}
                     />
-                  </button>
+                  </div>
                   {active && (
                     <div className="px-6 pb-6">
                       <p className="text-sm leading-relaxed text-muted-foreground">
@@ -94,11 +95,12 @@ export function Solutions() {
 
           <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-6">
             <Image
-              src="/illustrations/solution.png"
-              alt="AI 安全防护架构示意图"
+              key={open}
+              src={solutions[open].image}
+              alt={solutions[open].title}
               width={680}
               height={560}
-              className="mx-auto w-full max-w-lg"
+              className="mx-auto w-full max-w-lg transition-opacity duration-300"
             />
             <a
               href="#contact"
