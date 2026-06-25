@@ -47,7 +47,7 @@ export function Products() {
             return (
               <button
                 key={p.key}
-                onClick={() => setActive(i)}
+                onMouseEnter={() => setActive(i)}
                 className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 text-sm font-medium transition-colors ${
                   active === i
                     ? "border-primary bg-primary text-primary-foreground"
