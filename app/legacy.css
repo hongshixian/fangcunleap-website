@@ -139,9 +139,17 @@
 
 /* Font families for legacy pages */
 .font-barlow {
-  font-family: 'Barlow', system-ui, -apple-system, sans-serif;
+  font-family: 'Barlow', var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
 
 .font-noto-sans {
-  font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+  font-family: 'Noto Sans SC', var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+.font-instrument-serif {
+  font-family: var(--font-instrument-serif), 'Instrument Serif', serif;
+}
+
+.font-noto-serif {
+  font-family: var(--font-noto-serif), 'Noto Serif SC', serif;
 }
