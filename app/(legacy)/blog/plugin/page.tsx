@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, Globe } from "lucide-react";
-import { useLanguage } from "@/i18n/LanguageContext";
-import { MarketingFooter } from "@/components/MarketingPage";
-import SiteHeader from "@/components/SiteHeader";
+import { useLanguage } from "@/components/legacy/i18n/LanguageContext";
+import { MarketingFooter } from "@/components/legacy/MarketingPage";
+import SiteHeader from "@/components/legacy/SiteHeader";
 
 const PLATFORM_URL =
   (process.env.NEXT_PUBLIC_PLATFORM_URL as string | undefined) ||

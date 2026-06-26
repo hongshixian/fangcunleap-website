@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { useLanguage } from "@/i18n/LanguageContext";
-import { MarketingFooter } from "@/components/MarketingPage";
-import SiteHeader from "@/components/SiteHeader";
+import { useLanguage } from "@/components/legacy/i18n/LanguageContext";
+import { MarketingFooter } from "@/components/legacy/MarketingPage";
+import SiteHeader from "@/components/legacy/SiteHeader";
 
 
 type Post = {

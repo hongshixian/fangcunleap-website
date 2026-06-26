@@ -1,7 +1,7 @@
 "use client";
 
-import MarketingPage from "@/components/(legacy)/MarketingPage";
-import { useLanguage } from "@/i18n/LanguageContext";
+import MarketingPage from "@/components/legacy/MarketingPage";
+import { useLanguage } from "@/components/legacy/i18n/LanguageContext";
 
 // ============================================================
 // Product family — the four flagship services
