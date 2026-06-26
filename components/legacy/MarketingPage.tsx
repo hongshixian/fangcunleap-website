@@ -98,7 +98,8 @@ export const MarketingFooter = () => {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div className="md:col-span-1">
             <div className="flex items-center gap-3">
-              <span className="text-xl font-bold text-gray-900">方寸跃迁</span>
+              <img src="/logo.png" alt="" className="h-10 w-auto" />
+              <span className="text-base font-medium text-gray-900">{isZh ? "方寸跃迁" : "Fangcun Leap"}</span>
             </div>
             <p className="mt-3 text-xs leading-relaxed text-gray-500">{t("footer.desc")}</p>
           </div>

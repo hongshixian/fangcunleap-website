@@ -71,6 +71,11 @@ const SiteHeader = ({ theme }: SiteHeaderProps) => {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4">
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center gap-3 shrink-0">
+          <img
+            src="/logo.png"
+            alt="Fangcun Leap"
+            className={`h-12 w-auto md:h-14 ${isDark ? "brightness-0 invert" : ""}`}
+          />
           <span className={logoTextClass}>{lang === "zh" ? "方寸跃迁" : "Fangcun Leap"}</span>
         </Link>
 
