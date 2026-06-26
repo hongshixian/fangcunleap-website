@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { ArrowRight, CheckCircle2, Shield, Eye } from "lucide-react"
+import { ArrowRight, CheckCircle2, Shield, Eye, ScanSearch, Swords } from "lucide-react"
 import { useLanguage } from "./language-context"
 
 const products = [
@@ -28,6 +28,30 @@ const products = [
     features: {
       en: ["Zero-code Integration", "Full Tool Call Logging", "Network Request Tracking", "Sensitive File Access Logs", "Session Replay", "Local-first Evidence Storage"],
       zh: ["零代码改造接入", "工具调用全留痕", "出网请求追踪", "敏感文件访问记录", "任意会话可回放", "本地优先证据留存"],
+    },
+  },
+  {
+    key: "skillward",
+    tab: { en: "SkillWard Supply Chain Security", zh: "方寸 SkillWard 供应链安全" },
+    icon: ScanSearch,
+    title: { en: "SkillWard", zh: "方寸 SkillWard" },
+    subtitle: { en: "Supply Chain Security Scanning for AI Skills", zh: "AI Skill 供应链安全扫描" },
+    image: "/images/pic-m5.png",
+    features: {
+      en: ["Three-stage Scan Pipeline", "Static Analysis + LLM Review", "Docker Sandbox Verification", "99% Deployment Success", "Open Source Apache 2.0", "Automated Risk Reports"],
+      zh: ["三阶段扫描流程", "静态分析 + LLM 研判", "Docker 沙箱验证", "99% 部署成功率", "开源 Apache 2.0", "自动化风险报告"],
+    },
+  },
+  {
+    key: "redteam",
+    tab: { en: "Fangcun RedTeam Adversarial Testing", zh: "方寸 RedTeam 自动红队测试" },
+    icon: Swords,
+    title: { en: "Fangcun RedTeam", zh: "方寸 RedTeam" },
+    subtitle: { en: "Automated Red Team Testing for AI Systems", zh: "AI 系统自动化红队测试" },
+    image: "/images/pic-m4.png",
+    features: {
+      en: ["Auto Jailbreak Generation", "Adversarial Test Scenarios", "Comprehensive Security Reports", "Defense Validation", "Continuous Attack Simulation", "Multi-vector Testing"],
+      zh: ["自动越狱样本生成", "对抗性测试场景", "完整安全报告输出", "防御能力验证", "持续攻击模拟", "多向量攻击测试"],
     },
   },
 ]
@@ -71,14 +95,14 @@ export function Products() {
           })}
         </div>
 
-        <div className="mt-10 grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2">
-          <div className="order-2 lg:order-1">
+        <div className="mt-10 grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2 lg:min-h-[580px]">
+          <div className="order-2 lg:order-1 flex items-center justify-center">
             <Image
               src={product.image}
               alt={product.title[lang]}
               width={620}
               height={520}
-              className="mx-auto w-full max-w-lg"
+              className="mx-auto w-full max-w-lg object-contain"
             />
           </div>
           <div className="order-1 lg:order-2">

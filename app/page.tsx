@@ -9,7 +9,6 @@ import { Partners } from "@/components/site/partners"
 import { News } from "@/components/site/news"
 import { ContactCta } from "@/components/site/contact-cta"
 import { Footer } from "@/components/site/footer"
-import { SideTools } from "@/components/site/side-tools"
 import { LanguageProvider } from "@/components/site/language-context"
 
 export default function Page() {
@@ -18,14 +17,13 @@ export default function Page() {
       <main className="min-h-screen bg-background">
         <Header />
         <Hero />
-        <Solutions />
-        <Products />
-        <CoreTech />
         <Partners />
+        <Solutions />
+        <CoreTech />
+        <Products />
         <News />
         <ContactCta />
         <Footer />
-        <SideTools />
       </main>
     </LanguageProvider>
   )

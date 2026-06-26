@@ -28,12 +28,12 @@ function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: bo
         {doubled.map((logo, i) => (
           <div
             key={`${logo.src}-${i}`}
-            className="flex h-20 w-48 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-6 transition-colors hover:border-primary/50 hover:bg-white/[0.06]"
+            className="flex h-20 w-48 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-background px-6 transition-colors hover:border-primary/60"
           >
             <img
               src={logo.src}
               alt={logo.alt}
-              className="max-h-12 w-auto max-w-[140px] object-contain grayscale invert brightness-[1.2] contrast-[1.1] opacity-80 transition-opacity hover:opacity-100"
+              className="max-h-12 w-auto max-w-[140px] object-contain opacity-80 transition-opacity hover:opacity-100"
               loading="lazy"
             />
           </div>
@@ -47,12 +47,12 @@ function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: bo
         {doubled.map((logo, i) => (
           <div
             key={`${logo.src}-${i}-dup`}
-            className="flex h-20 w-48 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-6 transition-colors hover:border-primary/50 hover:bg-white/[0.06]"
+            className="flex h-20 w-48 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-background px-6 transition-colors hover:border-primary/60"
           >
             <img
               src={logo.src}
               alt={logo.alt}
-              className="max-h-12 w-auto max-w-[140px] object-contain grayscale invert brightness-[1.2] contrast-[1.1] opacity-80 transition-opacity hover:opacity-100"
+              className="max-h-12 w-auto max-w-[140px] object-contain opacity-80 transition-opacity hover:opacity-100"
               loading="lazy"
             />
           </div>
@@ -66,18 +66,17 @@ export function Partners() {
   const { lang } = useLanguage()
 
   return (
-    <section className="hero-gradient relative overflow-hidden py-20">
-      <div className="grid-mask pointer-events-none absolute inset-0 opacity-60" />
+    <section className="relative overflow-hidden bg-background py-20">
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
-        <p className="text-center text-sm font-medium uppercase tracking-[0.2em] text-primary-foreground/60">
+        <p className="text-center text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
           RESEARCH & INDUSTRY PARTNERS
         </p>
-        <h2 className="mt-3 text-balance text-center text-2xl font-bold text-primary-foreground md:text-3xl">
+        <h2 className="mt-3 text-balance text-center text-2xl font-bold text-foreground md:text-3xl">
           {lang === "zh"
             ? "携手学术机构与行业伙伴，共建可信 AI 生态"
             : "Partnering with Academic Institutions and Industry Leaders to Build a Trustworthy AI Ecosystem"}
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-pretty text-center text-sm leading-relaxed text-primary-foreground/70">
+        <p className="mx-auto mt-3 max-w-2xl text-pretty text-center text-sm leading-relaxed text-muted-foreground">
           {lang === "zh"
             ? "核心成员来自清华大学和加州大学伯克利分校，与全球顶级学术机构及企业深度合作"
             : "Core team members from Tsinghua University and UC Berkeley, collaborating deeply with top global academic institutions and enterprises"}

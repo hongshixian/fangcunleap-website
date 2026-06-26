@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowRight, ShieldCheck, ScanSearch, Bot } from "lucide-react"
+import { ArrowRight, ShieldCheck, ScanSearch, Bot, Swords } from "lucide-react"
 import { useLanguage } from "./language-context"
 
 const cards = [
@@ -27,6 +27,14 @@ const cards = [
     desc: {
       en: "SkillWard uses a three-stage scan (static analysis + LLM evaluation + Docker sandbox), fully open source (Apache 2.0), with 99% sandbox deployment success rate.",
       zh: "SkillWard 通过静态分析 + LLM 研判 + Docker 沙箱三阶段扫描，完全开源（Apache 2.0），沙箱部署成功率 99%。",
+    },
+  },
+  {
+    icon: Swords,
+    title: { en: "Automated Red Team Testing", zh: "自动红队测试" },
+    desc: {
+      en: "Fangcun RedTeam automatically generates jailbreak samples, performs adversarial testing, and produces comprehensive security reports to continuously validate AI system defenses.",
+      zh: "方寸 RedTeam 自动生成越狱样本，执行对抗性测试，输出完整安全报告，持续验证 AI 系统防御能力。",
     },
   },
 ]
@@ -55,7 +63,7 @@ export function CoreTech() {
           </h2>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {cards.map((c) => {
             const Icon = c.icon
             return (
@@ -78,7 +86,7 @@ export function CoreTech() {
         <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
           <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
             <Image
-              src="/images/pic_main.png"
+              src="/images/pic_main2.png"
               alt={lang === "zh" ? "方寸跃迁 AI 安全架构示意图" : "Fangcun Leap AI Security Architecture Diagram"}
               fill
               sizes="(max-width: 768px) 100vw, 1200px"

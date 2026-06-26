@@ -2,57 +2,33 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { ArrowRight, ChevronDown } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import { useLanguage } from "./language-context"
 
 const solutions = [
   {
-    title: { en: "Data Leakage Protection", zh: "数据泄露防护" },
+    title: { en: "Data Leakage", zh: "数据泄露" },
     desc: {
-      en: "Large language models hallucinate, leak data, and silently execute adversarial instructions. Fangcun Guard provides real-time content guardrails, intercepting risks at the output layer with F1 91.1, p99 8ms, making every AI interaction trustworthy.",
-      zh: "大语言模型会产生幻觉、泄露数据，并默默执行对抗性指令。方寸 Guard 提供实时内容护栏，在输出层拦截风险，F1 91.1，p99 8ms，让每一次 AI 交互都可信。",
+      en: "LLMs hallucinate, leak data, and follow adversarial instructions — silently.",
+      zh: "大语言模型会产生幻觉、泄露数据，并默默执行对抗性指令。",
     },
-    tags: {
-      en: ["Content Guardrails", "Real-time Interception", "Risk Classification", "Chinese Optimized"],
-      zh: ["内容护栏", "实时拦截", "风险分类", "中文优化"],
-    },
-    image: "/images/pic-m1.png",
+    image: "/images/pic-adv1.png",
   },
   {
-    title: { en: "Agent Privilege Protection", zh: "智能体越权防护" },
+    title: { en: "Agent Overreach", zh: "智能体越权" },
     desc: {
-      en: "Autonomous agents act beyond their permissions, lacking audit trails and emergency termination mechanisms. Fangcun Observer integrates with zero code changes, tracking tool calls, network requests, and sensitive file access with full session replay for post-incident accountability.",
-      zh: "自主智能体超越权限行动，缺乏审计追踪和紧急终止机制。方寸 Observer 零代码接入，对工具调用、出网请求、敏感文件访问全程留痕，任意会话可回放，事后追责有据可查。",
+      en: "Autonomous agents act beyond their permissions without audit trails or kill switches.",
+      zh: "自主智能体超越权限行动，缺乏审计追踪和紧急终止机制。",
     },
-    tags: {
-      en: ["Runtime Monitoring", "Audit Trail", "Session Replay", "Zero-code Integration"],
-      zh: ["运行时监控", "审计追踪", "会话回放", "零代码接入"],
-    },
-    image: "/images/pic-m2.png",
+    image: "/images/pic-adv2.png",
   },
   {
-    title: { en: "Supply Chain Security Scanning", zh: "供应链安全扫描" },
+    title: { en: "Supply Chain Risk", zh: "供应链风险" },
     desc: {
-      en: "AI supply chains introduce hidden dependencies—compromised models, damaged plugins, and unvetted third-party tools. SkillWard uses a three-stage scan (static analysis + LLM evaluation + Docker sandbox) to uncover runtime threats invisible to pure code review pipelines.",
-      zh: "AI 供应链引入隐藏依赖——被污染的模型、受损的插件和未审查的第三方工具。SkillWard 通过静态分析 + LLM 研判 + Docker 沙箱三阶段扫描，揪出纯审阅流水线看不见的运行时威胁。",
+      en: "AI supply chains introduce hidden dependencies — poisoned models, compromised plugins, and unvetted third-party tools.",
+      zh: "AI 供应链引入隐藏依赖——被污染的模型、受损的插件和未审查的第三方工具。",
     },
-    tags: {
-      en: ["Static Analysis", "LLM Evaluation", "Docker Sandbox", "Open Source Apache 2.0"],
-      zh: ["静态分析", "LLM 研判", "Docker 沙箱", "开源 Apache 2.0"],
-    },
-    image: "/images/pic-m3.png",
-  },
-  {
-    title: { en: "Automated Red Team Testing", zh: "自动红队测试" },
-    desc: {
-      en: "Fangcun RedTeam performs automated adversarial testing for AI applications, generating targeted jailbreak samples based on your guardrail policies, outputting verifiable security reports to help enterprises discover blind spots before deployment.",
-      zh: "方寸 RedTeam 面向 AI 应用进行自动化对抗测试，根据你的护栏策略生成定向越狱样本，输出可验证的安全报告，帮助企业在上线前发现护栏盲区。",
-    },
-    tags: {
-      en: ["Jailbreak Generation", "Security Reports", "Targeted Testing", "Research Preview"],
-      zh: ["越狱样本生成", "安全报告", "定向测试", "研究预览"],
-    },
-    image: "/images/pic-m4.png",
+    image: "/images/pic-adv3.png",
   },
 ]
 
@@ -81,69 +57,44 @@ export function Solutions() {
           </h2>
         </div>
 
-        <div className="mt-12 grid items-start gap-8 lg:grid-cols-2">
-          <div className="flex flex-col gap-3">
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_4fr]" style={{ height: "460px" }}>
+          <div className="flex flex-col h-full">
             {solutions.map((s, i) => {
               const active = open === i
+              const isLast = i === solutions.length - 1
+              // 展开占50%, 折叠各占25% (减去间距后实际略小)
+              const height = active ? "calc(50% - 4px)" : "calc(25% - 4px)"
               return (
                 <div
                   key={s.title[lang]}
                   onMouseEnter={() => setOpen(i)}
-                  className={`rounded-2xl border transition-colors ${
+                  style={{ height, transition: "height 0.35s ease, border-color 0.3s, box-shadow 0.3s" }}
+                  className={`flex flex-col rounded-2xl border overflow-hidden cursor-pointer ${
                     active ? "border-primary/40 bg-card shadow-md" : "border-border bg-card"
-                  }`}
+                  } ${!isLast ? "mb-2" : ""}`}
                 >
-                  <div className="flex w-full items-center justify-between gap-4 px-6 py-5">
+                  <div className="flex items-center justify-between gap-4 px-6 py-4 shrink-0">
                     <span className="text-lg font-bold">{s.title[lang]}</span>
-                    <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${
-                        active ? "rotate-180 text-primary" : ""
-                      }`}
-                    />
+                    <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${active ? "rotate-180 text-primary" : ""}`} />
                   </div>
-                  {active && (
-                    <div className="px-6 pb-6">
-                      <p className="text-sm leading-relaxed text-muted-foreground">
-                        {s.desc[lang]}
-                      </p>
-                      <a
-                        href="#contact"
-                        className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
-                      >
-                        {lang === "zh" ? "查看详情" : "Learn More"} <ArrowRight className="h-4 w-4" />
-                      </a>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {s.tags[lang].map((t) => (
-                          <span
-                            key={t}
-                            className="rounded-md border border-border bg-secondary/60 px-3 py-1.5 text-xs text-secondary-foreground"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <div className={`px-6 pb-4 transition-opacity duration-300 ${active ? "opacity-100" : "opacity-0"}`}>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{s.desc[lang]}</p>
+                  </div>
                 </div>
               )
             })}
           </div>
 
-          <div className="relative flex items-center overflow-hidden rounded-3xl border border-border bg-card p-6 lg:self-stretch">
-            <Image
-              key={open}
-              src={solutions[open].image}
-              alt={solutions[open].title[lang]}
-              width={680}
-              height={560}
-              className="mx-auto w-full max-w-lg transition-opacity duration-300"
-            />
-            <a
-              href="#contact"
-              className="absolute bottom-6 right-6 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background"
-            >
-              {lang === "zh" ? "了解更多" : "Learn More"} <ArrowRight className="h-4 w-4" />
-            </a>
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card h-full">
+            {solutions.map((s, i) => (
+              <Image
+                key={s.image}
+                src={s.image}
+                alt={s.title[lang]}
+                fill
+                className={`object-contain p-6 transition-opacity duration-500 ${open === i ? "opacity-100" : "opacity-0"}`}
+              />
+            ))}
           </div>
         </div>
       </div>
