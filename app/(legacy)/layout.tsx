@@ -1,6 +1,7 @@
 "use client"
 
 import { LanguageProvider } from "@/components/legacy/i18n/LanguageContext"
+import "@/app/legacy.css"
 
 export default function LegacyLayout({
   children,

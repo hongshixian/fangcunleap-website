@@ -1,0 +1,147 @@
+/* Legacy website styles - Purple theme with liquid glass effects */
+
+/* Liquid Glass — Purple tinted */
+.liquid-glass {
+  background: linear-gradient(
+    135deg,
+    hsla(265, 85%, 65%, 0.12) 0%,
+    rgba(255, 255, 255, 0.05) 40%,
+    hsla(265, 60%, 50%, 0.08) 60%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid hsla(265, 60%, 70%, 0.18);
+  box-shadow:
+    inset 0 1px 0 0 hsla(265, 80%, 80%, 0.15),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.04),
+    0 8px 32px -8px rgba(0, 0, 0, 0.3);
+}
+
+.liquid-glass-btn {
+  background: linear-gradient(
+    135deg,
+    hsla(265, 85%, 65%, 0.2) 0%,
+    hsla(265, 60%, 50%, 0.08) 50%,
+    hsla(270, 50%, 75%, 0.15) 100%
+  );
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid hsla(265, 60%, 70%, 0.25);
+  box-shadow:
+    inset 0 1px 0 0 hsla(265, 80%, 85%, 0.2),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.05),
+    0 4px 20px -4px hsla(265, 80%, 40%, 0.25);
+  transition: all 0.3s ease;
+}
+
+.liquid-glass-btn:hover {
+  background: linear-gradient(
+    135deg,
+    hsla(265, 85%, 65%, 0.3) 0%,
+    hsla(265, 60%, 50%, 0.15) 50%,
+    hsla(270, 50%, 75%, 0.22) 100%
+  );
+  border-color: hsla(265, 60%, 70%, 0.4);
+  box-shadow:
+    inset 0 1px 0 0 hsla(265, 80%, 85%, 0.3),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.08),
+    0 8px 32px -4px hsla(265, 80%, 40%, 0.35);
+}
+
+.liquid-glass-card {
+  background: linear-gradient(
+    160deg,
+    hsla(265, 60%, 50%, 0.06) 0%,
+    hsla(265, 40%, 30%, 0.03) 50%,
+    hsla(265, 60%, 50%, 0.05) 100%
+  );
+  border: 1px solid hsla(265, 50%, 60%, 0.08);
+  transition: all 0.4s ease;
+}
+
+.liquid-glass-card:hover {
+  border-color: hsla(265, 60%, 65%, 0.2);
+  box-shadow: 0 12px 40px -8px hsla(265, 80%, 40%, 0.15);
+  background: linear-gradient(
+    160deg,
+    hsla(265, 60%, 50%, 0.1) 0%,
+    hsla(265, 40%, 30%, 0.05) 50%,
+    hsla(265, 60%, 50%, 0.08) 100%
+  );
+}
+
+/* Light-mode liquid glass for light backgrounds */
+.liquid-glass-light {
+  background: linear-gradient(
+    135deg,
+    hsla(265, 80%, 70%, 0.12) 0%,
+    rgba(255, 255, 255, 0.6) 40%,
+    hsla(265, 60%, 80%, 0.1) 60%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid hsla(265, 60%, 70%, 0.2);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+    0 4px 24px -4px hsla(265, 60%, 50%, 0.1);
+}
+
+/* Purple glow effects */
+.glow-purple {
+  box-shadow: 0 0 60px 20px hsla(265, 85%, 55%, 0.15);
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, hsl(265, 85%, 65%), hsl(270, 50%, 75%), hsl(265, 90%, 80%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient border */
+@keyframes border-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-glow {
+  animation: border-glow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0%, 100% { transform: translateY(-60px); opacity: 0; }
+  50% { transform: translateY(60px); opacity: 1; }
+}
+
+.animate-scan {
+  animation: scan 3s ease-in-out infinite;
+}
+
+/* Font families for legacy pages */
+.font-barlow {
+  font-family: 'Barlow', system-ui, -apple-system, sans-serif;
+}
+
+.font-noto-sans {
+  font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+}
