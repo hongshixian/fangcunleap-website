@@ -29,7 +29,6 @@ const footerCols = {
       title: "Developers",
       links: [
         { label: "Quick Start", href: "/documentation" },
-        { label: "API Docs", href: "/documentation" },
         { label: "GitHub", href: "https://github.com/Fangcun-AI" },
         { label: "SkillWard Demo", href: "https://skillward.fangcunleap.com" },
       ],
@@ -77,7 +76,6 @@ const footerCols = {
       title: "开发者",
       links: [
         { label: "快速开始", href: "/documentation" },
-        { label: "API 文档", href: "/documentation" },
         { label: "GitHub", href: "https://github.com/Fangcun-AI" },
         { label: "SkillWard 在线体验", href: "https://skillward.fangcunleap.com" },
       ],
