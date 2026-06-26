@@ -16,7 +16,7 @@ const row2 = logos.slice(4)
 function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: boolean }) {
   const doubled = [...items, ...items]
   return (
-    <div className="marquee-pause flex w-full overflow-hidden">
+    <div className="marquee-pause relative flex w-full overflow-hidden">
       <div
         className="animate-marquee flex shrink-0 items-center gap-4"
         style={reverse ? { animationDirection: "reverse" } : undefined}
@@ -24,6 +24,25 @@ function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: bo
         {doubled.map((logo, i) => (
           <div
             key={`${logo.src}-${i}`}
+            className="flex h-20 w-48 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-6 transition-colors hover:border-primary/50 hover:bg-white/[0.06]"
+          >
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              className="max-h-12 w-auto max-w-[140px] object-contain grayscale invert brightness-[1.2] contrast-[1.1] opacity-80 transition-opacity hover:opacity-100"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+      <div
+        className="animate-marquee flex shrink-0 items-center gap-4 pl-4"
+        style={reverse ? { animationDirection: "reverse" } : undefined}
+        aria-hidden="true"
+      >
+        {doubled.map((logo, i) => (
+          <div
+            key={`${logo.src}-${i}-dup`}
             className="flex h-20 w-48 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-6 transition-colors hover:border-primary/50 hover:bg-white/[0.06]"
           >
             <img
