@@ -5,13 +5,6 @@ export const navItems: NavItem[] = [
   {
     label: "解决方案",
     href: "/solutions",
-    children: [
-      { label: "方寸 Guard", desc: "面向 AI Agent 的实时内容护栏", href: "/blog/fangcunguard" },
-      { label: "方寸 Observer", desc: "Agent 运行时监控与审计", href: "/blog/observer" },
-      { label: "SkillWard", desc: "三阶段 Skill 安全扫描", href: "/blog/skillward" },
-      { label: "方寸 RedTeam", desc: "自动红队测试", href: "/solutions#redteam" },
-      { label: "AgentPlugin", desc: "给 OpenClaw 装上运行时护栏", href: "/blog/plugin" },
-    ],
   },
   {
     label: "产品与服务",
@@ -32,5 +25,4 @@ export const navItems: NavItem[] = [
     ],
   },
   { label: "博客", href: "/blog" },
-  { label: "定价", href: "/pricing" },
 ]

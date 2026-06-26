@@ -1,13 +1,20 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ChevronDown, Search, Menu, X } from "lucide-react"
+import { ChevronDown, Menu, X, Globe } from "lucide-react"
 import { Logo } from "./logo"
 import { navItems } from "./nav-data"
+import { useLanguage } from "./language-context"
+
+const PLATFORM_URL =
+  process.env.NEXT_PUBLIC_PLATFORM_URL || "https://platform.fangcunleap.com"
+const PLATFORM_LOGIN_URL = `${PLATFORM_URL}/platform/login`
+const PLATFORM_CONSOLE_URL = `${PLATFORM_URL}/platform/`
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { lang, toggleLang } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => {
@@ -89,20 +96,43 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 md:gap-3">
+          {/* Language toggle */}
           <button
-            aria-label="搜索"
-            className={`hidden rounded-full p-2 transition-colors sm:block ${
-              light ? "text-white hover:bg-white/10" : "text-gray-900 hover:bg-accent"
+            onClick={toggleLang}
+            aria-label="切换语言"
+            className={`hidden items-center gap-1.5 rounded-full px-3 py-2 text-xs font-medium transition-colors sm:flex ${
+              light
+                ? "text-white/60 hover:bg-white/10 hover:text-white"
+                : "text-gray-700 hover:bg-accent hover:text-gray-900"
             }`}
           >
-            <Search className="h-5 w-5" />
+            <Globe className="h-4 w-4" />
+            {lang === "zh" ? "EN" : "中文"}
           </button>
+
+          {/* Login link */}
           <a
-            href="#contact"
-            className="hidden rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:inline-block"
+            href={PLATFORM_LOGIN_URL}
+            className={`hidden rounded-full px-4 py-2 text-sm font-light transition-colors sm:inline-block ${
+              light ? "text-white/70 hover:text-white" : "text-gray-700 hover:text-gray-900"
+            }`}
           >
-            联系我们
+            登录
           </a>
+
+          {/* Console button */}
+          <a
+            href={PLATFORM_CONSOLE_URL}
+            className={`hidden rounded-full px-6 py-2.5 text-sm font-medium transition-all sm:inline-block ${
+              light
+                ? "bg-white text-purple-900 hover:scale-[1.02]"
+                : "bg-primary text-primary-foreground hover:opacity-90"
+            }`}
+          >
+            进入控制台
+          </a>
+
+          {/* Mobile menu toggle */}
           <button
             aria-label="菜单"
             onClick={() => setMobileOpen((v) => !v)}
@@ -137,12 +167,27 @@ export function Header() {
               ))}
             </div>
           ))}
-          <a
-            href="#contact"
-            className="mt-3 block rounded-full bg-primary px-5 py-2.5 text-center text-sm font-medium text-primary-foreground"
-          >
-            联系我们
-          </a>
+          <div className="mt-3 flex flex-col gap-2">
+            <button
+              onClick={toggleLang}
+              className="flex items-center justify-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground"
+            >
+              <Globe className="h-4 w-4" />
+              {lang === "zh" ? "EN" : "中文"}
+            </button>
+            <a
+              href={PLATFORM_LOGIN_URL}
+              className="block rounded-full border border-border px-5 py-2.5 text-center text-sm font-medium text-foreground"
+            >
+              登录
+            </a>
+            <a
+              href={PLATFORM_CONSOLE_URL}
+              className="block rounded-full bg-primary px-5 py-2.5 text-center text-sm font-medium text-primary-foreground"
+            >
+              进入控制台
+            </a>
+          </div>
         </div>
       )}
     </header>

@@ -1,3 +1,5 @@
+"use client"
+
 import { Header } from "@/components/site/header"
 import { Hero } from "@/components/site/hero"
 import { Products } from "@/components/site/products"
@@ -8,20 +10,23 @@ import { News } from "@/components/site/news"
 import { ContactCta } from "@/components/site/contact-cta"
 import { Footer } from "@/components/site/footer"
 import { SideTools } from "@/components/site/side-tools"
+import { LanguageProvider } from "@/components/site/language-context"
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-background">
-      <Header />
-      <Hero />
-      <Solutions />
-      <Products />
-      <CoreTech />
-      <Partners />
-      <News />
-      <ContactCta />
-      <Footer />
-      <SideTools />
-    </main>
+    <LanguageProvider>
+      <main className="min-h-screen bg-background">
+        <Header />
+        <Hero />
+        <Solutions />
+        <Products />
+        <CoreTech />
+        <Partners />
+        <News />
+        <ContactCta />
+        <Footer />
+        <SideTools />
+      </main>
+    </LanguageProvider>
   )
 }
