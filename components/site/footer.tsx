@@ -117,10 +117,6 @@ export function Footer() {
               <p>{lang === "zh" ? "业务咨询：" : "Business: "}contact@fangcunleap.com</p>
               <p>{lang === "zh" ? "通用邮箱：" : "General: "}info@fangcunleap.com</p>
             </div>
-            <div className="mt-5 space-y-1 text-sm leading-relaxed text-white/70">
-              <p>{lang === "zh" ? "控制台：" : "Console: "}platform.fangcunleap.com</p>
-              <p>SkillWard: skillward.fangcunleap.com</p>
-            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
