@@ -1,6 +1,11 @@
+"use client"
+
 import { ArrowRight } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 export function Hero() {
+  const { lang } = useLanguage()
+
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="relative pb-20 pt-16">
@@ -22,28 +27,40 @@ export function Hero() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pt-16 md:px-6 lg:grid-cols-2">
           <div className="text-white">
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-white/70">
-              Securing the future of artificial intelligence
+              {lang === "zh" ? "守护人工智能的安全未来" : "Securing the future of artificial intelligence"}
             </p>
             <h1 className="text-balance text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-              守护人工智能
-              <br />
-              的安全未来
+              {lang === "zh" ? (
+                <>
+                  守护人工智能
+                  <br />
+                  的安全未来
+                </>
+              ) : (
+                <>
+                  Securing the Future
+                  <br />
+                  of Artificial Intelligence
+                </>
+              )}
             </h1>
             <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-white/80">
-              我们构建防御系统，保护 AI 模型、大语言模型和自主智能体免受对抗性威胁——让您无畏创新。
+              {lang === "zh"
+                ? "我们构建防御系统，保护 AI 模型、大语言模型和自主智能体免受对抗性威胁——让您无畏创新。"
+                : "We build defense systems to protect AI models, large language models, and autonomous agents from adversarial threats — empowering fearless innovation."}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary transition-transform hover:-translate-y-0.5"
               >
-                立即防护 <ArrowRight className="h-4 w-4" />
+                {lang === "zh" ? "立即防护" : "Get Protected"} <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="#products"
                 className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
               >
-                我们的方案
+                {lang === "zh" ? "我们的方案" : "Our Solutions"}
               </a>
             </div>
           </div>

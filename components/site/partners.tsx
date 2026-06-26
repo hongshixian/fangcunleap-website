@@ -1,3 +1,7 @@
+"use client"
+
+import { useLanguage } from "./language-context"
+
 const logos = [
   { src: "/partners-fangcun/tsinghua.png", alt: "清华大学" },
   { src: "/partners-fangcun/mit.png", alt: "MIT" },
@@ -59,6 +63,8 @@ function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: bo
 }
 
 export function Partners() {
+  const { lang } = useLanguage()
+
   return (
     <section className="hero-gradient relative overflow-hidden py-20">
       <div className="grid-mask pointer-events-none absolute inset-0 opacity-60" />
@@ -67,10 +73,14 @@ export function Partners() {
           RESEARCH & INDUSTRY PARTNERS
         </p>
         <h2 className="mt-3 text-balance text-center text-2xl font-bold text-primary-foreground md:text-3xl">
-          携手学术机构与行业伙伴，共建可信 AI 生态
+          {lang === "zh"
+            ? "携手学术机构与行业伙伴，共建可信 AI 生态"
+            : "Partnering with Academic Institutions and Industry Leaders to Build a Trustworthy AI Ecosystem"}
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-pretty text-center text-sm leading-relaxed text-primary-foreground/70">
-          核心成员来自清华大学和加州大学伯克利分校，与全球顶级学术机构及企业深度合作
+          {lang === "zh"
+            ? "核心成员来自清华大学和加州大学伯克利分校，与全球顶级学术机构及企业深度合作"
+            : "Core team members from Tsinghua University and UC Berkeley, collaborating deeply with top global academic institutions and enterprises"}
         </p>
       </div>
       <div className="relative mt-12 flex flex-col gap-5">
