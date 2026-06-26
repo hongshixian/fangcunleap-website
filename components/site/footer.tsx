@@ -113,10 +113,6 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.2fr_3fr]">
           <div>
             <Logo light />
-            <div className="mt-6 space-y-2 text-sm text-white/70">
-              <p>{lang === "zh" ? "业务咨询：" : "Business: "}contact@fangcunleap.com</p>
-              <p>{lang === "zh" ? "通用邮箱：" : "General: "}info@fangcunleap.com</p>
-            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
