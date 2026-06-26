@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { ChevronDown, Menu, X, Globe } from "lucide-react"
 import { Logo } from "./logo"
-import { navItems } from "./nav-data"
+import { getNavItems } from "./nav-data"
 import { useLanguage } from "./language-context"
 
 const PLATFORM_URL =
@@ -15,6 +15,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { lang, toggleLang } = useLanguage()
+  const navItems = getNavItems(lang)
 
   useEffect(() => {
     const onScroll = () => {
@@ -117,7 +118,7 @@ export function Header() {
               light ? "text-white/70 hover:text-white" : "text-gray-700 hover:text-gray-900"
             }`}
           >
-            登录
+            {lang === "zh" ? "登录" : "Login"}
           </a>
 
           {/* Console button */}
@@ -129,7 +130,7 @@ export function Header() {
                 : "bg-primary text-primary-foreground hover:opacity-90"
             }`}
           >
-            进入控制台
+            {lang === "zh" ? "进入控制台" : "Console"}
           </a>
 
           {/* Mobile menu toggle */}
@@ -179,13 +180,13 @@ export function Header() {
               href={PLATFORM_LOGIN_URL}
               className="block rounded-full border border-border px-5 py-2.5 text-center text-sm font-medium text-foreground"
             >
-              登录
+              {lang === "zh" ? "登录" : "Login"}
             </a>
             <a
               href={PLATFORM_CONSOLE_URL}
               className="block rounded-full bg-primary px-5 py-2.5 text-center text-sm font-medium text-primary-foreground"
             >
-              进入控制台
+              {lang === "zh" ? "进入控制台" : "Console"}
             </a>
           </div>
         </div>
