@@ -37,7 +37,7 @@ export function Solutions() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="solutions" className="bg-background py-20 md:py-28">
+    <section id="solutions" className="bg-secondary/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center">
           <h2 className="text-balance text-3xl font-bold leading-tight md:text-4xl">

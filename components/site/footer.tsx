@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import Link from "next/link"
 import { Logo } from "./logo"
 import { useLanguage } from "./language-context"
 
@@ -118,18 +118,30 @@ export function Footer() {
               <div key={col.title}>
                 <h4 className="text-sm font-semibold text-white">{col.title}</h4>
                 <ul className="mt-4 space-y-2.5">
-                  {col.links.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-xs leading-relaxed text-white/60 transition-colors hover:text-white"
-                        target={link.href.startsWith('http') ? '_blank' : undefined}
-                        rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
+                  {col.links.map((link) => {
+                    const isExternal = link.href.startsWith('http')
+                    return (
+                      <li key={link.label}>
+                        {isExternal ? (
+                          <a
+                            href={link.href}
+                            className="text-xs leading-relaxed text-white/60 transition-colors hover:text-white"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {link.label}
+                          </a>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className="text-xs leading-relaxed text-white/60 transition-colors hover:text-white"
+                          >
+                            {link.label}
+                          </Link>
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             ))}
@@ -141,8 +153,8 @@ export function Footer() {
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <a href="#" className="hover:text-white">冀ICP备2026005892号</a>
             <a href="#" className="hover:text-white">冀公网安备13310202000276号</a>
-            <a href="/privacy" className="hover:text-white">{lang === "zh" ? "隐私政策" : "Privacy Policy"}</a>
-            <a href="/terms" className="hover:text-white">{lang === "zh" ? "服务条款" : "Terms of Service"}</a>
+            <Link href="/privacy" className="hover:text-white">{lang === "zh" ? "隐私政策" : "Privacy Policy"}</Link>
+            <Link href="/terms" className="hover:text-white">{lang === "zh" ? "服务条款" : "Terms of Service"}</Link>
           </div>
         </div>
       </div>

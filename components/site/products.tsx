@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, CheckCircle2, Shield, Eye, ScanSearch, Swords } from "lucide-react"
 import { useLanguage } from "./language-context"
@@ -61,8 +62,18 @@ export function Products() {
   const [active, setActive] = useState(0)
   const product = products[active]
 
+  const getProductLink = (key: string) => {
+    const links: Record<string, string> = {
+      guard: "/blog/fangcunguard",
+      observer: "/blog/observer",
+      skillward: "/blog/skillward",
+      redteam: "/solutions#redteam",
+    }
+    return links[key] || "#contact"
+  }
+
   return (
-    <section id="products" className="bg-background py-20 md:py-28">
+    <section id="products" className="bg-secondary/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center">
           <h2 className="text-balance text-3xl font-bold md:text-4xl">
@@ -116,12 +127,12 @@ export function Products() {
                 </li>
               ))}
             </ul>
-            <a
-              href="#contact"
+            <Link
+              href={getProductLink(product.key)}
               className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary"
             >
               {lang === "zh" ? "查看详情" : "Learn More"} <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Newspaper, Radio } from "lucide-react"
 import { useLanguage } from "./language-context"
@@ -96,7 +97,7 @@ export function News() {
   const items = newsData[tab]
 
   return (
-    <section id="news" className="bg-background py-20 md:py-28">
+    <section id="news" className="bg-secondary/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <h2 className="text-center text-balance text-3xl font-bold md:text-4xl">
           {lang === "zh"
@@ -129,7 +130,7 @@ export function News() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((n) => (
-            <a
+            <Link
               key={typeof n.title === "string" ? n.title : n.title[lang]}
               href={n.href}
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg"
@@ -164,17 +165,17 @@ export function News() {
                   </span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
         <div className="mt-10 flex justify-center">
-          <a
+          <Link
             href="/news"
             className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground hover:border-primary/50"
           >
             {lang === "zh" ? "查看所有动态" : "View All Updates"} <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

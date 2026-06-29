@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { ChevronDown, Menu, X, Globe } from "lucide-react"
 import { Logo } from "./logo"
 import { getNavItems } from "./nav-data"
@@ -20,7 +21,6 @@ export function Header() {
   useEffect(() => {
     const onScroll = () => {
       const isScrolled = window.scrollY > 40
-      console.log('Scroll Y:', window.scrollY, 'Scrolled:', isScrolled)
       setScrolled(isScrolled)
     }
     onScroll()
@@ -39,9 +39,9 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
-        <a href="/" aria-label="方寸跃迁首页">
+        <Link href="/" aria-label="方寸跃迁首页">
           <Logo light={light} />
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex">
@@ -59,7 +59,7 @@ export function Header() {
                   <ChevronDown className="h-3.5 w-3.5 opacity-70 transition-transform group-hover:rotate-180" />
                 </button>
               ) : (
-                <a
+                <Link
                   href={item.href}
                   className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                     light
@@ -68,13 +68,13 @@ export function Header() {
                   }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               )}
               {item.children && (
                 <div className="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
                   <div className="rounded-xl border border-border bg-popover p-2 shadow-xl">
                     {item.children.map((c) => (
-                      <a
+                      <Link
                         key={c.label}
                         href={c.href}
                         className="block rounded-lg px-3 py-2 transition-colors hover:bg-accent"
@@ -87,7 +87,7 @@ export function Header() {
                             {c.desc}
                           </span>
                         )}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -151,20 +151,20 @@ export function Header() {
         <div className="max-h-[70vh] overflow-y-auto border-t border-border bg-background px-4 py-3 lg:hidden">
           {navItems.map((item) => (
             <div key={item.label} className="border-b border-border/60 py-2">
-              <a
+              <Link
                 href={item.href ?? "#"}
                 className="block px-1 py-1.5 text-sm font-semibold text-foreground"
               >
                 {item.label}
-              </a>
+              </Link>
               {item.children?.map((c) => (
-                <a
+                <Link
                   key={c.label}
                   href={c.href}
                   className="block px-3 py-1.5 text-sm text-muted-foreground"
                 >
                   {c.label}
-                </a>
+                </Link>
               ))}
             </div>
           ))}

@@ -4,18 +4,16 @@ import { useLanguage } from "./language-context"
 
 const logos = [
   { src: "/partners-fangcun/tsinghua.png", alt: "清华大学" },
-  { src: "/partners-fangcun/mit.png", alt: "MIT" },
-  { src: "/partners-fangcun/ucberkeley.png", alt: "UC Berkeley" },
-  { src: "/partners-fangcun/uw.png", alt: "University of Washington" },
-  { src: "/partners-fangcun/baidu.svg", alt: "百度" },
   { src: "/partners-fangcun/unisplendour.png", alt: "新紫光集团" },
   { src: "/partners-fangcun/cnaisda.png", alt: "CnAISDA" },
-  { src: "/partners-fangcun/mats.svg", alt: "MATS" },
   { src: "/partners-fangcun/saif.svg", alt: "SAIF" },
+  { src: "/partners-fangcun/logo-shuimuqinghua.png", alt: "水木清华" },
+  { src: "/partners-fangcun/logo-xinglian.png", alt: "星联" },
+  { src: "/partners-fangcun/logo-SEEFUND.png", alt: "SEEFUND" },
 ]
 
-const row1 = logos.slice(0, 5)
-const row2 = logos.slice(4)
+const row1 = logos
+const row2 = logos
 
 function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: boolean }) {
   const doubled = [...items, ...items]
@@ -40,7 +38,7 @@ function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: bo
         ))}
       </div>
       <div
-        className="animate-marquee flex shrink-0 items-center gap-4 pl-4"
+        className="animate-marquee flex shrink-0 items-center gap-4 ml-4"
         style={reverse ? { animationDirection: "reverse" } : undefined}
         aria-hidden="true"
       >
@@ -66,7 +64,7 @@ export function Partners() {
   const { lang } = useLanguage()
 
   return (
-    <section className="relative overflow-hidden bg-background py-20">
+    <section className="relative overflow-hidden bg-secondary/40 py-20">
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <p className="text-center text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
           RESEARCH & INDUSTRY PARTNERS

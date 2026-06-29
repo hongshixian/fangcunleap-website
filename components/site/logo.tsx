@@ -6,9 +6,9 @@ export function Logo({ light = false }: { light?: boolean }) {
       <Image
         src="/fangcun-logo.png"
         alt="方寸跃迁 logo"
-        width={34}
-        height={34}
-        className="h-8 w-8 object-contain"
+        width={48}
+        height={48}
+        className="h-12 w-12 object-contain"
         priority
       />
       <div className="flex flex-col leading-none">

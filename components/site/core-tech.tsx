@@ -93,20 +93,6 @@ export function CoreTech() {
               className="object-cover"
             />
           </div>
-          <div className="flex flex-wrap justify-center gap-4 pb-2 md:absolute md:bottom-8 md:right-8 md:justify-end">
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5"
-            >
-              {lang === "zh" ? "申请演示" : "Request Demo"} <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#news"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:border-primary/50"
-            >
-              {lang === "zh" ? "查看技术报道" : "View Tech Coverage"}
-            </a>
-          </div>
         </div>
       </div>
     </section>

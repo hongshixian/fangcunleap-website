@@ -11,7 +11,7 @@ export function ContactCta() {
     <section className="relative overflow-hidden">
       <div className="relative h-[280px] w-full md:h-[360px]">
         <Image
-          src="/site/contact-banner.jpg"
+          src="/site/contact-banner-2.png"
           alt={lang === "zh" ? "体验企业级 AI 安全防护" : "Experience Enterprise-Grade AI Security"}
           fill
           sizes="100vw"
@@ -30,13 +30,13 @@ export function ContactCta() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="#contact"
+              href="mailto:contact@fangcunleap.com"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
             >
               {lang === "zh" ? "申请演示" : "Request Demo"} <ArrowRight className="h-4 w-4" />
             </a>
             <a
-              href="#products"
+              href="https://platform.fangcunleap.com/platform/register"
               className="inline-flex items-center gap-2 rounded-full border border-gray-900/30 bg-white/60 px-7 py-3 text-sm font-semibold text-gray-900 transition-transform hover:scale-[1.03]"
             >
               {lang === "zh" ? "免费试用护栏" : "Try Guardrails Free"}
