@@ -24,7 +24,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" aria-hidden />
         <div className="absolute inset-0 grid-mask opacity-40" aria-hidden />
 
-        <div className="relative mx-auto grid max-w-[1400px] items-center gap-8 px-4 pt-16 md:px-6 lg:grid-cols-2">
+        <div className="relative mx-auto grid max-w-[1450px] items-center gap-8 px-4 pt-16 md:px-6 lg:grid-cols-2">
           <div className="text-white">
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-white/70">
               {lang === "zh" ? "守护人工智能的安全未来" : "Securing the future of artificial intelligence"}

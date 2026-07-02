@@ -43,7 +43,7 @@ export function CoreTech() {
 
   return (
     <section id="tech" className="bg-secondary/40 py-20 md:py-28">
-      <div className="mx-auto max-w-[1400px] px-4 md:px-6">
+      <div className="mx-auto max-w-[1450px] px-4 md:px-6">
         <div className="text-center">
           <h2 className="text-balance text-3xl font-bold leading-tight md:text-4xl">
             {lang === "zh" ? (

@@ -65,7 +65,7 @@ export function Partners() {
 
   return (
     <section className="relative overflow-hidden bg-secondary/40 py-20">
-      <div className="relative mx-auto max-w-[1400px] px-4 md:px-6">
+      <div className="relative mx-auto max-w-[1450px] px-4 md:px-6">
         <p className="text-center text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
           RESEARCH & INDUSTRY PARTNERS
         </p>
