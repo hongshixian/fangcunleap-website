@@ -1,23 +1,22 @@
 "use client"
 
-import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { useLanguage } from "./language-context"
+import { MeshGradientBackground } from "./mesh-gradient-background"
 
 export function Hero() {
   const { lang } = useLanguage()
 
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section id="top" className="relative overflow-hidden bg-[#00000e]">
       <div className="relative pb-20 pt-16">
-        {/* Image background */}
-        <Image
-          src="/hero-1.png"
-          alt="Hero background"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
+        {/* Procedurally rendered mesh-gradient background (replaces static hero image) */}
+        <MeshGradientBackground />
+
+        {/* Fallback gradient shown before WebGL is ready */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#f06bff_0%,#9222d8_34%,#2d0055_66%,#00000e_100%)]"
         />
 
         {/* Overlay for better text readability */}
