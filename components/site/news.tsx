@@ -98,7 +98,7 @@ export function News() {
 
   return (
     <section id="news" className="bg-secondary/40 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <div className="mx-auto max-w-8xl px-4 md:px-6">
         <h2 className="text-center text-balance text-3xl font-bold md:text-4xl">
           {lang === "zh"
             ? "方寸跃迁动态 守护 AI 安全前沿"
@@ -128,12 +128,12 @@ export function News() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-5">
           {items.map((n) => (
             <Link
               key={typeof n.title === "string" ? n.title : n.title[lang]}
               href={n.href}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)] xl:w-[calc(25%-0.938rem)] 2xl:w-[calc(20%-1rem)]"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 {n.type === "badge" ? (

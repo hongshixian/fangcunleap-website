@@ -73,7 +73,7 @@ export function Products() {
 
   return (
     <section id="products" className="bg-secondary/40 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <div className="mx-auto max-w-[1400px] px-4 md:px-6">
         <div className="text-center">
           <h2 className="text-balance text-3xl font-bold md:text-4xl">
             {lang === "zh" ? "构建 AI 与人类之间的信任" : "Building Trust Between AI and Humans"}
