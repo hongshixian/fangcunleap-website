@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { useLanguage } from "./language-context"
 
@@ -9,16 +10,15 @@ export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="relative pb-20 pt-16">
-        {/* Video background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/videos/hero-bg-loop.mp4" type="video/mp4" />
-        </video>
+        {/* Image background */}
+        <Image
+          src="/hero-1.png"
+          alt="Hero background"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
 
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" aria-hidden />

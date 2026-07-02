@@ -31,10 +31,9 @@ const translations: Record<string, Record<Lang, string>> = {
   // Nav
   "nav.solutions": { en: "Solutions", zh: "解决方案" },
   "nav.products": { en: "Products", zh: "产品" },
-  // nav.research kept for backward compat with old links / external bookmarks; new nav uses nav.products.
-  "nav.research": { en: "Products", zh: "产品" },
   "nav.about": { en: "About", zh: "关于我们" },
   "nav.blog": { en: "Blog", zh: "博客" },
+  "nav.research": { en: "Research", zh: "研究" },
   "nav.demo": { en: "Book a Demo", zh: "预约演示" },
   "nav.login": { en: "Log in", zh: "登录" },
   "nav.console": { en: "Console", zh: "进入控制台" },

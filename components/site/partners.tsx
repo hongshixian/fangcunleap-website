@@ -13,7 +13,7 @@ const logos = [
 ]
 
 const row1 = logos
-const row2 = logos
+const row2 = [...logos].reverse()
 
 function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: boolean }) {
   const doubled = [...items, ...items]

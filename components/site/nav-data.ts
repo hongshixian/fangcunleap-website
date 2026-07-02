@@ -29,6 +29,7 @@ export const getNavItems = (lang: Language): NavItem[] => {
         ],
       },
       { label: "博客", href: "/blog" },
+      { label: "研究", href: "/research" },
     ]
   } else {
     return [
@@ -55,6 +56,7 @@ export const getNavItems = (lang: Language): NavItem[] => {
         ],
       },
       { label: "Blog", href: "/blog" },
+      { label: "Research", href: "/research" },
     ]
   }
 }

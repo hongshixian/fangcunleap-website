@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { ArrowRight, ShieldCheck, ScanSearch, Bot, Swords } from "lucide-react"
 import { useLanguage } from "./language-context"
 
@@ -85,13 +84,16 @@ export function CoreTech() {
 
         <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
           <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
-            <Image
-              src="/images/pic_main2.png"
-              alt={lang === "zh" ? "方寸跃迁 AI 安全架构示意图" : "Fangcun Leap AI Security Architecture Diagram"}
-              fill
-              sizes="(max-width: 768px) 100vw, 1200px"
-              className="object-cover"
-            />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover"
+              style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%), linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%), linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)", WebkitMaskComposite: "source-in" }}
+            >
+              <source src="/videos/media-1-1080p.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>

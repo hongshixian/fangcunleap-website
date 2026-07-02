@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFCache Test</title>
+  <style>
+    body {
+      font-family: system-ui;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: white;
+      transition: all 0.3s;
+      border-bottom: 2px solid transparent;
+    }
+    .header.scrolled {
+      background: #f0f0f0;
+      border-bottom-color: #333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .content {
+      margin-top: 100px;
+      padding: 20px;
+    }
+    .logs {
+      margin-top: 20px;
+      padding: 10px;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .log-entry {
+      margin: 2px 0;
+      padding: 2px;
+    }
+    .log-error { color: red; }
+    .log-warn { color: orange; }
+    .log-info { color: blue; }
+    .spacer {
+      height: 2000px;
+      background: linear-gradient(to bottom, white, #e0e0e0);
+    }
+    a {
+      display: inline-block;
+      margin: 10px 10px 10px 0;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    a:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="header" id="header">
+    <h1>BFCache Test Page</h1>
+    <div>Scroll position: <span id="scrollPos">0</span>px</div>
+    <div>Header state: <span id="headerState">transparent</span></div>
+  </div>
+
+  <div class="content">
+    <h2>Instructions:</h2>
+    <ol>
+      <li>Scroll down on this page (header should change appearance at 40px)</li>
+      <li>Click the link below to navigate to another page</li>
+      <li>Use browser back button to return here</li>
+      <li>Check if header state is preserved correctly</li>
+    </ol>
+
+    <a href="https://example.com">Navigate Away (will trigger bfcache)</a>
+    <a href="#bottom">Jump to Bottom</a>
+
+    <div class="logs" id="logs">
+      <div><strong>Event Log:</strong></div>
+    </div>
+
+    <div class="spacer" id="bottom"></div>
+  </div>
+
+  <script>
+    const header = document.getElementById('header');
+    const scrollPosEl = document.getElementById('scrollPos');
+    const headerStateEl = document.getElementById('headerState');
+    const logsEl = document.getElementById('logs');
+
+    let scrolled = false;
+    let eventCounter = 0;
+
+    function log(message, type = 'info') {
+      eventCounter++;
+      const entry = document.createElement('div');
+      entry.className = `log-entry log-${type}`;
+      const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
+      entry.textContent = `[${timestamp}] #${eventCounter}: ${message}`;
+      logsEl.appendChild(entry);
+      logsEl.scrollTop = logsEl.scrollHeight;
+      console.log(`[${timestamp}] ${message}`);
+    }
+
+    function updateHeader() {
+      const y = window.scrollY;
+      const isScrolled = y > 40;
+
+      scrollPosEl.textContent = Math.round(y);
+
+      if (isScrolled !== scrolled) {
+        scrolled = isScrolled;
+        if (scrolled) {
+          header.classList.add('scrolled');
+          headerStateEl.textContent = 'scrolled';
+          log('Header state changed to: scrolled', 'warn');
+        } else {
+          header.classList.remove('scrolled');
+          headerStateEl.textContent = 'transparent';
+          log('Header state changed to: transparent', 'warn');
+        }
+      }
+    }
+
+    // Event handlers
+    window.addEventListener('scroll', () => {
+      log(`scroll event - Y: ${window.scrollY}`);
+      updateHeader();
+    }, { passive: true });
+
+    window.addEventListener('pageshow', (event) => {
+      log(`pageshow event - persisted: ${event.persisted}, scrollY: ${window.scrollY}`, 'warn');
+      if (event.persisted) {
+        log('⚠️ Page restored from bfcache!', 'error');
+        updateHeader();
+      }
+    });
+
+    window.addEventListener('pagehide', (event) => {
+      log(`pagehide event - persisted: ${event.persisted}`, 'warn');
+    });
+
+    window.addEventListener('popstate', () => {
+      log('popstate event', 'warn');
+      updateHeader();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      log(`visibilitychange - hidden: ${document.hidden}, state: ${document.visibilityState}`, 'warn');
+      if (!document.hidden) {
+        updateHeader();
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      log('window focus event', 'warn');
+      updateHeader();
+    });
+
+    window.addEventListener('blur', () => {
+      log('window blur event');
+    });
+
+    // Initial state
+    log('Page loaded, setting up listeners');
+    log(`Initial scroll position: ${window.scrollY}`);
+    updateHeader();
+
+    // Detect if this is a page load from navigation
+    if (performance.navigation.type === performance.navigation.TYPE_BACK_FORWARD) {
+      log('⚠️ Loaded via back/forward navigation', 'error');
+    } else if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+      log('Loaded via reload');
+    } else {
+      log('Loaded normally');
+    }
+  </script>
+</body>
+</html>

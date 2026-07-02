@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 import { useLanguage } from "./language-context"
 
@@ -12,7 +11,7 @@ const solutions = [
       en: "LLMs hallucinate, leak data, and follow adversarial instructions — silently.",
       zh: "大语言模型会产生幻觉、泄露数据，并默默执行对抗性指令。",
     },
-    image: "/images/pic-adv1.png",
+    video: "/videos/adv-data-1080p.mp4",
   },
   {
     title: { en: "Agent Overreach", zh: "智能体越权" },
@@ -20,7 +19,7 @@ const solutions = [
       en: "Autonomous agents act beyond their permissions without audit trails or kill switches.",
       zh: "自主智能体超越权限行动，缺乏审计追踪和紧急终止机制。",
     },
-    image: "/images/pic-adv2.png",
+    video: "/videos/adv-agent-1080p.mp4",
   },
   {
     title: { en: "Supply Chain Risk", zh: "供应链风险" },
@@ -28,7 +27,7 @@ const solutions = [
       en: "AI supply chains introduce hidden dependencies — poisoned models, compromised plugins, and unvetted third-party tools.",
       zh: "AI 供应链引入隐藏依赖——被污染的模型、受损的插件和未审查的第三方工具。",
     },
-    image: "/images/pic-adv3.png",
+    video: "/videos/adv-skill-1080p.mp4",
   },
 ]
 
@@ -87,13 +86,17 @@ export function Solutions() {
 
           <div className="relative overflow-hidden rounded-3xl border border-border bg-card h-full">
             {solutions.map((s, i) => (
-              <Image
-                key={s.image}
-                src={s.image}
-                alt={s.title[lang]}
-                fill
-                className={`object-contain p-6 transition-opacity duration-500 ${open === i ? "opacity-100" : "opacity-0"}`}
-              />
+              <video
+                key={s.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={`absolute inset-0 h-full w-full object-contain p-6 transition-opacity duration-500 ${open === i ? "opacity-100" : "opacity-0"}`}
+                style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", WebkitMaskComposite: "source-in" }}
+              >
+                <source src={s.video} type="video/mp4" />
+              </video>
             ))}
           </div>
         </div>

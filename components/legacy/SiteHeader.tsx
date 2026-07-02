@@ -22,15 +22,12 @@ interface SiteHeaderProps {
 }
 
 const navItems = (t: (k: string) => string) => [
-  // Routes vs anchors:
-  //   solutions / products → in-page anchors on the homepage (homepage only).
-  //     We use absolute paths starting with `/#...` so clicking from a
-  //     non-homepage route still scrolls back to the right section.
-  //   about / blog → real route pages.
-  { key: "solutions", label: t("nav.solutions"), to: "/#solutions" },
+  // Routes: all navigation items link to dedicated pages to match main site header
+  { key: "solutions", label: t("nav.solutions"), to: "/solutions" },
   { key: "products", label: t("nav.products"),  to: "/#products"  },
   { key: "about",    label: t("nav.about"),     to: "/about"      },
   { key: "blog",     label: t("nav.blog"),      to: "/blog"       },
+  { key: "research", label: t("nav.research"),  to: "/research"   },
 ];
 
 
