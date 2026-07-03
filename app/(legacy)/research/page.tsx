@@ -83,41 +83,6 @@ const PAPERS: Paper[] = [
   { year: 2024, title: "The Earth is Flat because...: Investigating LLMs' Belief towards Misinformation via Persuasive Conversation", authors: "Rongwu Xu; Brian S. Lin; Shujian Yang; Tianqi Zhang; Weiyan Shi; Tianwei Zhang; Zhixuan Fang; Wei Xu; Han Qiu", conference: "ACL", aiSafetyRelated: true },
   { year: 2024, title: "Toward Availability Attacks in 3D Point Clouds", authors: "Yifan Zhu; Yibo Miao; Yinpeng Dong; Xiao-Shan Gao", conference: "ICML", aiSafetyRelated: true },
   { year: 2024, title: "Towards Transferable Targeted 3D Adversarial Attack in the Physical World", authors: "Yao Huang; Yinpeng Dong; Shouwei Ruan; Xiao Yang; Hang Su; Xingxing Wei", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2023, title: "Benchmarking Robustness of 3D Object Detection to Common Corruptions in Autonomous Driving", authors: "Yinpeng Dong; Caixin Kang; Jinlai Zhang; Zijian Zhu; Yikai Wang; Xiao Yang; Hang Su; Xingxing Wei; Jun Zhu", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2023, title: "Compacting Binary Neural Networks by Sparse Kernel Selection", authors: "Yikai Wang; Wenbing Huang; Yinpeng Dong; Fuchun Sun; Anbang Yao", conference: "CVPR", aiSafetyRelated: false },
-  { year: 2023, title: "GNOT: A General Neural Operator Transformer for Operator Learning", authors: "Zhongkai Hao; Zhengyi Wang; Hang Su; Chengyang Ying; Yinpeng Dong; Songming Liu; Ze Cheng; Jian Song; Jun Zhu", conference: "ICML", aiSafetyRelated: false },
-  { year: 2023, title: "Learning Sample Difficulty from Pre-trained Models for Reliable Prediction", authors: "Peng Cui; Dan Zhang; Zhijie Deng; Yinpeng Dong; Jun Zhu", conference: "NeurIPS", aiSafetyRelated: false },
-  { year: 2023, title: "Understanding the Robustness of 3D Object Detectors with Bird's-Eye-View Representations in Autonomous Driving", authors: "Zijian Zhu; Yichi Zhang; Hai Chen; Yinpeng Dong; Shu Zhao; Wenbo Ding; Jiachen Zhong; Shibao Zheng", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2022, title: "Exploring Memorization in Adversarial Training", authors: "Yinpeng Dong; Ke Xu; Xiao Yang; Tianyu Pang; Zhijie Deng; Hang Su; Jun Zhu", conference: "ICLR", aiSafetyRelated: true },
-  { year: 2022, title: "GSmooth: Certified Robustness against Semantic Transformations via Generalized Randomized Smoothing", authors: "Zhongkai Hao; Chengyang Ying; Yinpeng Dong; Hang Su; Jian Song; Jun Zhu", conference: "ICML", aiSafetyRelated: true },
-  { year: 2022, title: "Isometric 3D Adversarial Examples in the Physical World", authors: "Yibo Miao; Yinpeng Dong; Jun Zhu; Xiao-Shan Gao", conference: "NeurIPS", aiSafetyRelated: true },
-  { year: 2022, title: "Pre-trained Adversarial Perturbations", authors: "Yuanhao Ban; Yinpeng Dong", conference: "NeurIPS", aiSafetyRelated: true },
-  { year: 2022, title: "Two Coupled Rejection Metrics Can Tell Adversarial Examples Apart", authors: "Tianyu Pang; Huishuai Zhang; Di He; Yinpeng Dong; Hang Su; Wei Chen; Jun Zhu; Tie-Yan Liu", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2022, title: "ViewFool: Evaluating the Robustness of Visual Recognition to Adversarial Viewpoints", authors: "Yinpeng Dong; Shouwei Ruan; Hang Su; Caixin Kang; Xingxing Wei; Jun Zhu", conference: "NeurIPS", aiSafetyRelated: true },
-  { year: 2021, title: "Accumulative Poisoning Attacks on Real-time Data", authors: "Tianyu Pang; Xiao Yang; Yinpeng Dong; Hang Su; Jun Zhu", conference: "NeurIPS", aiSafetyRelated: true },
-  { year: 2021, title: "Bag of Tricks for Adversarial Training", authors: "Tianyu Pang; Xiao Yang; Yinpeng Dong; Hang Su; Jun Zhu", conference: "ICLR", aiSafetyRelated: true },
-  { year: 2021, title: "Improving Transferability of Adversarial Patches on Face Recognition with Generative Models", authors: "Zihao Xiao; Xianfeng Gao; Chilin Fu; Yinpeng Dong; Wei Gao; Xiaolu Zhang; Jun Zhou; Jun Zhu", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2020, title: "Adversarial Distributional Training for Robust Deep Learning", authors: "Yinpeng Dong; Zhijie Deng; Tianyu Pang; Hang Su; Jun Zhu", conference: "NeurIPS", aiSafetyRelated: true },
-  { year: 2020, title: "Benchmarking Adversarial Robustness on Image Classification", authors: "Yinpeng Dong; Qi-An Fu; Xiao Yang; Tianyu Pang; Hang Su; Zihao Xiao; Jun Zhu", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2020, title: "Boosting Adversarial Training with Hypersphere Embedding", authors: "Tianyu Pang; Xiao Yang; Yinpeng Dong; Kun Xu; Hang Su; Jun Zhu", conference: "NeurIPS", aiSafetyRelated: true },
-  { year: 2020, title: "Rethinking Softmax Cross-Entropy Loss for Adversarial Robustness", authors: "Tianyu Pang; Kun Xu; Yinpeng Dong; Chao Du; Ning Chen; Jun Zhu", conference: "ICLR", aiSafetyRelated: true },
-  { year: 2020, title: "Understanding and Exploring the Network with Stochastic Architectures", authors: "Zhijie Deng; Yinpeng Dong; Shifeng Zhang; Jun Zhu", conference: "NeurIPS", aiSafetyRelated: false },
-  { year: 2019, title: "Composite Binary Decomposition Networks", authors: "You Qiaoben; Zheng Wang; Jianguo Li; Yinpeng Dong; Yu-Gang Jiang; Jun Zhu", conference: "AAAI", aiSafetyRelated: false },
-  { year: 2019, title: "DIAG-NRE: A Neural Pattern Diagnosis Framework for Distantly Supervised Neural Relation Extraction", authors: "Shun Zheng; Xu Han; Yankai Lin; Peilin Yu; Lu Chen; Ling Huang; Zhiyuan Liu; Wei Xu", conference: "ACL", aiSafetyRelated: false },
-  { year: 2019, title: "Efficient Decision-based Black-box Adversarial Attacks on Face Recognition", authors: "Yinpeng Dong; Hang Su; Baoyuan Wu; Zhifeng Li; Wei Liu; Tong Zhang; Jun Zhu", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2019, title: "Evading Defenses to Transferable Adversarial Examples by Translation-Invariant Attacks", authors: "Yinpeng Dong; Tianyu Pang; Hang Su; Jun Zhu", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2019, title: "Improving Black-box Adversarial Attacks with a Transfer-based Prior", authors: "Shuyu Cheng; Yinpeng Dong; Tianyu Pang; Hang Su; Jun Zhu", conference: "NeurIPS", aiSafetyRelated: true },
-  { year: 2019, title: "PrivPy: General and Scalable Privacy-Preserving Data Mining", authors: "Yi Li; Yitao Duan; Shuoyao Zhao; Yu Yu; Wei Xu", conference: "KDD", aiSafetyRelated: false },
-  { year: 2018, title: "Boosting Adversarial Attacks with Momentum", authors: "Yinpeng Dong; Fangzhou Liao; Tianyu Pang; Hang Su; Jun Zhu; Xiaolin Hu; Jianguo Li", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2018, title: "Learning Visual Knowledge Memory Networks for Visual Question Answering", authors: "Zhou Su; Chen Zhu; Yinpeng Dong; Dongqi Cai; Yurong Chen; Jianguo Li", conference: "CVPR", aiSafetyRelated: false },
-  { year: 2018, title: "Towards Robust Detection of Adversarial Examples", authors: "Tianyu Pang; Chao Du; Yinpeng Dong; Jun Zhu", conference: "NeurIPS", aiSafetyRelated: true },
-  { year: 2017, title: "Forecast Plausible Paths in Crowd Scenes", authors: "Hang Su; Jun Zhu; Yinpeng Dong; Bo Zhang", conference: "IJCAI", aiSafetyRelated: false },
-  { year: 2017, title: "Improving Interpretability of Deep Neural Networks with Semantic Information", authors: "Yinpeng Dong; Hang Su; Jun Zhu; Bo Zhang", conference: "CVPR", aiSafetyRelated: false },
-  { year: 2017, title: "Joint Training for Pivot-based Neural Machine Translation", authors: "Yong Cheng; Qian Yang; Yang Liu; Maosong Sun; Wei Xu", conference: "IJCAI", aiSafetyRelated: false },
-  { year: 2017, title: "Maximum Reconstruction Estimation for Generative Latent Variable Models", authors: "Yong Cheng; Yang Liu; Wei Xu", conference: "AAAI", aiSafetyRelated: false },
-  { year: 2016, title: "Crowd Scene Understanding with Coherent Recurrent Neural Networks", authors: "Hang Su; Yinpeng Dong; Jun Zhu; Haibin Ling; Bo Zhang", conference: "IJCAI", aiSafetyRelated: false },
-  { year: 2016, title: "Semi-supervised Learning for Neural Machine Translation", authors: "Yong Cheng; Wei Xu; Zhongjun He; Wei He; Hua Wu; Maosong Sun; Yang Liu", conference: "ACL", aiSafetyRelated: false },
-  { year: 2010, title: "Using Machine Learning Techniques in Console Log Analysis", authors: "Wei Xu; Ling Huang; Armando Fox; David Patterson; Michael I. Jordan", conference: "ICML", aiSafetyRelated: false },
 ];
 
 // Helper function to format authors (no bolding)
@@ -181,8 +146,8 @@ export default function ResearchPage() {
         </h1>
         <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-gray-600">
           {isZh
-            ? "方寸跃迁团队科学家在国际顶级会议上发表的 AI 安全研究成果。"
-            : "AI safety research from Fangcun Leap scientists published at top-tier international conferences."}
+            ? "方寸跃迁团队成员在国际顶级会议上发表的 AI 安全研究成果。"
+            : "AI safety research from Fangcun Leap team members published at top-tier international conferences."}
         </p>
       </section>
 
