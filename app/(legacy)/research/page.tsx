@@ -9,18 +9,9 @@ import { PAPERS, PAPER_IMAGES, type Paper } from "./papers_data";
 // Company team members whose names should be bolded
 const TARGET_AUTHORS = ["Wei Xu", "Yinpeng Dong", "Rongwu Xu", "Yu Wang", "Xiaojian Li"];
 
-// Helper function to format authors with target names bolded
-function formatAuthors(authorsStr: string): JSX.Element[] {
-  const authors = authorsStr.split(/;\s*/);
-  return authors.map((author, idx) => {
-    const isBold = TARGET_AUTHORS.includes(author.trim());
-    return (
-      <span key={idx}>
-        {isBold ? <strong>{author}</strong> : author}
-        {idx < authors.length - 1 && '; '}
-      </span>
-    );
-  });
+// Helper function to format authors (no bolding)
+function formatAuthors(authorsStr: string): string {
+  return authorsStr;
 }
 
 export default function ResearchPage() {
