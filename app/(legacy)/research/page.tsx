@@ -4,90 +4,23 @@ import { useEffect } from "react";
 import { useLanguage } from "@/components/legacy/i18n/LanguageContext";
 import { MarketingFooter } from "@/components/legacy/MarketingPage";
 import SiteHeader from "@/components/legacy/SiteHeader";
-import { PAPER_URLS } from "./paper_urls";
+import { PAPERS, PAPER_IMAGES, type Paper } from "./papers_data";
 
-// Company scientists whose names should be bolded
+// Company team members whose names should be bolded
 const TARGET_AUTHORS = ["Wei Xu", "Yinpeng Dong", "Rongwu Xu", "Yu Wang", "Xiaojian Li"];
 
-type Paper = {
-  year: number;
-  title: string;
-  authors: string;
-  conference: string;
-  aiSafetyRelated: boolean;
-};
-
-// Map paper titles to their image filenames
-const PAPER_IMAGES: Record<string, string> = {
-  "AICrypto: A Comprehensive Benchmark For Evaluating Cryptography Capabilities of Large Language Models": "_AICrypto_A_Comprehensive_Benchmark_For_Evaluating_.png",
-  "Reverse-Engineering Model Editing on Language Models": "_Reverse_Engineering_Model_Editing_on_Language_Mode.png",
-  "Jailbreak Large Vision-Language Models Through Multi-Modal Linkage": "_Jailbreak_Large_Vision_Language_Models_Through_Mul.png",
-  "Nuclear Deployed!: Analyzing Catastrophic Risks in Decision-making of Autonomous LLM Agents": "_Nuclear_Deployed_Analyzing_Catastrophic_Risks_in_D.png",
-  "Embodied Active Defense: Leveraging Recurrent Feedback to Counter Adversarial Patches": "_Embodied_Active_Defense_Leveraging_Recurrent_Feedb.png",
-  "Efficient Black-box Adversarial Attacks via Bayesian Optimization Guided by a Function Prior": "_Efficient_Black_box_Adversarial_Attacks_via_Bayesi.png",
-  "Exploring the Transferability of Visual Prompting for Multimodal Large Language Models": "_Exploring_the_Transferability_of_Visual_Prompting_.png",
-  "Focus on Hiders: Exploring Hidden Threats for Enhancing Adversarial Training": "_Focus_on_Hiders_Exploring_Hidden_Threats_for_Enhan.png",
-  "Machine Vision Therapy: Multimodal Large Language Models Can Enhance Visual Robustness via Denoising In-Context Learning": "_Machine_Vision_Therapy_Multimodal_Large_Language_M.png",
-  "MR-BEN: A Comprehensive Meta-Reasoning Benchmark for Large Language Models": "_MR_BEN_A_Comprehensive_Meta_Reasoning_Benchmark_fo.png",
-  "Preemptive Answer \"Attacks\" on Chain-of-Thought Reasoning": "_Preemptive_Answer_Attacks_on_Chain_of_Thought_Reas.png",
-  "Rethinking Model Ensemble in Transfer-based Adversarial Attacks": "_Rethinking_Model_Ensemble_in_Transfer_based_Advers.png",
-  "Robust Classification via a Single Diffusion Model": "_Robust_Classification_via_a_Single_Diffusion_Model.png",
-  "The Earth is Flat because...: Investigating LLMs' Belief towards Misinformation via Persuasive Conversation": "_The_Earth_is_Flat_because_Investigating_LLMs_Belie.png",
-  "Toward Availability Attacks in 3D Point Clouds": "_Toward_Availability_Attacks_in_3D_Point_Clouds.png",
-  "Towards Transferable Targeted 3D Adversarial Attack in the Physical World": "_Towards_Transferable_Targeted_3D_Adversarial_Attac.png",
-  "Benchmarking Robustness of 3D Object Detection to Common Corruptions in Autonomous Driving": "_Benchmarking_Robustness_of_3D_Object_Detection_to_.png",
-  "Compacting Binary Neural Networks by Sparse Kernel Selection": "_Compacting_Binary_Neural_Networks_by_Sparse_Kernel.png",
-  "GNOT: A General Neural Operator Transformer for Operator Learning": "_GNOT_A_General_Neural_Operator_Transformer_for_Ope.png",
-  "Learning Sample Difficulty from Pre-trained Models for Reliable Prediction": "_Learning_Sample_Difficulty_from_Pre_trained_Models.png",
-  "Exploring Memorization in Adversarial Training": "_Exploring_Memorization_in_Adversarial_Training.png",
-  "GSmooth: Certified Robustness against Semantic Transformations via Generalized Randomized Smoothing": "_GSmooth_Certified_Robustness_against_Semantic_Tran.png",
-  "Isometric 3D Adversarial Examples in the Physical World": "_Isometric_3D_Adversarial_Examples_in_the_Physical_.png",
-  "Pre-trained Adversarial Perturbations": "_Pre_trained_Adversarial_Perturbations.png",
-  "Two Coupled Rejection Metrics Can Tell Adversarial Examples Apart": "_Two_Coupled_Rejection_Metrics_Can_Tell_Adversarial.png",
-  "ViewFool: Evaluating the Robustness of Visual Recognition to Adversarial Viewpoints": "_ViewFool_Evaluating_the_Robustness_of_Visual_Recog.png",
-  "Accumulative Poisoning Attacks on Real-time Data": "_Accumulative_Poisoning_Attacks_on_Real_time_Data.png",
-  "Bag of Tricks for Adversarial Training": "_Bag_of_Tricks_for_Adversarial_Training.png",
-  "Improving Transferability of Adversarial Patches on Face Recognition with Generative Models": "_Improving_Transferability_of_Adversarial_Patches_o.png",
-  "Adversarial Distributional Training for Robust Deep Learning": "_Adversarial_Distributional_Training_for_Robust_Dee.png",
-  "Benchmarking Adversarial Robustness on Image Classification": "_Benchmarking_Adversarial_Robustness_on_Image_Class.png",
-  "Boosting Adversarial Training with Hypersphere Embedding": "_Boosting_Adversarial_Training_with_Hypersphere_Emb.png",
-  "Rethinking Softmax Cross-Entropy Loss for Adversarial Robustness": "_Rethinking_Softmax_Cross_Entropy_Loss_for_Adversar.png",
-  "Composite Binary Decomposition Networks": "_Composite_Binary_Decomposition_Networks.png",
-  "DIAG-NRE: A Neural Pattern Diagnosis Framework for Distantly Supervised Neural Relation Extraction": "_DIAG_NRE_A_Neural_Pattern_Diagnosis_Framework_for_.png",
-  "Efficient Decision-based Black-box Adversarial Attacks on Face Recognition": "_Efficient_Decision_based_Black_box_Adversarial_Att.png",
-  "Evading Defenses to Transferable Adversarial Examples by Translation-Invariant Attacks": "_Evading_Defenses_to_Transferable_Adversarial_Examp.png",
-  "Improving Black-box Adversarial Attacks with a Transfer-based Prior": "_Improving_Black_box_Adversarial_Attacks_with_a_Tra.png",
-  "Boosting Adversarial Attacks with Momentum": "_Boosting_Adversarial_Attacks_with_Momentum.png",
-  "Learning Visual Knowledge Memory Networks for Visual Question Answering": "_Learning_Visual_Knowledge_Memory_Networks_for_Visu.png",
-  "Towards Robust Detection of Adversarial Examples": "_Towards_Robust_Detection_of_Adversarial_Examples.png",
-  "Improving Interpretability of Deep Neural Networks with Semantic Information": "_Improving_Interpretability_of_Deep_Neural_Networks.png",
-  "Joint Training for Pivot-based Neural Machine Translation": "_Joint_Training_for_Pivot_based_Neural_Machine_Tran.png",
-  "Semi-supervised Learning for Neural Machine Translation": "_Semi_supervised_Learning_for_Neural_Machine_Transl.png",
-};
-
-// Parsed from /public/research/papers.csv
-const PAPERS: Paper[] = [
-  { year: 2026, title: "AICrypto: A Comprehensive Benchmark For Evaluating Cryptography Capabilities of Large Language Models", authors: "Yu Wang; Yijian Liu; Liheng Ji; Han Luo; Wenjie Li; Xiaofei Zhou; Chiyun Feng; Puji Wang; Yuhan Cao; Geyuan Zhang; Xiaojian Li; Rongwu Xu; Yilei Chen; Tianxing He", conference: "ICML", aiSafetyRelated: false },
-  { year: 2026, title: "Reverse-Engineering Model Editing on Language Models", authors: "Zhiyu Sun; Minrui Luo; Yu Wang; Zhili Chen; Tianxing He", conference: "ICML", aiSafetyRelated: true },
-  { year: 2025, title: "Jailbreak Large Vision-Language Models Through Multi-Modal Linkage", authors: "Yu Wang; Xiaofei Zhou; Yichen Wang; Geyuan Zhang; Tianxing He", conference: "ACL", aiSafetyRelated: true },
-  { year: 2025, title: "Nuclear Deployed!: Analyzing Catastrophic Risks in Decision-making of Autonomous LLM Agents", authors: "Rongwu Xu; Xiaojian Li; Shuo Chen; Wei Xu", conference: "ACL Findings", aiSafetyRelated: true },
-  { year: 2024, title: "Embodied Active Defense: Leveraging Recurrent Feedback to Counter Adversarial Patches", authors: "Lingxuan Wu; Xiao Yang; Yinpeng Dong; Liuwei Xie; Hang Su; Jun Zhu", conference: "ICLR", aiSafetyRelated: true },
-  { year: 2024, title: "Efficient Black-box Adversarial Attacks via Bayesian Optimization Guided by a Function Prior", authors: "Shuyu Cheng; Yibo Miao; Yinpeng Dong; Xiao Yang; Xiao-Shan Gao; Jun Zhu", conference: "ICML", aiSafetyRelated: true },
-  { year: 2024, title: "Exploring the Transferability of Visual Prompting for Multimodal Large Language Models", authors: "Yichi Zhang; Yinpeng Dong; Siyuan Zhang; Tianzan Min; Hang Su; Jun Zhu", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2024, title: "Focus on Hiders: Exploring Hidden Threats for Enhancing Adversarial Training", authors: "Qian Li; Yuxiao Hu; Yinpeng Dong; Dongxiao Zhang; Yuntian Chen", conference: "CVPR", aiSafetyRelated: true },
-  { year: 2024, title: "Machine Vision Therapy: Multimodal Large Language Models Can Enhance Visual Robustness via Denoising In-Context Learning", authors: "Zhuo Huang; Chang Liu; Yinpeng Dong; Hang Su; Shibao Zheng; Tongliang Liu", conference: "ICML", aiSafetyRelated: true },
-  { year: 2024, title: "MR-BEN: A Comprehensive Meta-Reasoning Benchmark for Large Language Models", authors: "Zhongshen Zeng; Yinhong Liu; Yingjia Wan; Jingyao Li; Pengguang Chen; Jianbo Dai; Yuxuan Yao; Rongwu Xu; Zehan Qi; Wanru Zhao; Linling Shen; Jianqiao Lu; Haochen Tan; Yukang Chen; Hao Zhang; Zhan Shi; Bailin Wang; Zhijiang Guo; Jiaya Jia", conference: "NeurIPS", aiSafetyRelated: false },
-  { year: 2024, title: "Preemptive Answer \"Attacks\" on Chain-of-Thought Reasoning", authors: "Rongwu Xu; Zehan Qi; Wei Xu", conference: "ACL Findings", aiSafetyRelated: true },
-  { year: 2024, title: "Rethinking Model Ensemble in Transfer-based Adversarial Attacks", authors: "Huanran Chen; Yichi Zhang; Yinpeng Dong; Xiao Yang; Hang Su; Jun Zhu", conference: "ICLR", aiSafetyRelated: true },
-  { year: 2024, title: "Robust Classification via a Single Diffusion Model", authors: "Huanran Chen; Yinpeng Dong; Zhengyi Wang; Xiao Yang; Chengqi Duan; Hang Su; Jun Zhu", conference: "ICML", aiSafetyRelated: false },
-  { year: 2024, title: "The Earth is Flat because...: Investigating LLMs' Belief towards Misinformation via Persuasive Conversation", authors: "Rongwu Xu; Brian S. Lin; Shujian Yang; Tianqi Zhang; Weiyan Shi; Tianwei Zhang; Zhixuan Fang; Wei Xu; Han Qiu", conference: "ACL", aiSafetyRelated: true },
-  { year: 2024, title: "Toward Availability Attacks in 3D Point Clouds", authors: "Yifan Zhu; Yibo Miao; Yinpeng Dong; Xiao-Shan Gao", conference: "ICML", aiSafetyRelated: true },
-  { year: 2024, title: "Towards Transferable Targeted 3D Adversarial Attack in the Physical World", authors: "Yao Huang; Yinpeng Dong; Shouwei Ruan; Xiao Yang; Hang Su; Xingxing Wei", conference: "CVPR", aiSafetyRelated: true },
-];
-
-// Helper function to format authors (no bolding)
-function formatAuthors(authorsStr: string): string {
-  return authorsStr;
+// Helper function to format authors with target names bolded
+function formatAuthors(authorsStr: string): JSX.Element[] {
+  const authors = authorsStr.split(/;\s*/);
+  return authors.map((author, idx) => {
+    const isBold = TARGET_AUTHORS.includes(author.trim());
+    return (
+      <span key={idx}>
+        {isBold ? <strong>{author}</strong> : author}
+        {idx < authors.length - 1 && '; '}
+      </span>
+    );
+  });
 }
 
 export default function ResearchPage() {
@@ -239,10 +172,10 @@ export default function ResearchPage() {
                         {/* Paper card */}
                         <div className={`relative ${isLeft ? 'pr-[52%]' : 'pl-[52%]'} pointer-events-none`}>
                           <a
-                            href={PAPER_URLS[paper.title] || '#'}
+                            href={paper.paperURL || '#'}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`block bg-white rounded-xl p-6 shadow-lg border border-purple-100 hover:shadow-xl hover:border-purple-300 hover:z-50 transition-all pointer-events-auto ${isLeft ? 'mr-4' : 'ml-4'} ${PAPER_URLS[paper.title] ? 'cursor-pointer' : 'cursor-default'}`}
+                            className={`block bg-white rounded-xl p-6 shadow-lg border border-purple-100 hover:shadow-xl hover:border-purple-300 hover:z-50 transition-all pointer-events-auto ${isLeft ? 'mr-4' : 'ml-4'} ${paper.paperURL ? 'cursor-pointer' : 'cursor-default'}`}
                           >
                             {PAPER_IMAGES[paper.title] ? (
                               // Card with image
