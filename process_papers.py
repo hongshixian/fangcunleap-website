@@ -18,39 +18,39 @@ CSV_PATH = "public/research/google_scholar_2024_present_papers_enriched_v2.csv"
 IMAGE_DIR = "public/research/images"
 OUTPUT_TS = "app/(legacy)/research/papers_data.ts"
 
-# 会议名称标准化映射（保持与现有页面一致的徽章样式）
+# 会议名称标准化映射（去掉年份，因为页面已有独立的年份徽章）
 CONFERENCE_MAPPING = {
     # 2024
-    "EMNLP 2024 Industry Track": "EMNLP 2024",
-    "ECCV 2024": "ECCV 2024",
-    "NeurIPS 2024": "NeurIPS 2024",
-    "ICML 2024": "ICML 2024",
-    "ICLR 2024": "ICLR 2024",
-    "CVPR 2024": "CVPR 2024",
-    "Findings of EMNLP 2024": "EMNLP 2024 Findings",
-    "EMNLP 2024": "EMNLP 2024",
-    "Findings of ACL 2024": "ACL 2024 Findings",
-    "ACL 2024": "ACL 2024",
-    "ACM MM 2024": "ACM MM 2024",
-    "USENIX Security 2024": "USENIX Security 2024",
-    "NeurIPS 2024 Datasets and Benchmarks": "NeurIPS 2024",
+    "EMNLP 2024 Industry Track": "EMNLP",
+    "ECCV 2024": "ECCV",
+    "NeurIPS 2024": "NeurIPS",
+    "ICML 2024": "ICML",
+    "ICLR 2024": "ICLR",
+    "CVPR 2024": "CVPR",
+    "Findings of EMNLP 2024": "EMNLP Findings",
+    "EMNLP 2024": "EMNLP",
+    "Findings of ACL 2024": "ACL Findings",
+    "ACL 2024": "ACL",
+    "ACM MM 2024": "ACM MM",
+    "USENIX Security 2024": "USENIX Security",
+    "NeurIPS 2024 Datasets and Benchmarks": "NeurIPS",
 
     # 2025
-    "International Journal of Computer Vision (IJCV) 2025": "IJCV 2025",
-    "ICCV 2025": "ICCV 2025",
-    "ACL 2025": "ACL 2025",
-    "NeurIPS 2025": "NeurIPS 2025",
-    "Findings of ACL 2025": "ACL 2025 Findings",
-    "EMNLP 2025": "EMNLP 2025",
-    "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2025": "TPAMI 2025",
-    "ICML 2025": "ICML 2025",
+    "International Journal of Computer Vision (IJCV) 2025": "IJCV",
+    "ICCV 2025": "ICCV",
+    "ACL 2025": "ACL",
+    "NeurIPS 2025": "NeurIPS",
+    "Findings of ACL 2025": "ACL Findings",
+    "EMNLP 2025": "EMNLP",
+    "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2025": "TPAMI",
+    "ICML 2025": "ICML",
 
     # 2026
-    "The Web Conference (WWW) 2026": "WWW 2026",
-    "ICML 2026": "ICML 2026",
-    "ACL 2026": "ACL 2026",
-    "ICLR 2026": "ICLR 2026",
-    "Findings of EACL 2026": "EACL 2026 Findings",
+    "The Web Conference (WWW) 2026": "WWW",
+    "ICML 2026": "ICML",
+    "ACL 2026": "ACL",
+    "ICLR 2026": "ICLR",
+    "Findings of EACL 2026": "EACL Findings",
 
     # Preprints
     "arXiv preprint": "arXiv",
