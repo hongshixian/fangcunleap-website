@@ -166,7 +166,7 @@ export function Products() {
               muted
               playsInline
               className="mx-auto w-full max-w-lg object-contain"
-              style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
+              style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", WebkitMaskComposite: "source-in" }}
             >
               <source src={product.video} type="video/mp4" />
             </video>

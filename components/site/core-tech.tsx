@@ -140,7 +140,7 @@ export function CoreTech() {
                     muted
                     playsInline
                     className="h-full w-full object-cover"
-                    style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%), linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%), linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)", WebkitMaskComposite: "source-in" }}
+                    style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", WebkitMaskComposite: "source-in" }}
                   >
                     <source src={line.video} type="video/mp4" />
                   </video>
@@ -180,7 +180,7 @@ export function CoreTech() {
                             muted
                             playsInline
                             className="h-full w-full object-contain"
-                            style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
+                            style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", WebkitMaskComposite: "source-in" }}
                           >
                             <source src={c.video} type="video/mp4" />
                           </video>
