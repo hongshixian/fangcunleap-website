@@ -1,40 +1,86 @@
 "use client"
 
-import { ArrowRight, ShieldCheck, ScanSearch, Bot, Swords } from "lucide-react"
+import { KeyRound, Eye, ShieldCheck, ScanSearch, Network, Radar, Swords, Users } from "lucide-react"
 import { useLanguage } from "./language-context"
 
-const cards = [
+const lines = [
   {
-    icon: ShieldCheck,
-    title: { en: "Real-time Content Guardrails", zh: "实时内容护栏" },
-    desc: {
-      en: "Fangcun Guard provides real-time interception at the AI output layer, 10 risk categories, Chinese optimized, p99 8ms, F1 91.1 across 6 benchmarks.",
-      zh: "方寸 Guard 在 AI 输出层提供实时拦截，10 类风险细分，中文专项优化，p99 8ms，F1 91.1 跨 6 项 benchmark。",
-    },
+    key: "runtime-security",
+    video: "/videos/lines-1-1080p.mp4",
+    title: { en: "Agent Runtime Security", zh: "Agent Runtime 安全" },
+    cards: [
+      {
+        icon: KeyRound,
+        title: { en: "Agent IAM: Identity & Access Management", zh: "Agent IAM：身份认证与权限管理" },
+        desc: {
+          en: "Establishes independent identity and permission boundaries for different agents, tasks, and tool calls, using agent identity, task-level authorization, tool-level permission control, and least-privilege policies to prevent unrestricted access to sensitive resources.",
+          zh: "为不同 Agent、不同任务、不同工具调用建立独立身份与权限边界，通过 Agent 身份标识、任务级授权、工具级权限控制、最小权限策略等机制，避免 Agent 无限制访问敏感资源。",
+        },
+      },
+      {
+        icon: Eye,
+        title: { en: "Runtime Observation & System-level Side Effects", zh: "运行时观测与系统层副作用监控" },
+        desc: {
+          en: "Captures and analyzes an agent's key behavior trails during execution, including file access, network requests, process and command execution, tool calls, and browser operations, reconstructing complete agent trajectories for threat modeling.",
+          zh: "采集和分析 Agent 在执行过程中的关键行为轨迹，包括文件读写、网络访问、进程执行、命令调用、工具调用、浏览器操作等系统层副作用，还原完整 Agent 轨迹，为威胁建模提供数据支撑。",
+        },
+      },
+      {
+        icon: ShieldCheck,
+        title: { en: "Runtime Guardrails: Low-latency Detection & Blocking", zh: "运行时护栏：低时延安全检测与阻断" },
+        desc: {
+          en: "Performs low-latency security checks before an agent acts or calls a tool, at around 8ms, identifying high-risk operations, unauthorized calls, and dangerous tool chains, then allowing, alerting, blocking, or downgrading based on policy.",
+          zh: "在 Agent 执行动作前或工具调用前进行低时延安全检测，时延约 8ms 级别，识别高风险操作、越权调用、危险工具链组合等行为，并根据策略进行放行、告警、阻断或降级处理。",
+        },
+      },
+      {
+        icon: ScanSearch,
+        title: { en: "Skill / MCP Security Scanner", zh: "Skill / MCP 安全检测器" },
+        desc: {
+          en: "Analyzes tool descriptions, call interfaces, permission declarations, code logic, and external dependencies to identify hidden instructions, excessive permissions, and dangerous system calls before external skills or MCP servers are connected.",
+          zh: "面向工具描述、调用接口、权限声明、代码逻辑、外部依赖等进行分析，识别隐蔽指令、过度权限、危险系统调用等风险，在工具接入前降低恶意 Skill 或 MCP Server 造成破坏的可能性。",
+        },
+      },
+      {
+        icon: Network,
+        title: { en: "Steward Agent: Central Supervision & Multi-Agent Management", zh: "Steward Agent：中控监督与多 Agent 管理" },
+        desc: {
+          en: "A governing agent that observes the running status, task goals, permission boundaries, and tool-call behavior of other agents, enabling centralized task coordination, permission arbitration, risk alerting, and cross-agent audit trails.",
+          zh: "作为上层治理智能体，观察各类 Agent 的运行状态、任务目标、权限边界和工具调用行为，支持任务分配协调、权限协调、风险告警与跨 Agent 行为审计。",
+        },
+      },
+    ],
   },
   {
-    icon: ScanSearch,
-    title: { en: "Runtime Monitoring & Audit", zh: "运行时监控审计" },
-    desc: {
-      en: "Fangcun Observer integrates with zero code changes, tracking tool calls, network requests, and sensitive file access with full session replay, building a trustworthy evidence chain.",
-      zh: "方寸 Observer 零代码接入，对工具调用、出网请求、敏感文件访问全程留痕，任意会话可回放，构建可信证据链。",
-    },
-  },
-  {
-    icon: Bot,
-    title: { en: "Supply Chain Security Scanning", zh: "供应链安全扫描" },
-    desc: {
-      en: "SkillWard uses a three-stage scan (static analysis + LLM evaluation + Docker sandbox), fully open source (Apache 2.0), with 99% sandbox deployment success rate.",
-      zh: "SkillWard 通过静态分析 + LLM 研判 + Docker 沙箱三阶段扫描，完全开源（Apache 2.0），沙箱部署成功率 99%。",
-    },
-  },
-  {
-    icon: Swords,
-    title: { en: "Automated Red Team Testing", zh: "自动红队测试" },
-    desc: {
-      en: "Fangcun RedTeam automatically generates jailbreak samples, performs adversarial testing, and produces comprehensive security reports to continuously validate AI system defenses.",
-      zh: "方寸 RedTeam 自动生成越狱样本，执行对抗性测试，输出完整安全报告，持续验证 AI 系统防御能力。",
-    },
+    key: "model-evaluation",
+    video: "/videos/lines-2-1080p.mp4",
+    title: { en: "LLM Security Evaluation", zh: "大模型安全评测" },
+    cards: [
+      {
+        icon: Radar,
+        title: { en: "Model Security Red-team Testing", zh: "模型安全 Red-team 测试" },
+        desc: {
+          en: "Systematic security testing and adversarial validation for frontier large models, covering cybersecurity, bio-chemical safety, loss-of-control risk, model deception, and agentic behavior to identify potential vulnerabilities and capability boundaries in complex high-risk scenarios.",
+          zh: "面向前沿大模型开展系统化安全测试与人工对抗验证，覆盖网络安全、生化安全、失控风险、模型欺骗、智能体行为等前沿安全维度，识别模型在复杂高风险场景下的潜在安全漏洞与能力边界。",
+        },
+      },
+      {
+        icon: Users,
+        title: { en: "Multi-Agent Automated Attack", zh: "Multi-Agent 自动化攻击" },
+        desc: {
+          en: "Coordinates multiple agents to launch complex, multi-stage attacks against the latest models, uncovering deep vulnerabilities that single-point testing tends to miss; integrates attack strategies, risk analysis, and defense mechanisms to close the attack-defense-evaluation loop.",
+          zh: "通过多智能体协同对最新模型发起复杂、多阶段攻击，挖掘单点测试难以发现的深层漏洞；同时联动攻击策略、风险分析与防御机制，形成「攻—防—评」闭环。",
+        },
+      },
+      {
+        icon: Swords,
+        title: { en: "Automated Red Team Evaluation Platform", zh: "自动化红队评测平台" },
+        desc: {
+          en: "Automatically generates attack cases and executes continuous large-scale red team testing, supporting multi-risk scenario coverage, test orchestration, result reproduction, risk attribution, and evaluation reports to improve efficiency, coverage, and sustainability of model security assessment.",
+          zh: "自动生成攻击用例并持续执行规模化红队对抗测试，支持多类风险场景覆盖、测试任务编排、结果复现、风险归因与评测报告输出，提升模型安全评测的效率、覆盖度与可持续性。",
+        },
+      },
+    ],
   },
 ]
 
@@ -62,39 +108,49 @@ export function CoreTech() {
           </h2>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {cards.map((c) => {
-            const Icon = c.icon
-            return (
-              <div
-                key={c.title[lang]}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-primary">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="mt-4 text-lg font-bold">{c.title[lang]}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {c.desc[lang]}
-                </p>
-              </div>
-            )
-          })}
-        </div>
+        <div className="mt-16 space-y-20">
+          {lines.map((line) => (
+            <div key={line.key}>
+              <h3 className="text-balance text-center text-2xl font-bold md:text-3xl">
+                {line.title[lang]}
+              </h3>
 
-        <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
-          <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="h-full w-full object-cover"
-              style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%), linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%), linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)", WebkitMaskComposite: "source-in" }}
-            >
-              <source src="/videos/media-1-1080p.mp4" type="video/mp4" />
-            </video>
-          </div>
+              <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
+                <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-cover"
+                    style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%), linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%), linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)", WebkitMaskComposite: "source-in" }}
+                  >
+                    <source src={line.video} type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+
+              <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {line.cards.map((c) => {
+                  const Icon = c.icon
+                  return (
+                    <div
+                      key={c.title[lang]}
+                      className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+                    >
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-primary">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h4 className="mt-4 text-lg font-bold">{c.title[lang]}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {c.desc[lang]}
+                      </p>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
