@@ -51,6 +51,17 @@ const newsData = {
   ],
   媒体: [
     {
+      tag: { en: "Fangcun Leap", zh: "方寸跃迁" },
+      date: { en: "Jul 2, 2026", zh: "2026年7月2日" },
+      title: {
+        en: "WAIC Invitation: Meet Fangcun Leap at AI Native Security Zone",
+        zh: "WAIC邀请函：AI原生安全展区，方寸跃迁邀您相见",
+      },
+      href: "https://mp.weixin.qq.com/s/Tt_bWcRCE6fL0hM_nGNbRg",
+      type: "badge" as const,
+      badge: { text: { en: "Event Invitation", zh: "活动邀请" }, gradient: "from-purple-600 via-purple-700 to-indigo-800" },
+    },
+    {
       tag: { en: "TC260", zh: "全国网安标委" },
       date: { en: "Jul 1, 2026", zh: "2026年7月1日" },
       title: {

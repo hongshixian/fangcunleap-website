@@ -16,6 +16,13 @@ type Article = {
 
 const COMPANY_NEWS: Article[] = [
   {
+    url: "https://mp.weixin.qq.com/s/Tt_bWcRCE6fL0hM_nGNbRg",
+    title: "WAIC邀请函：AI原生安全展区，方寸跃迁邀您相见",
+    account: "方寸跃迁",
+    date: "2026-07-02",
+    badge: "活动邀请",
+  },
+  {
     url: "https://mp.weixin.qq.com/s/HlIeJuUMJzmjc4TBlcCktg",
     title: "关于发布《网络安全标准实践指南——智能体部署使用安全指引》的通知",
     account: "全国网安标委",
