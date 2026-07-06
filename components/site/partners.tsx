@@ -11,7 +11,6 @@ const logos = [
   { src: "/partners-fangcun/logo-xinglian.png", alt: "星联" },
   { src: "/partners-fangcun/logo-SEEFUND.png", alt: "SEEFUND" },
   { src: "/partners-fangcun/qizhilogo1.svg", alt: "启智" },
-  { src: "/partners-fangcun/xiongankexueyuan.jpg", alt: "雄安科学院" },
 ]
 
 const row1 = logos
@@ -76,11 +75,6 @@ export function Partners() {
             ? "携手学术机构与行业伙伴，共建可信 AI 生态"
             : "Partnering with Academic Institutions and Industry Leaders to Build a Trustworthy AI Ecosystem"}
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-pretty text-center text-sm leading-relaxed text-muted-foreground">
-          {lang === "zh"
-            ? "核心成员来自清华大学和加州大学伯克利分校，与全球顶级学术机构及企业深度合作"
-            : "Core team members from Tsinghua University and UC Berkeley, collaborating deeply with top global academic institutions and enterprises"}
-        </p>
       </div>
       <div className="relative mt-12 flex flex-col gap-5">
         <Marquee items={row1} />
