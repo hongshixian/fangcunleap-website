@@ -92,7 +92,10 @@ export function Solutions() {
                 loop
                 muted
                 playsInline
-                className={`absolute inset-0 h-full w-full object-contain p-6 transition-opacity duration-500 ${open === i ? "opacity-100" : "opacity-0"}`}
+                disablePictureInPicture
+                disableRemotePlayback
+                onContextMenu={(e) => e.preventDefault()}
+                className={`absolute inset-0 h-full w-full object-contain p-6 transition-opacity duration-500 pointer-events-none ${open === i ? "opacity-100" : "opacity-0"}`}
                 style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
               >
                 <source src={s.video} type="video/mp4" />

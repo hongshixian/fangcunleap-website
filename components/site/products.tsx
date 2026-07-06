@@ -158,14 +158,17 @@ export function Products() {
         </div>
 
         <div className="mt-10 grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2 lg:min-h-[580px]">
-          <div className="order-2 lg:order-1 flex items-center justify-center">
+          <div className="order-2 lg:order-1 flex items-center justify-center relative">
             <video
               key={product.video}
               autoPlay
               loop
               muted
               playsInline
-              className="mx-auto w-full max-w-lg object-contain"
+              disablePictureInPicture
+              disableRemotePlayback
+              onContextMenu={(e) => e.preventDefault()}
+              className="mx-auto w-full max-w-lg object-contain pointer-events-none"
               style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
             >
               <source src={product.video} type="video/mp4" />

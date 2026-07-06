@@ -139,7 +139,10 @@ export function CoreTech() {
                     loop
                     muted
                     playsInline
-                    className="h-full w-full object-cover"
+                    disablePictureInPicture
+                    disableRemotePlayback
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="h-full w-full object-cover pointer-events-none"
                     style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
                   >
                     <source src={line.video} type="video/mp4" />
@@ -179,7 +182,10 @@ export function CoreTech() {
                             loop
                             muted
                             playsInline
-                            className="h-full w-full object-contain"
+                            disablePictureInPicture
+                            disableRemotePlayback
+                            onContextMenu={(e) => e.preventDefault()}
+                            className="h-full w-full object-contain pointer-events-none"
                             style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
                           >
                             <source src={c.video} type="video/mp4" />
