@@ -51,6 +51,17 @@ const newsData = {
   ],
   媒体: [
     {
+      tag: { en: "TC260", zh: "全国网安标委" },
+      date: { en: "Jul 1, 2026", zh: "2026年7月1日" },
+      title: {
+        en: "Notice on the Release of Network Security Standard Practice Guide—AI Agent Deployment and Use Security Guidelines",
+        zh: "关于发布《网络安全标准实践指南——智能体部署使用安全指引》的通知",
+      },
+      href: "https://mp.weixin.qq.com/s/HlIeJuUMJzmjc4TBlcCktg",
+      type: "badge" as const,
+      badge: { text: { en: "Official Release", zh: "权威发布" }, gradient: "from-blue-600 via-blue-700 to-indigo-800" },
+    },
+    {
       img: "/images/news-xinzhiyuan.webp",
       tag: { en: "Synced", zh: "新智元" },
       date: { en: "May 7, 2026", zh: "2026年5月7日" },
@@ -93,7 +104,7 @@ const tabs = [
 
 export function News() {
   const { lang } = useLanguage()
-  const [tab, setTab] = useState<"动态" | "媒体">("媒体")
+  const [tab, setTab] = useState<"动态" | "媒体">("动态")
   const items = newsData[tab]
 
   return (
@@ -135,7 +146,7 @@ export function News() {
               href={n.href}
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)] xl:w-[calc(25%-0.938rem)] 2xl:w-[calc(20%-1rem)]"
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className="relative aspect-[21/9] overflow-hidden">
                 {n.type === "badge" ? (
                   <div className={`h-full w-full bg-gradient-to-br ${n.badge.gradient} flex items-center justify-center`}>
                     <span className="text-white text-xl font-bold text-center px-4 leading-tight">

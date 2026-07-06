@@ -16,6 +16,13 @@ type Article = {
 
 const COMPANY_NEWS: Article[] = [
   {
+    url: "https://mp.weixin.qq.com/s/HlIeJuUMJzmjc4TBlcCktg",
+    title: "关于发布《网络安全标准实践指南——智能体部署使用安全指引》的通知",
+    account: "全国网安标委",
+    date: "2026-07-01",
+    badge: "权威发布",
+  },
+  {
     url: "https://mp.weixin.qq.com/s/zWgguOI2aMwXRrJVEmi8oQ",
     title: "智能助理智能体(Claw)可信能力技术规范正式发布",
     account: "人工智能产业发展联盟 AIIA",
