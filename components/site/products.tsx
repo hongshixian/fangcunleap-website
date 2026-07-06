@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight, CheckCircle2, Shield, Eye, ScanSearch, Swords } from "lucide-react"
+import { ArrowRight, CheckCircle2, Shield, Eye, ScanSearch, Swords, KeyRound, Network, Users, Target } from "lucide-react"
 import { useLanguage } from "./language-context"
 
 const products = [
@@ -31,6 +31,18 @@ const products = [
     },
   },
   {
+    key: "iam",
+    tab: { en: "Agent IAM Identity & Access", zh: "Agent IAM 身份与权限" },
+    icon: KeyRound,
+    title: { en: "Agent IAM", zh: "Agent IAM" },
+    subtitle: { en: "Identity Authentication and Access Management for AI Agents", zh: "面向 AI Agent 的身份认证与权限管理" },
+    video: "/videos/media-iam-1080p.mp4",
+    features: {
+      en: ["Agent Identity Management", "Task-level Authorization", "Tool Permission Control", "Least Privilege Policy", "Permission Audit Trail", "Unauthorized Access Detection"],
+      zh: ["Agent 身份标识", "任务级授权", "工具级权限控制", "最小权限策略", "权限调用审计", "越权行为检测"],
+    },
+  },
+  {
     key: "skillward",
     tab: { en: "SkillWard Supply Chain Security", zh: "方寸 SkillWard 供应链安全" },
     icon: ScanSearch,
@@ -40,6 +52,18 @@ const products = [
     features: {
       en: ["Three-stage Scan Pipeline", "Static Analysis + LLM Review", "Docker Sandbox Verification", "99% Deployment Success", "Open Source Apache 2.0", "Automated Risk Reports"],
       zh: ["三阶段扫描流程", "静态分析 + LLM 研判", "Docker 沙箱验证", "99% 部署成功率", "开源 Apache 2.0", "自动化风险报告"],
+    },
+  },
+  {
+    key: "steward",
+    tab: { en: "Steward Agent Multi-Agent Governance", zh: "Steward Agent 多智能体治理" },
+    icon: Network,
+    title: { en: "Steward Agent", zh: "Steward Agent" },
+    subtitle: { en: "Centralized Supervision and Management for Multi-Agent Systems", zh: "多 Agent 系统的中控监督与管理" },
+    video: "/videos/media-super-1080p.mp4",
+    features: {
+      en: ["Multi-Agent Supervision", "Task Coordination", "Permission Management", "Risk Alert & Intervention", "Policy Enforcement", "Cross-Agent Audit Trail"],
+      zh: ["多 Agent 统一监督", "任务分配协调", "权限边界管理", "风险告警与干预", "策略更新执行", "跨 Agent 行为审计"],
     },
   },
   {
@@ -54,6 +78,30 @@ const products = [
       zh: ["自动越狱样本生成", "对抗性测试场景", "完整安全报告输出", "防御能力验证", "持续攻击模拟", "多向量攻击测试"],
     },
   },
+  {
+    key: "multiagent",
+    tab: { en: "Multi-Agent Automated Attack", zh: "Multi-Agent 自动化攻击" },
+    icon: Users,
+    title: { en: "Multi-Agent Automated Attack", zh: "Multi-Agent 自动化攻击" },
+    subtitle: { en: "Coordinated Multi-Agent Attacks for Deep Vulnerability Discovery", zh: "多智能体协同攻击，挖掘深层漏洞" },
+    video: "/videos/media-ma-1080p.mp4",
+    features: {
+      en: ["Multi-Agent Coordination", "Complex Attack Patterns", "Deep Vulnerability Mining", "Attack-Defense-Evaluation Loop", "Emerging Model Testing", "Scalable Attack Scenarios"],
+      zh: ["多智能体协同", "复杂攻击路径", "深层漏洞挖掘", "攻防评闭环", "前沿模型测试", "可扩展攻击场景"],
+    },
+  },
+  {
+    key: "redteamplatform",
+    tab: { en: "Automated Red Team Platform", zh: "自动化红队平台" },
+    icon: Target,
+    title: { en: "Automated Red Team Platform", zh: "自动化红队平台" },
+    subtitle: { en: "Continuous and Scalable Red Team Testing for AI Models", zh: "持续、规模化的模型红队对抗测试" },
+    video: "/videos/media-rp-1080p.mp4",
+    features: {
+      en: ["Auto Attack Case Generation", "Continuous Red Team Testing", "Scalable Adversarial Testing", "High Coverage Testing", "Reproducible Security Tests", "Comprehensive Test Reports"],
+      zh: ["自动生成攻击用例", "持续红队对抗", "规模化安全测试", "高覆盖率测试", "可复现测试场景", "完整测试报告"],
+    },
+  },
 ]
 
 export function Products() {
@@ -65,8 +113,12 @@ export function Products() {
     const links: Record<string, string> = {
       guard: "/blog/fangcunguard",
       observer: "/blog/observer",
+      iam: "/solutions#iam",
       skillward: "/blog/skillward",
+      steward: "/solutions#steward",
       redteam: "/solutions#redteam",
+      multiagent: "/solutions#multiagent",
+      redteamplatform: "/solutions#redteamplatform",
     }
     return links[key] || "#contact"
   }
@@ -85,21 +137,21 @@ export function Products() {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
           {products.map((p, i) => {
             const Icon = p.icon
             return (
               <button
                 key={p.key}
                 onMouseEnter={() => setActive(i)}
-                className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 text-sm font-medium transition-colors ${
+                className={`inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium transition-colors ${
                   active === i
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-border bg-card text-foreground hover:border-primary/50"
                 }`}
               >
-                <Icon className="h-4 w-4" />
-                {p.tab[lang]}
+                <Icon className="h-4 w-4 shrink-0" />
+                <span className="text-center">{p.tab[lang]}</span>
               </button>
             )
           })}
