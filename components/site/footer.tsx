@@ -107,7 +107,7 @@ export function Footer() {
 
   return (
     <footer id="contact" className="bg-[oklch(0.16_0.02_285)] text-white">
-      <div className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <div className="mx-auto max-w-[1450px] px-4 py-14 md:px-6">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_3fr]">
           <div>
             <Logo light />
