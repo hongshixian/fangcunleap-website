@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { KeyRound, Eye, ShieldCheck, ScanSearch, Network, Radar, Swords, Users } from "lucide-react"
 import { useLanguage } from "./language-context"
 
@@ -94,6 +95,14 @@ const lines = [
 
 export function CoreTech() {
   const { lang } = useLanguage()
+  const [expandedLines, setExpandedLines] = useState<Record<string, boolean>>({})
+
+  const toggleLine = (lineKey: string) => {
+    setExpandedLines((prev) => ({
+      ...prev,
+      [lineKey]: !prev[lineKey],
+    }))
+  }
 
   return (
     <section id="tech" className="bg-secondary/40 py-20 md:py-28">
@@ -141,19 +150,27 @@ export function CoreTech() {
               <div className={`mt-8 grid gap-5 ${line.key === 'runtime-security' ? 'md:grid-cols-2 lg:grid-cols-5' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
                 {line.cards.map((c) => {
                   const Icon = c.icon
+                  const isExpanded = expandedLines[line.key]
                   return (
-                    <div
+                    <button
                       key={c.title[lang]}
-                      className="rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md overflow-hidden flex flex-col"
+                      onClick={() => toggleLine(line.key)}
+                      className="rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md overflow-hidden flex flex-col text-left w-full"
                     >
                       <div className="p-6 flex-1 flex flex-col">
                         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-primary">
                           <Icon className="h-5 w-5" />
                         </div>
                         <h4 className="mt-4 text-lg font-bold">{c.title[lang]}</h4>
-                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground flex-1">
-                          {c.desc[lang]}
-                        </p>
+                        <div
+                          className={`overflow-hidden transition-all duration-300 ${
+                            isExpanded ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
+                          }`}
+                        >
+                          <p className="text-sm leading-relaxed text-muted-foreground">
+                            {c.desc[lang]}
+                          </p>
+                        </div>
                       </div>
                       {c.video && (
                         <div className="relative w-full overflow-hidden bg-card" style={{ aspectRatio: '4/3' }}>
@@ -169,7 +186,7 @@ export function CoreTech() {
                           </video>
                         </div>
                       )}
-                    </div>
+                    </button>
                   )
                 })}
               </div>
