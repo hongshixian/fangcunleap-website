@@ -10,6 +10,8 @@ const logos = [
   { src: "/partners-fangcun/logo-shuimuqinghua.png", alt: "水木清华" },
   { src: "/partners-fangcun/logo-xinglian.png", alt: "星联" },
   { src: "/partners-fangcun/logo-SEEFUND.png", alt: "SEEFUND" },
+  { src: "/partners-fangcun/qizhilogo1.svg", alt: "启智" },
+  { src: "/partners-fangcun/xiongankexueyuan.jpg", alt: "雄安科学院" },
 ]
 
 const row1 = logos
