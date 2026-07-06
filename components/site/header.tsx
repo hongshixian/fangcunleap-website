@@ -38,7 +38,7 @@ export function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
+      <div className="mx-auto flex h-16 max-w-[1450px] items-center justify-between gap-4 px-4 md:px-6">
         <Link href="/" aria-label="方寸跃迁首页">
           <Logo light={light} />
         </Link>
