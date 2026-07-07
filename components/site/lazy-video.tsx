@@ -18,9 +18,9 @@ interface LazyVideoProps {
   style?: CSSProperties
 }
 
-// 由视频路径推导封面图路径：/videos/x.mp4 -> /videos/posters/x.jpg
+// 由视频路径推导封面图路径：/videos/x.mp4 -> /videos/posters/x.png
 function posterFor(src: string) {
-  return src.replace("/videos/", "/videos/posters/").replace(/\.mp4$/, ".jpg")
+  return src.replace("/videos/", "/videos/posters/").replace(/\.mp4$/, ".png")
 }
 
 /**
