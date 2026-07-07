@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  fangcunleap-website:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: fangcunleap-website
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production

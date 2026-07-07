@@ -1,0 +1,43 @@
+# 依赖
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js
+.next
+out
+
+# 测试
+coverage
+
+# 开发
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker
+docker
+Dockerfile
+.dockerignore
+
+# 文档
+README.md
+docs
+
+# 环境变量
+.env*.local
+
+# 其他
+.cache
+.temp
