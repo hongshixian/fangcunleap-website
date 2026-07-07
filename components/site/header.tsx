@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { ChevronDown, Menu, X, Globe } from "lucide-react"
 import { Logo } from "./logo"
-import { getNavItems } from "./nav-data"
+import { getNavItems, type NavItem } from "./nav-data"
 import { useLanguage } from "./language-context"
 
 const PLATFORM_URL =
@@ -12,30 +12,40 @@ const PLATFORM_URL =
 const PLATFORM_LOGIN_URL = `${PLATFORM_URL}/platform/login`
 const PLATFORM_CONSOLE_URL = `${PLATFORM_URL}/platform/`
 
-export function Header() {
+type Language = "en" | "zh"
+
+interface HeaderViewProps {
+  lang: Language
+  toggleLang: () => void
+  navItems: NavItem[]
+  /** true = 浮在首页深色 hero 上（透明→滚动变实心）；false = 普通页面，始终实心浅色 */
+  overHero?: boolean
+}
+
+/**
+ * 纯展示型导航栏。首页与所有子页共用同一个组件以保证外观完全一致，
+ * 语言状态由各自的 context 通过 props 传入（首页用 site context，子页用 legacy context）。
+ */
+export function HeaderView({ lang, toggleLang, navItems, overHero = false }: HeaderViewProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const { lang, toggleLang } = useLanguage()
-  const navItems = getNavItems(lang)
 
   useEffect(() => {
-    const onScroll = () => {
-      const isScrolled = window.scrollY > 40
-      setScrolled(isScrolled)
-    }
+    if (!overHero) return
+    const onScroll = () => setScrolled(window.scrollY > 40)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  }, [overHero])
 
-  const light = !scrolled && !mobileOpen
+  // 仅在首页 hero 之上且未滚动时用浅色（白字透明）；子页始终深色实心
+  const light = overHero && !scrolled && !mobileOpen
+  const solid = !overHero || scrolled || mobileOpen
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled || mobileOpen
-          ? "bg-background/95 shadow-sm backdrop-blur"
-          : "bg-transparent"
+      className={`${overHero ? "fixed" : "sticky"} inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        solid ? "bg-background/95 shadow-sm backdrop-blur" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[1450px] items-center justify-between gap-4 px-4 md:px-6">
@@ -60,7 +70,7 @@ export function Header() {
                 </button>
               ) : (
                 <Link
-                  href={item.href}
+                  href={item.href ?? "#"}
                   className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                     light
                       ? "text-white/90 hover:text-white"
@@ -193,4 +203,10 @@ export function Header() {
       )}
     </header>
   )
+}
+
+/** 首页导航栏：浮在深色 hero 之上，使用 site 语言 context。 */
+export function Header() {
+  const { lang, toggleLang } = useLanguage()
+  return <HeaderView lang={lang} toggleLang={toggleLang} navItems={getNavItems(lang)} overHero />
 }

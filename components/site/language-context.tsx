@@ -16,15 +16,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>("zh")
 
   useEffect(() => {
-    const stored = localStorage.getItem("homepage-lang")
+    const stored = localStorage.getItem("fangcun_lang")
     if (stored === "en" || stored === "zh") {
       setLangState(stored)
+      return
     }
+    // 无历史选择 → 跟随浏览器语言：中文环境→中文，其它→英文
+    const nav = navigator.language || ""
+    setLangState(nav.toLowerCase().startsWith("zh") ? "zh" : "en")
   }, [])
 
   const setLang = (newLang: Language) => {
     setLangState(newLang)
-    localStorage.setItem("homepage-lang", newLang)
+    localStorage.setItem("fangcun_lang", newLang)
   }
 
   const toggleLang = () => {

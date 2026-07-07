@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { KeyRound, Eye, ShieldCheck, ScanSearch, Network, Radar, Swords, Users } from "lucide-react"
 import { useLanguage } from "./language-context"
+import { LazyVideo } from "./lazy-video"
 
 const lines = [
   {
@@ -127,26 +128,14 @@ export function CoreTech() {
 
         <div className="mt-16 space-y-20">
           {lines.map((line) => (
-            <div key={line.key}>
+            <div key={line.key} id={line.key} className="scroll-mt-24">
               <h3 className="text-balance text-center text-2xl font-bold md:text-3xl">
                 {line.title[lang]}
               </h3>
 
               <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
                 <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    disablePictureInPicture
-                    disableRemotePlayback
-                    onContextMenu={(e) => e.preventDefault()}
-                    className="h-full w-full object-cover pointer-events-none"
-                    style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
-                  >
-                    <source src={line.video} type="video/mp4" />
-                  </video>
+                  <LazyVideo src={line.video} className="h-full w-full object-cover pointer-events-none" />
                 </div>
               </div>
 
@@ -177,19 +166,7 @@ export function CoreTech() {
                       </div>
                       {c.video && (
                         <div className="relative w-full overflow-hidden bg-card" style={{ aspectRatio: '4/3' }}>
-                          <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            disablePictureInPicture
-                            disableRemotePlayback
-                            onContextMenu={(e) => e.preventDefault()}
-                            className="h-full w-full object-contain pointer-events-none"
-                            style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
-                          >
-                            <source src={c.video} type="video/mp4" />
-                          </video>
+                          <LazyVideo src={c.video} className="h-full w-full object-contain pointer-events-none" />
                         </div>
                       )}
                     </button>

@@ -7,16 +7,10 @@ export const getNavItems = (lang: Language): NavItem[] => {
   if (lang === "zh") {
     return [
       {
-        label: "解决方案",
-        href: "/solutions",
-      },
-      {
         label: "产品与服务",
         children: [
-          { label: "方寸 Guard", desc: "实时内容护栏，F1 91.1，p99 8ms", href: "/blog/fangcunguard" },
-          { label: "方寸 Observer", desc: "零代码接入的运行时监控与审计", href: "/blog/observer" },
-          { label: "SkillWard", desc: "开源 Skill 安全扫描，Apache 2.0", href: "/blog/skillward" },
-          { label: "方寸 RedTeam", desc: "自动生成越狱样本，输出安全报告", href: "/solutions#redteam" },
+          { label: "Agent Runtime 安全", desc: "Agent 运行时身份、观测、护栏与中控全链路防护", href: "/#runtime-security" },
+          { label: "大模型安全评测", desc: "自动化红队与大模型安全评测", href: "/#model-evaluation" },
         ],
       },
       {
@@ -34,16 +28,10 @@ export const getNavItems = (lang: Language): NavItem[] => {
   } else {
     return [
       {
-        label: "Solutions",
-        href: "/solutions",
-      },
-      {
         label: "Products & Services",
         children: [
-          { label: "Fangcun Guard", desc: "Real-time content guardrail, F1 91.1, p99 8ms", href: "/blog/fangcunguard" },
-          { label: "Fangcun Observer", desc: "Zero-code runtime monitoring & audit", href: "/blog/observer" },
-          { label: "SkillWard", desc: "Open-source Skill security scan, Apache 2.0", href: "/blog/skillward" },
-          { label: "Fangcun RedTeam", desc: "Auto-generate jailbreak samples & security reports", href: "/solutions#redteam" },
+          { label: "Agent Runtime Security", desc: "Full-chain runtime security for AI agents", href: "/#runtime-security" },
+          { label: "LLM Security Evaluation", desc: "Automated red-teaming & LLM security evaluation", href: "/#model-evaluation" },
         ],
       },
       {

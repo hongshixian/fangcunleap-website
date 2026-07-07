@@ -20,6 +20,7 @@ function detectInitialLang(): Lang {
   } catch {
     // localStorage may throw in private mode; fall through to browser detection
   }
+  // 无历史选择 → 跟随浏览器语言：中文环境→中文，其它→英文（与首页一致）
   const nav =
     window.navigator.language ||
     (window.navigator as Navigator & { userLanguage?: string }).userLanguage ||

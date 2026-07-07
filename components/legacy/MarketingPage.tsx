@@ -4,6 +4,7 @@ import { useEffect, ReactNode } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/components/legacy/i18n/LanguageContext";
 import SiteHeader from "@/components/legacy/SiteHeader";
+import { FooterView } from "@/components/site/footer";
 
 type Bilingual = { en: string; zh: string };
 
@@ -47,11 +48,9 @@ const MarketingPage = ({ eyebrow, title, subtitle, children }: MarketingPageProp
     <div
       className={`relative w-full overflow-hidden ${
         isZh ? "font-noto-sans" : "font-barlow"
-      } bg-[#F4F2F8] min-h-screen text-gray-800`}
+      } bg-secondary/40 min-h-screen text-gray-800`}
     >
       {/* soft halos */}
-      <div className="pointer-events-none absolute -top-32 left-1/2 -z-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-purple-300/30 blur-3xl" />
-      <div className="pointer-events-none absolute top-[40%] right-[-10%] -z-0 h-[500px] w-[500px] rounded-full bg-amber-200/40 blur-3xl" />
 
       <SiteHeader theme="light" />
 
@@ -89,44 +88,10 @@ export default MarketingPage;
 // Reusable footer with the 3-column site map (Product / Company /
 // Legal) + ICP / 公网安备 footnote. Drops into any page that wants
 // the marketing-grade footer (blog list, blog articles, etc.).
+// 子页页脚：复用首页的 FooterView（保证与首页外观一致），语言取自 legacy context。
 export const MarketingFooter = () => {
-  const { lang, t } = useLanguage();
-  const isZh = lang === "zh";
-  return (
-    <footer className="relative z-10 border-t border-gray-200 bg-white/60 py-12">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="" className="h-10 w-auto" />
-              <span className="text-base font-medium text-gray-900">{isZh ? "方寸跃迁" : "Fangcun Leap"}</span>
-            </div>
-            <p className="mt-3 text-xs leading-relaxed text-gray-500">{t("footer.desc")}</p>
-          </div>
-          {FOOTER_COLS.map((col) => (
-            <div key={col.titleKey}>
-              <h4 className="text-xs font-medium uppercase tracking-[0.15em] text-gray-500">{t(col.titleKey)}</h4>
-              <div className="mt-3 space-y-2.5">
-                {col.links.map((link) => (
-                  <Link key={link.key} href={link.to} className="block text-sm text-gray-600 transition-colors hover:text-purple-700">
-                    {t(link.key)}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 flex items-center justify-between border-t border-gray-200 pt-6">
-          <span className="text-xs text-gray-500">{t("footer.rights")}</span>
-        </div>
-        <div className="mt-4 flex items-center justify-center gap-4 text-[11px] text-gray-400">
-          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">冀ICP备2026005892号</a>
-          <span>|</span>
-          <a href="https://www.beian.gov.cn/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">冀公网安备13310202000276号</a>
-        </div>
-      </div>
-    </footer>
-  );
+  const { lang } = useLanguage();
+  return <FooterView lang={lang} />;
 };
 
 // Reusable section wrapper for marketing sub-pages.

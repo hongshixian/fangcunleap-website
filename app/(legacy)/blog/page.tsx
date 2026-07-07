@@ -112,11 +112,9 @@ export default function BlogPage() {
     <div
       className={`relative w-full overflow-hidden ${
         isZh ? "font-noto-sans" : "font-barlow"
-      } bg-[#F4F2F8] min-h-screen text-gray-800`}
+      } bg-secondary/40 min-h-screen text-gray-800`}
     >
       {/* soft halos */}
-      <div className="pointer-events-none absolute -top-32 left-1/2 -z-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-purple-300/30 blur-3xl" />
-      <div className="pointer-events-none absolute top-[40%] right-[-10%] -z-0 h-[500px] w-[500px] rounded-full bg-amber-200/40 blur-3xl" />
 
       <SiteHeader theme="light" />
 

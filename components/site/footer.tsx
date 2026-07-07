@@ -7,22 +7,10 @@ import { useLanguage } from "./language-context"
 const footerCols = {
   en: [
     {
-      title: "Products",
+      title: "Products & Services",
       links: [
-        { label: "Fangcun Guard", href: "/blog/fangcunguard" },
-        { label: "Fangcun Observer", href: "/blog/observer" },
-        { label: "SkillWard", href: "/blog/skillward" },
-        { label: "Fangcun RedTeam", href: "/solutions#redteam" },
-        { label: "AgentPlugin", href: "/blog/plugin" },
-      ],
-    },
-    {
-      title: "Solutions",
-      links: [
-        { label: "Data Leakage Protection", href: "/solutions#guard" },
-        { label: "Agent Privilege Protection", href: "/solutions#observer" },
-        { label: "Supply Chain Security Scanning", href: "/solutions#skillward" },
-        { label: "Automated Red Team Testing", href: "/solutions#redteam" },
+        { label: "Agent Runtime Security", href: "/#runtime-security" },
+        { label: "LLM Security Evaluation", href: "/#model-evaluation" },
       ],
     },
     {
@@ -42,34 +30,13 @@ const footerCols = {
         { label: "Pricing", href: "/pricing" },
       ],
     },
-    {
-      title: "Compliance & Security",
-      links: [
-        { label: "Security Practices", href: "/security" },
-        { label: "Compliance Info", href: "/compliance" },
-        { label: "Privacy Policy", href: "/privacy" },
-        { label: "Terms of Service", href: "/terms" },
-      ],
-    },
   ],
   zh: [
     {
-      title: "产品",
+      title: "产品与服务",
       links: [
-        { label: "方寸 Guard", href: "/blog/fangcunguard" },
-        { label: "方寸 Observer", href: "/blog/observer" },
-        { label: "SkillWard", href: "/blog/skillward" },
-        { label: "方寸 RedTeam", href: "/solutions#redteam" },
-        { label: "AgentPlugin", href: "/blog/plugin" },
-      ],
-    },
-    {
-      title: "解决方案",
-      links: [
-        { label: "数据泄露防护", href: "/solutions#guard" },
-        { label: "智能体越权防护", href: "/solutions#observer" },
-        { label: "供应链安全扫描", href: "/solutions#skillward" },
-        { label: "自动红队测试", href: "/solutions#redteam" },
+        { label: "Agent Runtime 安全", href: "/#runtime-security" },
+        { label: "大模型安全评测", href: "/#model-evaluation" },
       ],
     },
     {
@@ -89,20 +56,13 @@ const footerCols = {
         { label: "定价", href: "/pricing" },
       ],
     },
-    {
-      title: "合规与安全",
-      links: [
-        { label: "安全实践", href: "/security" },
-        { label: "合规信息", href: "/compliance" },
-        { label: "隐私政策", href: "/privacy" },
-        { label: "服务条款", href: "/terms" },
-      ],
-    },
   ],
 }
 
-export function Footer() {
-  const { lang } = useLanguage()
+type Language = "en" | "zh"
+
+/** 纯展示型页脚，首页与所有子页共用以保证外观一致；语言由各自 context 传入。 */
+export function FooterView({ lang }: { lang: Language }) {
   const cols = footerCols[lang]
 
   return (
@@ -113,7 +73,7 @@ export function Footer() {
             <Logo light />
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-3">
             {cols.map((col) => (
               <div key={col.title}>
                 <h4 className="text-sm font-semibold text-white">{col.title}</h4>
@@ -160,4 +120,10 @@ export function Footer() {
       </div>
     </footer>
   )
+}
+
+/** 首页页脚：使用 site 语言 context。 */
+export function Footer() {
+  const { lang } = useLanguage()
+  return <FooterView lang={lang} />
 }

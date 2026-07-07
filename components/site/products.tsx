@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, CheckCircle2, Shield, Eye, ScanSearch, Swords, KeyRound, Network, Users, Target } from "lucide-react"
 import { useLanguage } from "./language-context"
+import { LazyVideo } from "./lazy-video"
 
 const products = [
   {
@@ -159,20 +160,11 @@ export function Products() {
 
         <div className="mt-10 grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2 lg:min-h-[580px]">
           <div className="order-2 lg:order-1 flex items-center justify-center relative">
-            <video
+            <LazyVideo
               key={product.video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              disablePictureInPicture
-              disableRemotePlayback
-              onContextMenu={(e) => e.preventDefault()}
+              src={product.video}
               className="mx-auto w-full max-w-lg object-contain pointer-events-none"
-              style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
-            >
-              <source src={product.video} type="video/mp4" />
-            </video>
+            />
           </div>
           <div className="order-1 lg:order-2">
             <h3 className="text-2xl font-bold md:text-3xl">{product.title[lang]}</h3>

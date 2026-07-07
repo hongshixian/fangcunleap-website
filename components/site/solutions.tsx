@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { useLanguage } from "./language-context"
+import { LazyVideo } from "./lazy-video"
 
 const solutions = [
   {
@@ -86,20 +87,11 @@ export function Solutions() {
 
           <div className="relative overflow-hidden rounded-3xl border border-border bg-card h-full">
             {solutions.map((s, i) => (
-              <video
+              <LazyVideo
                 key={s.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                disablePictureInPicture
-                disableRemotePlayback
-                onContextMenu={(e) => e.preventDefault()}
+                src={s.video}
                 className={`absolute inset-0 h-full w-full object-contain p-6 transition-opacity duration-500 pointer-events-none ${open === i ? "opacity-100" : "opacity-0"}`}
-                style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%), linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)", WebkitMaskComposite: "source-in" }}
-              >
-                <source src={s.video} type="video/mp4" />
-              </video>
+              />
             ))}
           </div>
         </div>
