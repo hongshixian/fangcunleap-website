@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  fangcunleap-dev:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dev
+    container_name: fangcunleap-dev
+    ports:
+      - "3002:3000"
+    volumes:
+      # 映射整个项目目录，代码修改实时生效
+      - ..:/app
+      # 排除 node_modules，使用容器内的依赖
+      - /app/node_modules
+      # 排除 .next 构建缓存，避免权限问题
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true  # 在 Docker 中启用文件监听
+    restart: unless-stopped
+    stdin_open: true  # 保持标准输入打开
+    tty: true         # 分配伪终端
