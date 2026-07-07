@@ -29,7 +29,7 @@ function posterFor(src: string) {
 /**
  * 懒加载视频 + 封面图：
  * - 始终带 poster 首帧封面，视频未播放/被拦截时也不会空白。
- * - 桌面端：滚动进入视口才下载并播放，离开即暂停。
+ * - 桌面端：滚动进入视口才下载，视频完全缓存后再播放，离开即暂停。
  * - 移动端(触屏)：只显示封面静态图，不加载/播放视频——避免手机自动播放被拦截导致空白，
  *   以及多路视频解码在手机 GPU 上造成卡顿。
  */
@@ -55,8 +55,14 @@ export function LazyVideo({ src, className, style }: LazyVideoProps) {
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // preload="none" 下，play() 才会触发下载+播放
-          el.play?.().catch(() => {})
+          // 等待视频完全缓存后再播放，保证流畅体验
+          const handleCanPlayThrough = () => {
+            el.play?.().catch(() => {})
+            el.removeEventListener("canplaythrough", handleCanPlayThrough)
+          }
+          el.addEventListener("canplaythrough", handleCanPlayThrough)
+          // 触发加载
+          el.load()
         } else {
           el.pause?.()
         }
