@@ -114,6 +114,103 @@ const Block = ({ label, children }: { label: string; children: React.ReactNode }
 
 
 // ============================================================
+// Product Manager posting
+// ============================================================
+
+
+const PM_CORE_ZH: [string, string][] = [
+  ["产品战略与规划", "负责公司 C 端 AI 安全产品的整体路线图制定,结合市场趋势、用户需求及公司 AI 安全技术优势,定义产品方向与核心功能。"],
+  ["C 端产品管理与增长", "对 C 端产品的用户规模、活跃度、留存率等核心指标负责,推动产品从 0 到 1 孵化及规模化增长。"],
+  ["技术产品化", "与 AI 研究团队协作,将前沿 AI 安全技术(如端侧安全、智能体可观测性、智能体插件安全 Skills / MCP)转化为具象、易用的 C 端产品功能。"],
+  ["团队管理", "搭建并带领一支包含产品经理、产品运营、UI/UX 的高绩效 C 端产品团队。"],
+  ["跨部门协作", "推动与工程、研究、法务、市场等团队的协作,确保产品按时交付并达成质量与商业目标。"],
+];
+const PM_CORE_EN: [string, string][] = [
+  ["Product strategy & roadmap", "Own the overall roadmap for our consumer AI-security products; combine market trends, user needs, and the company's AI-safety strengths to define direction and core features."],
+  ["Consumer product & growth", "Own core consumer metrics — scale, activity, retention — and drive products from zero to one through to scaled growth."],
+  ["Productizing technology", "Partner with the AI research team to turn frontier AI-safety tech (on-device security, agent observability, agent/plugin security — Skills, MCP) into concrete, easy-to-use consumer features."],
+  ["Team management", "Build and lead a high-performing consumer product team spanning PM, product ops, and UI/UX."],
+  ["Cross-functional collaboration", "Drive collaboration with engineering, research, legal, and marketing to ensure on-time delivery and meet quality and business goals."],
+];
+
+const PM_REQ_ZH = [
+  "统招本科及以上学历,计算机、人工智能、信息安全或相关专业优先。",
+  "5 年以上互联网或 AI 公司产品经理经验,其中至少 2 年以上担任产品负责人或管理 10 人+产品团队的经验;具有成功的 C 端产品从 0 到 1 及规模化增长经验;有 AI 应用或安全类产品背景者优先。",
+  "对 C 端用户行为和心理有深刻理解,擅长用户研究及需求挖掘。",
+  "具备较强的数据分析能力,能通过数据验证假设、驱动产品迭代。",
+  "对 AI 前沿技术(如 AIGC、智能体)有强烈好奇心,并能将其与安全场景结合进行产品创新。",
+  "具备出色的跨团队沟通、资源协调和项目推动能力。",
+];
+const PM_REQ_EN = [
+  "Bachelor's degree or above (statutory admission); majors in Computer Science, AI, or Information Security preferred.",
+  "5+ years as a product manager at internet or AI companies, including 2+ years as a product lead or managing a 10+ person team; proven success taking consumer products from zero to one and scaling them; background in AI applications or security products a plus.",
+  "Deep understanding of consumer behavior and psychology; strong at user research and needs discovery.",
+  "Strong data-analysis skills; able to validate hypotheses and drive iteration with data.",
+  "Strong curiosity about frontier AI (AIGC, agents) and the ability to combine it with security scenarios for product innovation.",
+  "Excellent cross-team communication, resource coordination, and project-driving ability.",
+];
+
+const PM_BONUS_ZH = [
+  "有安全、风控、隐私合规等相关产品经验。",
+  "有知名大厂(如腾讯、字节、阿里、百度等)或头部 AI 创业公司的核心产品背景。",
+];
+const PM_BONUS_EN = [
+  "Product experience in security, risk control, or privacy compliance.",
+  "Core product background at a major tech company (Tencent, ByteDance, Alibaba, Baidu, etc.) or a leading AI startup.",
+];
+
+
+const ProductManagerPosting = () => {
+  const { lang } = useLanguage();
+  const isZh = lang === "zh";
+  return (
+    <div className="rounded-2xl ring-1 ring-purple-200/60 bg-white/80 px-6 py-6 shadow-[0_4px_24px_-12px_rgba(120,80,200,0.15)]">
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <h3 className="font-semibold text-gray-900 text-[19px]">
+          {isZh ? "产品经理(C 端 AI 安全产品负责人)" : "Product Manager (Consumer AI Security)"}
+        </h3>
+        <span className="rounded-full bg-emerald-100 px-3 py-0.5 text-[11px] font-medium uppercase tracking-[0.1em] text-emerald-700 ring-1 ring-emerald-200">
+          {isZh ? "招聘中" : "Hiring"}
+        </span>
+      </div>
+
+      <p className="mt-4 text-[14px] leading-relaxed text-gray-700">
+        {isZh
+          ? "作为 C 端 AI 安全产品负责人,您将负责公司安全产品的全盘规划与落地。您需要深刻理解 C 端用户对 AI 应用在隐私、安全、信任方面的核心需求,从 0 到 1 定义产品方向,并推动产品快速迭代与用户增长。"
+          : "As the lead for our consumer (C-end) AI-security products, you will own end-to-end strategy and delivery. You'll deeply understand consumer needs around privacy, security, and trust in AI, define product direction from zero to one, and drive rapid iteration and user growth."}
+      </p>
+
+      <div className="mt-6">
+        <div className="text-[11px] font-medium uppercase tracking-[0.15em] text-purple-700 mb-2">
+          {isZh ? "核心职责" : "Core responsibilities"}
+        </div>
+        <ul className="list-disc pl-5 space-y-2 text-[14px] leading-relaxed text-gray-700">
+          {(isZh ? PM_CORE_ZH : PM_CORE_EN).map(([label, desc], i) => (
+            <li key={i}>
+              <strong className="font-medium text-gray-900">{label}{isZh ? "：" : ": "}</strong>
+              {desc}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <Block label={isZh ? "任职要求" : "Requirements"}>
+        {(isZh ? PM_REQ_ZH : PM_REQ_EN).map((r, i) => (
+          <li key={i}>{r}</li>
+        ))}
+      </Block>
+
+      <Block label={isZh ? "加分项" : "Bonus"}>
+        {(isZh ? PM_BONUS_ZH : PM_BONUS_EN).map((r, i) => (
+          <li key={i}>{r}</li>
+        ))}
+      </Block>
+    </div>
+  );
+};
+
+
+// ============================================================
 // Working at Fangcun
 // ============================================================
 
@@ -131,10 +228,10 @@ const WorkingAtFangcun = () => {
         </p>
         <ul className="list-disc pl-5 space-y-1.5 text-[14px] leading-relaxed text-gray-700">
           <li>六险一金(含补充医疗)</li>
-          <li>交通补贴 · 运动补贴 · 高温补贴</li>
+          <li>交通补贴 · 运动补贴</li>
           <li>年度体检</li>
           <li>每周三 "跃迁星期三" happy hour</li>
-          <li>生日及节日礼品</li>
+          <li>生日礼品</li>
           <li>年度团建旅游</li>
         </ul>
         <p>
@@ -151,10 +248,10 @@ const WorkingAtFangcun = () => {
       <p>What we offer:</p>
       <ul className="list-disc pl-5 space-y-1.5 text-[14px] leading-relaxed text-gray-700">
         <li>Statutory five-insurance + housing fund (with supplemental medical)</li>
-        <li>Commute / fitness / heat-allowance subsidies</li>
+        <li>Commute / fitness subsidies</li>
         <li>Annual health check-up</li>
         <li>"Leap Wednesday" weekly happy hour</li>
-        <li>Birthday and holiday gifts</li>
+        <li>Birthday gifts</li>
         <li>Annual team retreat</li>
       </ul>
       <p>
@@ -205,7 +302,10 @@ const Careers = () => (
     }}
   >
     <MPSection title={{ en: "Open roles", zh: "在招职位" }}>
-      <JobPosting />
+      <div className="space-y-6">
+        <ProductManagerPosting />
+        <JobPosting />
+      </div>
     </MPSection>
     <MPSection title={{ en: "Working at Fangcun", zh: "工作环境" }}>
       <WorkingAtFangcun />
