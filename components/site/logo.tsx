@@ -11,9 +11,9 @@ export function Logo({ light = false }: { light?: boolean }) {
     <Image
       src="/images/fangcun_ai_horizontal_logo_transparent.png"
       alt="方寸跃迁 FANGCUN LEAP"
-      width={200}
-      height={48}
-      className={`h-10 w-auto object-contain ${light ? "[filter:brightness(0)_invert(1)]" : ""}`}
+      width={300}
+      height={72}
+      className={`h-[60px] w-auto object-contain ${light ? "[filter:brightness(0)_invert(1)]" : ""}`}
       priority
     />
   )
