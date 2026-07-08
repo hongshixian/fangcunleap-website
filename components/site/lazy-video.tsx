@@ -74,20 +74,25 @@ export function LazyVideo({ src, className, style }: LazyVideoProps) {
   }, [])
 
   return (
-    <video
-      ref={ref}
-      loop
-      muted
-      playsInline
-      preload="none"
-      poster={posterFor(src)}
-      disablePictureInPicture
-      disableRemotePlayback
-      onContextMenu={(e) => e.preventDefault()}
-      className={className}
-      style={style ? { ...MASK_STYLE, ...style } : MASK_STYLE}
+    <div
+      className={`${className ?? ""} flex items-center justify-center`}
+      style={style}
     >
-      <source src={src} type="video/mp4" />
-    </video>
+      <video
+        ref={ref}
+        loop
+        muted
+        playsInline
+        preload="none"
+        poster={posterFor(src)}
+        disablePictureInPicture
+        disableRemotePlayback
+        onContextMenu={(e) => e.preventDefault()}
+        className="max-h-full max-w-full"
+        style={MASK_STYLE}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+    </div>
   )
 }
