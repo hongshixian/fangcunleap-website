@@ -180,6 +180,25 @@
   background-image: radial-gradient(120% 90% at 80% 0%, var(--hero-to) 0%, transparent 55%),
     linear-gradient(135deg, var(--hero-from) 0%, var(--hero-via) 55%, var(--hero-to) 100%);
 }
+
+/* 首页滚动吸附：接近下一 section 时自动惯性对齐；长 section 内部允许自由滚动。 */
+html.snap-y-proximity {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+html.snap-y-proximity main > section,
+html.snap-y-proximity main > footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: 4rem;
+}
+/* 尊重系统 reduce motion 设置：关闭 snap 惯性动画。 */
+@media (prefers-reduced-motion: reduce) {
+  html.snap-y-proximity {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}
 .grid-mask {
   background-image: linear-gradient(to right, oklch(1 0 0 / 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, oklch(1 0 0 / 0.06) 1px, transparent 1px);
