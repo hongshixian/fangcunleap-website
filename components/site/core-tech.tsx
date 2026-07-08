@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { KeyRound, Eye, ShieldCheck, ScanSearch, Network, Radar, Swords, Users } from "lucide-react"
+import { ChevronDown, KeyRound, Eye, ShieldCheck, ScanSearch, Network, Radar, Swords, Users } from "lucide-react"
 import { useLanguage } from "./language-context"
 import { LazyVideo } from "./lazy-video"
 
@@ -94,16 +94,105 @@ const lines = [
   },
 ]
 
+type Line = (typeof lines)[number]
+type Card = Line["cards"][number]
+
+/**
+ * 单个技术分组的折叠卡片布局。
+ * - 左右 1:1 网格；右侧视频固定 4:3 比例，左侧列表 stretch 跟随高度。
+ * - 左侧列表：hover 展开当前项，展开占 50% 高度，其余平分剩余 50%。
+ * - 右侧视频叠层，opacity 切换保证瞬时响应。
+ */
+function TechGroup({ line, lang }: { line: Line; lang: "en" | "zh" }) {
+  const [open, setOpen] = useState(0)
+  const count = line.cards.length
+  const collapsedPct = 50 / Math.max(1, count - 1)
+
+  return (
+    <div id={line.key} className="scroll-mt-24">
+      <h3 className="text-balance text-center text-2xl font-bold md:text-3xl">
+        {line.title[lang]}
+      </h3>
+
+      <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
+        <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
+          <LazyVideo src={line.video} className="h-full w-full object-cover pointer-events-none" />
+        </div>
+      </div>
+
+      {/* 1:1 两列；右列锁定 4:3 视频比例，左列高度 stretch 跟随 */}
+      <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-stretch">
+        {/* 左侧：可折叠卡片列表 */}
+        <div className="flex flex-col h-[560px] lg:h-auto">
+          {line.cards.map((c: Card, i) => {
+            const active = open === i
+            const isLast = i === count - 1
+            const height = active
+              ? "calc(50% - 4px)"
+              : `calc(${collapsedPct}% - 4px)`
+            const Icon = c.icon
+            return (
+              <div
+                key={c.title[lang]}
+                onMouseEnter={() => setOpen(i)}
+                style={{
+                  height,
+                  transition: "height 0.35s ease, border-color 0.3s, box-shadow 0.3s",
+                }}
+                className={`flex flex-col rounded-2xl border overflow-hidden cursor-pointer ${
+                  active ? "border-primary/40 bg-card shadow-md" : "border-border bg-card"
+                } ${!isLast ? "mb-2" : ""}`}
+              >
+                <div className="flex items-center justify-between gap-4 px-5 py-3.5 shrink-0">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Icon
+                      className={`h-5 w-5 shrink-0 ${
+                        active ? "text-primary" : "text-muted-foreground"
+                      }`}
+                    />
+                    <span className="text-base font-bold truncate">
+                      {c.title[lang]}
+                    </span>
+                  </div>
+                  <ChevronDown
+                    className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${
+                      active ? "rotate-180 text-primary" : ""
+                    }`}
+                  />
+                </div>
+                <div
+                  className={`flex-1 min-h-0 overflow-hidden px-5 pb-4 transition-opacity duration-300 ${
+                    active ? "opacity-100" : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {c.desc[lang]}
+                  </p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* 右侧：4:3 视频容器，视频叠层用 opacity 切换 */}
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-card aspect-[4/3] w-full">
+          {line.cards.map((c: Card, i) => (
+            <LazyVideo
+              key={c.video}
+              src={c.video}
+              className={`absolute inset-0 h-full w-full object-contain p-6 transition-opacity duration-500 pointer-events-none ${
+                open === i ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function CoreTech() {
   const { lang } = useLanguage()
-  const [expandedLines, setExpandedLines] = useState<Record<string, boolean>>({})
-
-  const toggleLine = (lineKey: string) => {
-    setExpandedLines((prev) => ({
-      ...prev,
-      [lineKey]: !prev[lineKey],
-    }))
-  }
 
   return (
     <section id="tech" className="bg-secondary/40 py-20 md:py-28">
@@ -128,52 +217,7 @@ export function CoreTech() {
 
         <div className="mt-16 space-y-20">
           {lines.map((line) => (
-            <div key={line.key} id={line.key} className="scroll-mt-24">
-              <h3 className="text-balance text-center text-2xl font-bold md:text-3xl">
-                {line.title[lang]}
-              </h3>
-
-              <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
-                <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
-                  <LazyVideo src={line.video} className="h-full w-full object-cover pointer-events-none" />
-                </div>
-              </div>
-
-              <div className={`mt-8 grid gap-5 ${line.key === 'runtime-security' ? 'md:grid-cols-2 lg:grid-cols-5' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
-                {line.cards.map((c) => {
-                  const Icon = c.icon
-                  const isExpanded = expandedLines[line.key]
-                  return (
-                    <button
-                      key={c.title[lang]}
-                      onClick={() => toggleLine(line.key)}
-                      className="rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md overflow-hidden flex flex-col text-left w-full"
-                    >
-                      <div className="p-6 flex-1 flex flex-col">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-primary">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <h4 className="mt-4 text-lg font-bold">{c.title[lang]}</h4>
-                        <div
-                          className={`overflow-hidden transition-all duration-300 ${
-                            isExpanded ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'
-                          }`}
-                        >
-                          <p className="text-sm leading-relaxed text-muted-foreground">
-                            {c.desc[lang]}
-                          </p>
-                        </div>
-                      </div>
-                      {c.video && (
-                        <div className="relative w-full overflow-hidden bg-card" style={{ aspectRatio: '4/3' }}>
-                          <LazyVideo src={c.video} className="h-full w-full object-contain pointer-events-none" />
-                        </div>
-                      )}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
+            <TechGroup key={line.key} line={line} lang={lang} />
           ))}
         </div>
       </div>
