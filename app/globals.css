@@ -182,17 +182,26 @@
 }
 
 /* 大型媒体块的视口高度天花板：低分辨率 / 高缩放时防止溢出屏幕。
-   用 dvh 感知移动端可视区变化；先写 vh 作为老浏览器 fallback。
-   预留 = header 4rem + section 上下 py 各 5rem + 标题一行 4rem = 18rem。
-   横幅类（16:7 长条）预留更多，避免旁边还有折叠区时挤爆屏幕。 */
+   拆成独立变量便于按需调整；用 dvh 感知移动端可视区变化，vh 作 fallback。
+
+   预留结构：
+     --header-h        fixed header 高度（<Header> 的 h-16）
+     --section-py      单侧 section 垂直 padding（组件用 md:py-28 = 7rem）
+     --section-title-h 标题 + 与内容间距的经验预留
+   --section-media-max  = 视口 - header - 上下 py - 标题
+   --section-banner-max = 上面再减 4rem，横幅下方还挂折叠区，多留一些
+*/
 :root {
-  --section-media-max: calc(100vh - 18rem);
-  --section-banner-max: calc(100vh - 22rem);
+  --header-h: 4rem;
+  --section-py: 7rem;
+  --section-title-h: 4rem;
+  --section-media-max: calc(100vh - var(--header-h) - var(--section-py) * 2 - var(--section-title-h));
+  --section-banner-max: calc(100vh - var(--header-h) - var(--section-py) * 2 - var(--section-title-h) - 4rem);
 }
 @supports (height: 100dvh) {
   :root {
-    --section-media-max: calc(100dvh - 18rem);
-    --section-banner-max: calc(100dvh - 22rem);
+    --section-media-max: calc(100dvh - var(--header-h) - var(--section-py) * 2 - var(--section-title-h));
+    --section-banner-max: calc(100dvh - var(--header-h) - var(--section-py) * 2 - var(--section-title-h) - 4rem);
   }
 }
 .grid-mask {
