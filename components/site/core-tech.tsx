@@ -106,7 +106,11 @@ type Card = Line["cards"][number]
 function TechGroup({ line, lang }: { line: Line; lang: "en" | "zh" }) {
   const [open, setOpen] = useState(0)
   const count = line.cards.length
-  const collapsedPct = 50 / Math.max(1, count - 1)
+  // 展开卡片占 2 份、折叠卡片占 1 份，共 n+1 份。
+  // 5 张：折叠 1/6、展开 2/6；3 张：折叠 1/4、展开 2/4。
+  const totalUnits = count + 1
+  const expandedPct = (2 / totalUnits) * 100
+  const collapsedPct = (1 / totalUnits) * 100
 
   return (
     <div id={line.key} className="scroll-mt-24">
@@ -135,7 +139,7 @@ function TechGroup({ line, lang }: { line: Line; lang: "en" | "zh" }) {
             const active = open === i
             const isLast = i === count - 1
             const height = active
-              ? "calc(50% - 4px)"
+              ? `calc(${expandedPct}% - 4px)`
               : `calc(${collapsedPct}% - 4px)`
             const Icon = c.icon
             return (
