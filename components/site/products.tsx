@@ -138,54 +138,59 @@ export function Products() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
-          {products.map((p, i) => {
-            const Icon = p.icon
-            return (
-              <button
-                key={p.key}
-                onMouseEnter={() => setActive(i)}
-                className={`inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium transition-colors ${
-                  active === i
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-card text-foreground hover:border-primary/50"
-                }`}
-              >
-                <Icon className="h-4 w-4 shrink-0" />
-                <span className="text-center">{p.tab[lang]}</span>
-              </button>
-            )
-          })}
-        </div>
-
+        {/* 按钮组 + 详情卡片放入一个 flex 容器，
+            由 --section-media-max 约束两者的总高度，
+            高度受限时详情卡片（flex-1）自动缩，按钮组保持自然高度。 */}
         <div
-          className="mt-10 grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2 lg:min-h-[580px]"
+          className="mt-10 flex flex-col gap-10"
           style={{ maxHeight: "var(--section-media-max)" }}
         >
-          <div className="order-2 lg:order-1 flex items-center justify-center relative">
-            <LazyVideo
-              key={product.video}
-              src={product.video}
-              className="mx-auto w-full max-w-lg object-contain pointer-events-none"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto w-full shrink-0">
+            {products.map((p, i) => {
+              const Icon = p.icon
+              return (
+                <button
+                  key={p.key}
+                  onMouseEnter={() => setActive(i)}
+                  className={`inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium transition-colors ${
+                    active === i
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-card text-foreground hover:border-primary/50"
+                  }`}
+                >
+                  <Icon className="h-4 w-4 shrink-0" />
+                  <span className="text-center">{p.tab[lang]}</span>
+                </button>
+              )
+            })}
           </div>
-          <div className="order-1 lg:order-2">
-            <h3 className="text-2xl font-bold md:text-3xl">{product.title[lang]}</h3>
-            <p className="mt-3 text-muted-foreground">{product.subtitle[lang]}</p>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {product.features[lang].map((f) => (
-                <li key={f} className="flex items-center gap-2 text-sm">
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href={getProductLink(product.key)}
-              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary"
-            >
-              {lang === "zh" ? "查看详情" : "Learn More"} <ArrowRight className="h-4 w-4" />
-            </Link>
+
+          <div className="grid flex-1 min-h-0 items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2">
+            <div className="order-2 lg:order-1 flex items-center justify-center relative min-h-0 h-full">
+              <LazyVideo
+                key={product.video}
+                src={product.video}
+                className="mx-auto max-h-full w-auto max-w-lg object-contain pointer-events-none"
+              />
+            </div>
+            <div className="order-1 lg:order-2 min-h-0 overflow-y-auto">
+              <h3 className="text-2xl font-bold md:text-3xl">{product.title[lang]}</h3>
+              <p className="mt-3 text-muted-foreground">{product.subtitle[lang]}</p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                {product.features[lang].map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={getProductLink(product.key)}
+                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary"
+              >
+                {lang === "zh" ? "查看详情" : "Learn More"} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
