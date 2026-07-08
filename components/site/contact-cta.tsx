@@ -16,6 +16,7 @@ export function ContactCta() {
           fill
           sizes="100vw"
           className="object-cover"
+          fetchPriority="low"
         />
         <div className="relative mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-4 text-center md:px-6">
           <h2 className="text-balance text-2xl font-bold text-gray-900 md:text-4xl">

@@ -85,6 +85,9 @@ export function LazyVideo({ src, className, style }: LazyVideoProps) {
         playsInline
         preload="none"
         poster={posterFor(src)}
+        // 视频与 poster 都属于视口外资源，显式压低优先级，避免抢首屏带宽。
+        // React 侧写 fetchPriority（camelCase），会渲染为 fetchpriority HTML 属性。
+        fetchPriority="low"
         disablePictureInPicture
         disableRemotePlayback
         onContextMenu={(e) => e.preventDefault()}

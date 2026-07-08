@@ -171,6 +171,7 @@ export function News() {
                     fill
                     sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    fetchPriority="low"
                   />
                 )}
               </div>
