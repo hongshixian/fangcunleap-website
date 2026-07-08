@@ -141,7 +141,6 @@ function TechGroup({ line, lang }: { line: Line; lang: "en" | "zh" }) {
             const height = active
               ? `calc(${expandedPct}% - 4px)`
               : `calc(${collapsedPct}% - 4px)`
-            const Icon = c.icon
             return (
               <div
                 key={c.title[lang]}
@@ -155,16 +154,9 @@ function TechGroup({ line, lang }: { line: Line; lang: "en" | "zh" }) {
                 } ${!isLast ? "mb-2" : ""}`}
               >
                 <div className="flex items-center justify-between gap-4 px-5 py-3.5 shrink-0">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <Icon
-                      className={`h-5 w-5 shrink-0 ${
-                        active ? "text-primary" : "text-muted-foreground"
-                      }`}
-                    />
-                    <span className="text-base font-bold truncate">
-                      {c.title[lang]}
-                    </span>
-                  </div>
+                  <span className="text-base font-bold truncate">
+                    {c.title[lang]}
+                  </span>
                   <ChevronDown
                     className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${
                       active ? "rotate-180 text-primary" : ""
