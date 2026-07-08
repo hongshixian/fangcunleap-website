@@ -138,14 +138,9 @@ export function Products() {
           </p>
         </div>
 
-        {/* 按钮组 + 详情卡片放入一个 flex 容器，
-            由 --section-media-max 约束两者的总高度，
-            高度受限时详情卡片（flex-1）自动缩，按钮组保持自然高度。 */}
-        <div
-          className="mt-10 flex flex-col gap-10"
-          style={{ maxHeight: "var(--section-media-max)" }}
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto w-full shrink-0">
+        {/* 按钮组 + 详情卡片放入同一容器，保持视觉整体感；不做总高度约束。 */}
+        <div className="mt-10 flex flex-col gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto w-full">
             {products.map((p, i) => {
               const Icon = p.icon
               return (
@@ -165,15 +160,15 @@ export function Products() {
             })}
           </div>
 
-          <div className="grid flex-1 min-h-0 items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2">
-            <div className="order-2 lg:order-1 flex items-center justify-center relative min-h-0 h-full">
+          <div className="grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2 lg:min-h-[580px]">
+            <div className="order-2 lg:order-1 flex items-center justify-center relative">
               <LazyVideo
                 key={product.video}
                 src={product.video}
-                className="mx-auto max-h-full w-auto max-w-lg object-contain pointer-events-none"
+                className="mx-auto w-full max-w-lg object-contain pointer-events-none"
               />
             </div>
-            <div className="order-1 lg:order-2 min-h-0 overflow-y-auto">
+            <div className="order-1 lg:order-2">
               <h3 className="text-2xl font-bold md:text-3xl">{product.title[lang]}</h3>
               <p className="mt-3 text-muted-foreground">{product.subtitle[lang]}</p>
               <ul className="mt-6 grid gap-3 sm:grid-cols-2">
