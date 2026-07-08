@@ -1,32 +1,20 @@
 import Image from "next/image"
 
+/**
+ * 站点 Logo（图片版）。
+ * - light=false（默认）：直接展示原色 logo，适用于浅色背景。
+ * - light=true：用 `brightness(0) invert(1)` 将 logo 的所有不透明像素刷成纯白，
+ *   适用于首页顶部透明状态下的深色 hero 背景。
+ */
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <div className="flex items-center gap-2">
-      <Image
-        src="/fangcun-logo.png"
-        alt="方寸跃迁 logo"
-        width={48}
-        height={48}
-        className="h-12 w-12 object-contain"
-        priority
-      />
-      <div className="flex flex-col leading-none">
-        <span
-          className={`text-lg font-bold tracking-tight ${
-            light ? "text-white" : "text-foreground"
-          }`}
-        >
-          方寸跃迁
-        </span>
-        <span
-          className={`text-[10px] font-medium tracking-[0.2em] ${
-            light ? "text-white/70" : "text-muted-foreground"
-          }`}
-        >
-          FANGCUN LEAP
-        </span>
-      </div>
-    </div>
+    <Image
+      src="/images/fangcun_ai_horizontal_logo_transparent.png"
+      alt="方寸跃迁 FANGCUN LEAP"
+      width={200}
+      height={48}
+      className={`h-10 w-auto object-contain ${light ? "[filter:brightness(0)_invert(1)]" : ""}`}
+      priority
+    />
   )
 }
