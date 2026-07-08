@@ -10,35 +10,35 @@ const WHY_US: { title: Bilingual; desc: Bilingual }[] = [
   {
     title: { zh: "顶尖的技术背景和科研支撑", en: "Top-tier technical background & research" },
     desc: {
-      zh: "公司依托清华大学交叉信息研究院团队在 AI 安全领域多年的深厚积累,技术成果源自顶级学术研究,确保您获得的安全方案具备理论先进性和实践可靠性。",
+      zh: "公司依托清华大学交叉信息研究院团队在 AI 安全领域多年的深厚积累，技术成果源自顶级学术研究，确保您获得的安全方案具备理论先进性和实践可靠性。",
       en: "Backed by years of deep AI-safety work at Tsinghua University's Institute for Interdisciplinary Information Sciences, our technology stems from top-tier academic research — so the security solutions you get are both theoretically advanced and reliable in practice.",
     },
   },
   {
     title: { zh: "卓越的核心团队", en: "An exceptional core team" },
     desc: {
-      zh: "团队核心成员毕业于清华大学和加州大学伯克利分校、伦敦大学学院、悉尼大学、莱斯大学等高校,并曾在百度、中国电信等头部企业担任职务,拥有丰富的 AI 安全研发和工程化落地经验,能为您的业务提供专家级护航。",
+      zh: "团队核心成员毕业于清华大学和加州大学伯克利分校、伦敦大学学院、悉尼大学、莱斯大学等高校，并曾在百度、中国电信等头部企业担任职务，拥有丰富的 AI 安全研发和工程化落地经验，能为您的业务提供专家级护航。",
       en: "Core team members graduated from Tsinghua University, UC Berkeley, UCL, the University of Sydney, Rice University and other leading schools, and have held roles at major companies including Baidu and China Telecom — bringing deep AI-safety R&D and production-engineering experience to guide your business at an expert level.",
     },
   },
   {
     title: { zh: "专注且前沿的业务方向", en: "A focused, cutting-edge mission" },
     desc: {
-      zh: "我们专注于大模型全生命周期的安全防护,覆盖 Prompt 注入、越狱攻击、对抗样本、模型投毒等新型威胁,并为企业量身打造 AI 安全评估基准(Benchmark)和红队测试服务,帮您提前发现隐藏风险。",
+      zh: "我们专注于大模型全生命周期的安全防护，覆盖 Prompt 注入、越狱攻击、对抗样本、模型投毒等新型威胁，并为企业量身打造 AI 安全评估基准（Benchmark）和红队测试服务，帮您提前发现隐藏风险。",
       en: "We focus on security across the full lifecycle of large models — covering emerging threats such as prompt injection, jailbreak attacks, adversarial examples and model poisoning — and build tailored AI security benchmarks and red-team testing services to surface hidden risks early.",
     },
   },
   {
     title: { zh: "快速的商业化落地能力", en: "Fast commercialization" },
     desc: {
-      zh: "我们与多家国内头部数字化解决方案提供商建立了战略合作,我们的产品已经过市场验证,能够快速融入您的现有系统,减少磨合成本。",
+      zh: "我们与多家国内头部数字化解决方案提供商建立了战略合作，我们的产品已经过市场验证，能够快速融入您的现有系统，减少磨合成本。",
       en: "We've formed strategic partnerships with several of China's leading digital-solution providers. Our products are market-proven and integrate quickly into your existing systems, reducing onboarding cost.",
     },
   },
   {
-    title: { zh: "持续进化的安全韧性,为您的业务保驾护航", en: "Continuously evolving security resilience" },
+    title: { zh: "持续进化的安全韧性，为您的业务保驾护航", en: "Continuously evolving security resilience" },
     desc: {
-      zh: "我们不仅提供当前的安全防护,更持续投入前沿攻防研究,构建了动态更新的威胁情报库和自动化红队演练体系。选择方寸跃迁,意味着您的 AI 系统将始终获得针对新型攻击(如对抗性样本、数据投毒等)的主动防御能力。无论攻击手段如何演变,我们都能提前布局,确保您的业务在快速变化的 AI 环境中长期稳定、合规、无后顾之忧——这是我们对客户最核心的承诺。",
+      zh: "我们不仅提供当前的安全防护，更持续投入前沿攻防研究，构建了动态更新的威胁情报库和自动化红队演练体系。选择方寸跃迁，意味着您的 AI 系统将始终获得针对新型攻击（如对抗性样本、数据投毒等）的主动防御能力。无论攻击手段如何演变，我们都能提前布局，确保您的业务在快速变化的 AI 环境中长期稳定、合规、无后顾之忧——这是我们对客户最核心的承诺。",
       en: "We don't just provide today's protection — we invest continuously in frontier attack-and-defense research, with a dynamically updated threat-intelligence library and an automated red-team drill system. Choosing Fangcun Leap means your AI systems always have proactive defense against new attacks such as adversarial examples and data poisoning. However attack techniques evolve, we stay ahead — keeping your business stable, compliant, and worry-free in a fast-changing AI landscape. That is our core promise to customers.",
     },
   },

@@ -8,8 +8,8 @@ export function Hero() {
   const { lang } = useLanguage()
 
   return (
-    <section id="top" className="relative overflow-hidden bg-[#00000e]">
-      <div className="relative pb-20 pt-16">
+    <section id="top" className="relative overflow-hidden bg-[#00000e] min-h-screen flex items-center">
+      <div className="relative w-full py-16">
         {/* Procedurally rendered mesh-gradient background (replaces static hero image) */}
         <MeshGradientBackground />
 
@@ -25,9 +25,6 @@ export function Hero() {
 
         <div className="relative mx-auto grid max-w-[1450px] items-center gap-8 px-4 pt-16 md:px-6 lg:grid-cols-2">
           <div className="text-white">
-            <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-white/70">
-              {lang === "zh" ? "守护人工智能的安全未来" : "Securing the future of artificial intelligence"}
-            </p>
             <h1 className="text-balance text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
               {lang === "zh" ? (
                 <>
