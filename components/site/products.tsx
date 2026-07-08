@@ -158,7 +158,10 @@ export function Products() {
           })}
         </div>
 
-        <div className="mt-10 grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2 lg:min-h-[580px]">
+        <div
+          className="mt-10 grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2 lg:min-h-[580px]"
+          style={{ maxHeight: "var(--section-media-max)" }}
+        >
           <div className="order-2 lg:order-1 flex items-center justify-center relative">
             <LazyVideo
               key={product.video}

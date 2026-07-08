@@ -57,7 +57,10 @@ export function Solutions() {
           </h2>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_4fr]" style={{ height: "460px" }}>
+        <div
+          className="mt-12 grid gap-6 lg:grid-cols-[1fr_4fr]"
+          style={{ height: "min(460px, var(--section-media-max))" }}
+        >
           <div className="flex flex-col h-full">
             {solutions.map((s, i) => {
               const active = open === i

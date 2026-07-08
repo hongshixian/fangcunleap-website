@@ -180,6 +180,21 @@
   background-image: radial-gradient(120% 90% at 80% 0%, var(--hero-to) 0%, transparent 55%),
     linear-gradient(135deg, var(--hero-from) 0%, var(--hero-via) 55%, var(--hero-to) 100%);
 }
+
+/* 大型媒体块的视口高度天花板：低分辨率 / 高缩放时防止溢出屏幕。
+   用 dvh 感知移动端可视区变化；先写 vh 作为老浏览器 fallback。
+   预留 = header 4rem + section 上下 py 各 5rem + 标题一行 4rem = 18rem。
+   横幅类（16:7 长条）预留更多，避免旁边还有折叠区时挤爆屏幕。 */
+:root {
+  --section-media-max: calc(100vh - 18rem);
+  --section-banner-max: calc(100vh - 22rem);
+}
+@supports (height: 100dvh) {
+  :root {
+    --section-media-max: calc(100dvh - 18rem);
+    --section-banner-max: calc(100dvh - 22rem);
+  }
+}
 .grid-mask {
   background-image: linear-gradient(to right, oklch(1 0 0 / 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, oklch(1 0 0 / 0.06) 1px, transparent 1px);

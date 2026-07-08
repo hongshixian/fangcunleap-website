@@ -115,15 +115,18 @@ function TechGroup({ line, lang }: { line: Line; lang: "en" | "zh" }) {
       </h3>
 
       <div className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-card p-4 md:p-8">
-        <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl">
+        <div
+          className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl mx-auto"
+          style={{ maxHeight: "var(--section-banner-max)" }}
+        >
           <LazyVideo src={line.video} className="h-full w-full object-cover pointer-events-none" />
         </div>
       </div>
 
-      {/* 1:1 两列；右列锁定 4:3 视频比例，左列高度 stretch 跟随 */}
+      {/* 1:1 两列；右列锁定 4:3 视频比例并受视口 max-height cap，左列高度 stretch 跟随 */}
       <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-stretch">
         {/* 左侧：可折叠卡片列表 */}
-        <div className="flex flex-col h-[560px] lg:h-auto">
+        <div className="flex flex-col h-[560px] lg:h-auto lg:min-h-0">
           {line.cards.map((c: Card, i) => {
             const active = open === i
             const isLast = i === count - 1
@@ -175,7 +178,10 @@ function TechGroup({ line, lang }: { line: Line; lang: "en" | "zh" }) {
         </div>
 
         {/* 右侧：4:3 视频容器，视频叠层用 opacity 切换 */}
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-card aspect-[4/3] w-full">
+        <div
+          className="relative overflow-hidden rounded-3xl border border-border bg-card aspect-[4/3] w-full mx-auto"
+          style={{ maxHeight: "var(--section-media-max)" }}
+        >
           {line.cards.map((c: Card, i) => (
             <LazyVideo
               key={c.video}
