@@ -2,25 +2,14 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight, CheckCircle2, ChevronDown, Shield, Eye, ScanSearch, Swords, KeyRound, Network, Users, Target } from "lucide-react"
+import { ArrowRight, CheckCircle2, Shield, Eye, ScanSearch, Swords, KeyRound, Network, Users, Target } from "lucide-react"
 import { useLanguage } from "./language-context"
 import { LazyVideo } from "./lazy-video"
 
-type Bilingual = { en: string; zh: string }
-
-type Product = {
-  key: string
-  icon: typeof Shield
-  title: Bilingual
-  subtitle: Bilingual
-  video: string
-  features: { en: string[]; zh: string[] }
-}
-
-// Agent Runtime 安全（5 个）
-const runtimeProducts: Product[] = [
+const products = [
   {
     key: "guard",
+    tab: { en: "Fangcun Guard Real-time Guardrails", zh: "方寸 Guard 实时内容护栏" },
     icon: Shield,
     title: { en: "Fangcun Guard", zh: "方寸 Guard" },
     subtitle: { en: "Real-time Content Guardrails for AI Agents", zh: "面向 AI Agent 的实时内容护栏" },
@@ -32,6 +21,7 @@ const runtimeProducts: Product[] = [
   },
   {
     key: "observer",
+    tab: { en: "Fangcun Observer Runtime Monitoring", zh: "方寸 Observer 运行时监控" },
     icon: Eye,
     title: { en: "Fangcun Observer", zh: "方寸 Observer" },
     subtitle: { en: "Agent Runtime Monitoring and Audit Trail", zh: "Agent 运行时监控与审计追踪" },
@@ -43,6 +33,7 @@ const runtimeProducts: Product[] = [
   },
   {
     key: "iam",
+    tab: { en: "Agent IAM Identity & Access", zh: "Agent IAM 身份与权限" },
     icon: KeyRound,
     title: { en: "Agent IAM", zh: "Agent IAM" },
     subtitle: { en: "Identity Authentication and Access Management for AI Agents", zh: "面向 AI Agent 的身份认证与权限管理" },
@@ -54,6 +45,7 @@ const runtimeProducts: Product[] = [
   },
   {
     key: "skillward",
+    tab: { en: "SkillWard Supply Chain Security", zh: "方寸 SkillWard 供应链安全" },
     icon: ScanSearch,
     title: { en: "SkillWard", zh: "方寸 SkillWard" },
     subtitle: { en: "Supply Chain Security Scanning for AI Skills", zh: "AI Skill 供应链安全扫描" },
@@ -65,6 +57,7 @@ const runtimeProducts: Product[] = [
   },
   {
     key: "steward",
+    tab: { en: "Steward Agent Multi-Agent Governance", zh: "Steward Agent 多智能体治理" },
     icon: Network,
     title: { en: "Steward Agent", zh: "Steward Agent" },
     subtitle: { en: "Centralized Supervision and Management for Multi-Agent Systems", zh: "多 Agent 系统的中控监督与管理" },
@@ -74,12 +67,9 @@ const runtimeProducts: Product[] = [
       zh: ["多 Agent 统一监督", "任务分配协调", "权限边界管理", "风险告警与干预", "策略更新执行", "跨 Agent 行为审计"],
     },
   },
-]
-
-// 大模型安全评测（3 个）
-const evaluationProducts: Product[] = [
   {
     key: "redteam",
+    tab: { en: "Fangcun RedTeam Adversarial Testing", zh: "方寸 RedTeam 自动红队测试" },
     icon: Swords,
     title: { en: "Fangcun RedTeam", zh: "方寸 RedTeam" },
     subtitle: { en: "Automated Red Team Testing for AI Systems", zh: "AI 系统自动化红队测试" },
@@ -91,6 +81,7 @@ const evaluationProducts: Product[] = [
   },
   {
     key: "multiagent",
+    tab: { en: "Multi-Agent Automated Attack", zh: "Multi-Agent 自动化攻击" },
     icon: Users,
     title: { en: "Multi-Agent Automated Attack", zh: "Multi-Agent 自动化攻击" },
     subtitle: { en: "Coordinated Multi-Agent Attacks for Deep Vulnerability Discovery", zh: "多智能体协同攻击，挖掘深层漏洞" },
@@ -102,6 +93,7 @@ const evaluationProducts: Product[] = [
   },
   {
     key: "redteamplatform",
+    tab: { en: "Automated Red Team Platform", zh: "自动化红队平台" },
     icon: Target,
     title: { en: "Automated Red Team Platform", zh: "自动化红队平台" },
     subtitle: { en: "Continuous and Scalable Red Team Testing for AI Models", zh: "持续、规模化的模型红队对抗测试" },
@@ -113,138 +105,24 @@ const evaluationProducts: Product[] = [
   },
 ]
 
-const productLinks: Record<string, string> = {
-  guard: "/blog/fangcunguard",
-  observer: "/blog/observer",
-  iam: "/solutions#iam",
-  skillward: "/blog/skillward",
-  steward: "/solutions#steward",
-  redteam: "/solutions#redteam",
-  multiagent: "/solutions#multiagent",
-  redteamplatform: "/solutions#redteamplatform",
-}
-
-type Language = "en" | "zh"
-
-// 单个产品分组：左侧可折叠卡片列表，右侧视频容器（沿用 Solutions 的交互与结构）
-function ProductGroup({
-  id,
-  eyebrow,
-  title,
-  items,
-  lang,
-}: {
-  id: string
-  eyebrow: Bilingual
-  title: Bilingual
-  items: Product[]
-  lang: Language
-}) {
-  const [open, setOpen] = useState(0)
-  const count = items.length
-  // 展开卡片占约 50%，其余平均分剩余 50%
-  const collapsedPct = 50 / Math.max(1, count - 1)
-
-  return (
-    <div id={id} className="scroll-mt-24">
-      <div className="text-center">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-          {eyebrow[lang]}
-        </p>
-        <h3 className="mt-3 text-balance text-2xl font-bold md:text-3xl">
-          {title[lang]}
-        </h3>
-      </div>
-
-      <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_2fr] lg:min-h-[560px]">
-        {/* 左侧：可折叠卡片列表 */}
-        <div className="flex flex-col h-full min-h-[560px] lg:min-h-0">
-          {items.map((p, i) => {
-            const active = open === i
-            const isLast = i === count - 1
-            const height = active
-              ? "calc(50% - 4px)"
-              : `calc(${collapsedPct}% - 4px)`
-            const Icon = p.icon
-            return (
-              <div
-                key={p.key}
-                onMouseEnter={() => setOpen(i)}
-                style={{
-                  height,
-                  transition: "height 0.35s ease, border-color 0.3s, box-shadow 0.3s",
-                }}
-                className={`flex flex-col rounded-2xl border overflow-hidden cursor-pointer ${
-                  active
-                    ? "border-primary/40 bg-card shadow-md"
-                    : "border-border bg-card"
-                } ${!isLast ? "mb-2" : ""}`}
-              >
-                <div className="flex items-center justify-between gap-4 px-5 py-3.5 shrink-0">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <Icon
-                      className={`h-5 w-5 shrink-0 ${
-                        active ? "text-primary" : "text-muted-foreground"
-                      }`}
-                    />
-                    <span className="text-base font-bold truncate">
-                      {p.title[lang]}
-                    </span>
-                  </div>
-                  <ChevronDown
-                    className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${
-                      active ? "rotate-180 text-primary" : ""
-                    }`}
-                  />
-                </div>
-                <div
-                  className={`flex-1 min-h-0 overflow-hidden px-5 pb-4 transition-opacity duration-300 ${
-                    active ? "opacity-100" : "opacity-0 pointer-events-none"
-                  }`}
-                >
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {p.subtitle[lang]}
-                  </p>
-                  <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-                    {p.features[lang].map((f) => (
-                      <li key={f} className="flex items-center gap-1.5 text-xs">
-                        <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={productLinks[p.key] || "#contact"}
-                    className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-primary"
-                  >
-                    {lang === "zh" ? "查看详情" : "Learn More"}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* 右侧：视频容器 */}
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-card min-h-[400px] lg:min-h-0">
-          {items.map((p, i) => (
-            <LazyVideo
-              key={p.video}
-              src={p.video}
-              className={`absolute inset-0 h-full w-full object-contain p-6 transition-opacity duration-500 pointer-events-none ${
-                open === i ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export function Products() {
   const { lang } = useLanguage()
+  const [active, setActive] = useState(0)
+  const product = products[active]
+
+  const getProductLink = (key: string) => {
+    const links: Record<string, string> = {
+      guard: "/blog/fangcunguard",
+      observer: "/blog/observer",
+      iam: "/solutions#iam",
+      skillward: "/blog/skillward",
+      steward: "/solutions#steward",
+      redteam: "/solutions#redteam",
+      multiagent: "/solutions#multiagent",
+      redteamplatform: "/solutions#redteamplatform",
+    }
+    return links[key] || "#contact"
+  }
 
   return (
     <section id="products" className="bg-secondary/40 py-20 md:py-28">
@@ -260,21 +138,52 @@ export function Products() {
           </p>
         </div>
 
-        <div className="mt-16 space-y-20 md:space-y-24">
-          <ProductGroup
-            id="runtime-security"
-            eyebrow={{ en: "Products & Services", zh: "产品与服务" }}
-            title={{ en: "Agent Runtime Security", zh: "Agent Runtime 安全" }}
-            items={runtimeProducts}
-            lang={lang}
-          />
-          <ProductGroup
-            id="model-evaluation"
-            eyebrow={{ en: "Products & Services", zh: "产品与服务" }}
-            title={{ en: "LLM Security Evaluation", zh: "大模型安全评测" }}
-            items={evaluationProducts}
-            lang={lang}
-          />
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+          {products.map((p, i) => {
+            const Icon = p.icon
+            return (
+              <button
+                key={p.key}
+                onMouseEnter={() => setActive(i)}
+                className={`inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium transition-colors ${
+                  active === i
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border bg-card text-foreground hover:border-primary/50"
+                }`}
+              >
+                <Icon className="h-4 w-4 shrink-0" />
+                <span className="text-center">{p.tab[lang]}</span>
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="mt-10 grid items-center gap-8 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-2 lg:min-h-[580px]">
+          <div className="order-2 lg:order-1 flex items-center justify-center relative">
+            <LazyVideo
+              key={product.video}
+              src={product.video}
+              className="mx-auto w-full max-w-lg object-contain pointer-events-none"
+            />
+          </div>
+          <div className="order-1 lg:order-2">
+            <h3 className="text-2xl font-bold md:text-3xl">{product.title[lang]}</h3>
+            <p className="mt-3 text-muted-foreground">{product.subtitle[lang]}</p>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+              {product.features[lang].map((f) => (
+                <li key={f} className="flex items-center gap-2 text-sm">
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href={getProductLink(product.key)}
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary"
+            >
+              {lang === "zh" ? "查看详情" : "Learn More"} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
