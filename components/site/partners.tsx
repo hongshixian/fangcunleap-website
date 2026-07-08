@@ -34,7 +34,7 @@ function Marquee({ items, reverse = false }: { items: typeof logos; reverse?: bo
               alt={logo.alt}
               className="max-h-12 w-auto max-w-[140px] object-contain opacity-80 transition-opacity hover:opacity-100"
               loading="lazy"
-              fetchPriority="low"
+              fetchPriority="high"
             />
           </div>
         ))}
