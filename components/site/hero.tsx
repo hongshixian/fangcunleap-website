@@ -9,21 +9,21 @@ export function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden bg-[#00000e] min-h-screen flex items-center">
+      {/* Procedurally rendered mesh-gradient background (replaces static hero image) */}
+      <MeshGradientBackground />
+
+      {/* Fallback gradient shown before WebGL is ready */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#f06bff_0%,#9222d8_34%,#2d0055_66%,#00000e_100%)]"
+      />
+
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" aria-hidden />
+      <div className="absolute inset-0 grid-mask opacity-40" aria-hidden />
+
       <div className="relative w-full py-16">
-        {/* Procedurally rendered mesh-gradient background (replaces static hero image) */}
-        <MeshGradientBackground />
-
-        {/* Fallback gradient shown before WebGL is ready */}
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#f06bff_0%,#9222d8_34%,#2d0055_66%,#00000e_100%)]"
-        />
-
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" aria-hidden />
-        <div className="absolute inset-0 grid-mask opacity-40" aria-hidden />
-
-        <div className="relative mx-auto grid max-w-[1450px] items-center gap-8 px-4 pt-16 md:px-6 lg:grid-cols-2">
+        <div className="relative mx-auto grid max-w-[1450px] items-center gap-8 px-4 md:px-6 lg:grid-cols-2">
           <div className="text-white">
             <h1 className="text-balance text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
               {lang === "zh" ? (
