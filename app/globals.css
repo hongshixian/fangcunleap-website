@@ -193,8 +193,8 @@
 */
 :root {
   --header-h: 4rem;
-  --section-py: 7rem;
-  --section-title-h: 4rem;
+  --section-py: 6rem;
+  --section-title-h: 3rem;
   --section-media-max: calc(100vh - var(--header-h) - var(--section-py) * 2 - var(--section-title-h));
   --section-banner-max: calc(100vh - var(--header-h) - var(--section-py) * 2 - var(--section-title-h) - 4rem);
 }
