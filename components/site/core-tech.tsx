@@ -195,32 +195,40 @@ export function CoreTech() {
   const { lang } = useLanguage()
 
   return (
-    <section id="tech" className="bg-secondary/40 py-20 md:py-28">
-      <div className="mx-auto max-w-[1450px] px-4 md:px-6">
-        <div className="text-center">
-          <h2 className="text-balance text-3xl font-bold leading-tight md:text-4xl">
-            {lang === "zh" ? (
-              <>
-                研究驱动 全链路覆盖的
-                <br className="hidden sm:block" />
-                AI 安全防护核心技术
-              </>
-            ) : (
-              <>
-                Research-Driven Full-Chain
-                <br className="hidden sm:block" />
-                AI Security Core Technologies
-              </>
-            )}
-          </h2>
-        </div>
+    <>
+      {/* 第一区块：伞状标题 + Agent Runtime 安全分组 */}
+      <section id="tech" className="bg-secondary/40 py-20 md:py-28">
+        <div className="mx-auto max-w-[1450px] px-4 md:px-6">
+          <div className="text-center">
+            <h2 className="text-balance text-3xl font-bold leading-tight md:text-4xl">
+              {lang === "zh" ? (
+                <>
+                  研究驱动 全链路覆盖的
+                  <br className="hidden sm:block" />
+                  AI 安全防护核心技术
+                </>
+              ) : (
+                <>
+                  Research-Driven Full-Chain
+                  <br className="hidden sm:block" />
+                  AI Security Core Technologies
+                </>
+              )}
+            </h2>
+          </div>
 
-        <div className="mt-16 space-y-20">
-          {lines.map((line) => (
-            <TechGroup key={line.key} line={line} lang={lang} />
-          ))}
+          <div className="mt-16">
+            <TechGroup line={lines[0]} lang={lang} />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* 第二区块：大模型安全评测分组，独立成 section 便于滚动吸附 */}
+      <section className="bg-secondary/40 py-20 md:py-28">
+        <div className="mx-auto max-w-[1450px] px-4 md:px-6">
+          <TechGroup line={lines[1]} lang={lang} />
+        </div>
+      </section>
+    </>
   )
 }
