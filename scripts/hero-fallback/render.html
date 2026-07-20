@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><style>html,body{margin:0;padding:0}canvas{display:block}</style></head>
+<body>
+<canvas id="c"></canvas>
+<script>
+// ---- Kept in sync with components/site/mesh-gradient-background.tsx ----
+const CONFIG = Object.freeze({
+  colors: ["#00000e", "#2d0055", "#9222d8", "#f06bff"],
+  positions: 42,
+  waveX: 0.45,
+  waveXShift: 0,
+  waveY: 1,
+  waveYShift: 0,
+  mixing: 0,
+  grainMixer: 0.37,
+  grainOverlay: 0.78,
+  rotation: 270,
+});
+
+const vertexSource = `#version 300 es
+  precision mediump float;
+
+  layout(location = 0) in vec2 a_position;
+  uniform vec2 u_resolution;
+  uniform float u_rotation;
+  out vec2 v_objectUV;
+
+  void main() {
+    gl_Position = vec4(a_position, 0.0, 1.0);
+
+    float squareSide = min(u_resolution.x, u_resolution.y);
+    vec2 objectWorldScale = u_resolution / squareSide;
+    v_objectUV = a_position * 0.5 * objectWorldScale;
+    float angle = radians(u_rotation);
+    v_objectUV = mat2(cos(angle), sin(angle), -sin(angle), cos(angle)) * v_objectUV;
+  }
+`;
+
+const fragmentSource = `#version 300 es
+  precision mediump float;
+
+  #define TWO_PI 6.28318530718
+
+  uniform vec4 u_colors[4];
+  uniform float u_positions;
+  uniform float u_waveX;
+  uniform float u_waveXShift;
+  uniform float u_waveY;
+  uniform float u_waveYShift;
+  uniform float u_mixing;
+  uniform float u_grainMixer;
+  uniform float u_grainOverlay;
+
+  in vec2 v_objectUV;
+  out vec4 fragColor;
+
+  vec2 rotate(vec2 uv, float radians) {
+    return mat2(cos(radians), sin(radians), -sin(radians), cos(radians)) * uv;
+  }
+
+  float hash21(vec2 p) {
+    p = fract(p * vec2(0.3183099, 0.3678794)) + 0.1;
+    p += dot(p, p + 19.19);
+    return fract(p.x * p.y);
+  }
+
+  float valueNoise(vec2 st) {
+    vec2 i = floor(st);
+    vec2 f = fract(st);
+    float a = hash21(i);
+    float b = hash21(i + vec2(1.0, 0.0));
+    float c = hash21(i + vec2(0.0, 1.0));
+    float d = hash21(i + vec2(1.0, 1.0));
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+  }
+
+  vec2 getPosition(int index, float seed) {
+    float i = float(index);
+    float a = i * 0.37;
+    float b = 0.6 + mod(i, 3.0) * 0.3;
+    float c = 0.8 + mod(i + 1.0, 4.0) * 0.25;
+    return 0.5 + 0.5 * vec2(sin(seed * b + a), cos(seed * c + a * 1.5));
+  }
+
+  void main() {
+    vec2 uv = v_objectUV + 0.5;
+    vec2 grainUV = uv * 1000.0;
+
+    float grain = valueNoise(grainUV);
+    float mixerGrain = 0.4 * u_grainMixer * (grain - 0.5);
+
+    float radius = smoothstep(0.0, 1.0, length(uv - 0.5));
+    float center = 1.0 - radius;
+
+    for (float i = 1.0; i <= 2.0; i++) {
+      uv.x += u_waveX * center / i
+        * cos(TWO_PI * u_waveXShift + i * 2.0 * smoothstep(0.0, 1.0, uv.y));
+      uv.y += u_waveY * center / i
+        * cos(TWO_PI * u_waveYShift + i * 2.0 * smoothstep(0.0, 1.0, uv.x));
+    }
+
+    vec3 color = vec3(0.0);
+    float opacity = 0.0;
+    float totalWeight = 0.0;
+    float positionSeed = 25.0 + 0.33 * u_positions;
+
+    for (int i = 0; i < 4; i++) {
+      vec2 position = getPosition(i, positionSeed) + mixerGrain;
+      float distanceToColor = length(uv - position);
+      float mixing = pow(u_mixing, 0.7);
+      float power = mix(2.0, 1.0, mixing);
+      distanceToColor = pow(distanceToColor, power);
+
+      float weight = 1.0 / (distanceToColor + 1e-3);
+      float baseSharpness = mix(0.0, 8.0, clamp(weight, 0.0, 1.0));
+      float sharpness = mix(baseSharpness, 1.0, mixing);
+      weight = pow(weight, sharpness);
+
+      color += u_colors[i].rgb * u_colors[i].a * weight;
+      opacity += u_colors[i].a * weight;
+      totalWeight += weight;
+    }
+
+    color /= max(1e-4, totalWeight);
+    opacity /= max(1e-4, totalWeight);
+
+    float overlay = valueNoise(rotate(grainUV, 1.0) + vec2(3.0));
+    overlay = mix(overlay, valueNoise(rotate(grainUV, 2.0) + vec2(-1.0)), 0.5);
+    overlay = pow(overlay, 1.3);
+
+    float signedOverlay = overlay * 2.0 - 1.0;
+    vec3 overlayColor = vec3(step(0.0, signedOverlay));
+    float overlayStrength = u_grainOverlay * abs(signedOverlay);
+    overlayStrength = pow(overlayStrength, 0.8);
+    color = mix(color, overlayColor, 0.35 * overlayStrength);
+
+    opacity = clamp(opacity + 0.5 * overlayStrength, 0.0, 1.0);
+    fragColor = vec4(color, opacity);
+  }
+`;
+
+function toRgba(hex) {
+  const value = parseInt(hex.slice(1), 16);
+  return [((value >> 16) & 255) / 255, ((value >> 8) & 255) / 255, (value & 255) / 255, 1];
+}
+
+function compile(gl, type, source) {
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    throw new Error(gl.getShaderInfoLog(shader) || "compile failed");
+  }
+  return shader;
+}
+
+window.renderHero = function (width, height) {
+  const canvas = document.getElementById("c");
+  canvas.width = width;
+  canvas.height = height;
+  const gl = canvas.getContext("webgl2", {
+    alpha: false,
+    antialias: false,
+    depth: false,
+    stencil: false,
+    premultipliedAlpha: true,
+    preserveDrawingBuffer: true,
+  });
+  if (!gl) throw new Error("no webgl2");
+
+  const program = gl.createProgram();
+  gl.attachShader(program, compile(gl, gl.VERTEX_SHADER, vertexSource));
+  gl.attachShader(program, compile(gl, gl.FRAGMENT_SHADER, fragmentSource));
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    throw new Error(gl.getProgramInfoLog(program) || "link failed");
+  }
+  gl.useProgram(program);
+
+  // Opaque base fill so the fallback image has no transparency; matches
+  // the hero section's own bg-[#00000e].
+  gl.clearColor(0, 0, 14 / 255, 1);
+
+  const buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0);
+  gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+  const u = (name) => gl.getUniformLocation(program, name);
+  gl.uniform4fv(u("u_colors[0]"), new Float32Array(CONFIG.colors.flatMap(toRgba)));
+  gl.uniform1f(u("u_rotation"), CONFIG.rotation);
+  gl.uniform1f(u("u_positions"), CONFIG.positions);
+  gl.uniform1f(u("u_waveX"), CONFIG.waveX);
+  gl.uniform1f(u("u_waveXShift"), CONFIG.waveXShift);
+  gl.uniform1f(u("u_waveY"), CONFIG.waveY);
+  gl.uniform1f(u("u_waveYShift"), CONFIG.waveYShift);
+  gl.uniform1f(u("u_mixing"), CONFIG.mixing);
+  gl.uniform1f(u("u_grainMixer"), CONFIG.grainMixer);
+  gl.uniform1f(u("u_grainOverlay"), CONFIG.grainOverlay);
+
+  gl.viewport(0, 0, width, height);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.uniform2f(u("u_resolution"), width, height);
+  gl.drawArrays(gl.TRIANGLES, 0, 6);
+  gl.finish();
+
+  return (gl.getError && gl.getError()) || 0;
+};
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 /**
  * Procedurally renders the hero background as a WebGL2 mesh gradient,
@@ -11,6 +11,11 @@ import { useEffect, useRef } from "react"
  * The canvas sits behind the hero content; a transparent clear color lets
  * the section's own background show through before WebGL is ready, and a
  * CSS opacity transition fades the canvas in once the first frame draws.
+ *
+ * When WebGL2 is unavailable (old browsers, disabled GPU, context-creation
+ * failure), a static JPEG rendered from this exact shader is shown instead —
+ * see scripts/hero-fallback/render.mjs. The image is only injected on the
+ * fallback path, so browsers that support WebGL never download it.
  */
 
 const CONFIG = Object.freeze({
@@ -163,6 +168,7 @@ function toRgba(hex: string): [number, number, number, number] {
 
 export function MeshGradientBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [webglFailed, setWebglFailed] = useState(false)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -177,7 +183,10 @@ export function MeshGradientBackground() {
       powerPreference: "high-performance",
     })
 
-    if (!gl) return
+    if (!gl) {
+      setWebglFailed(true)
+      return
+    }
 
     function compile(type: number, source: string) {
       const shader = gl!.createShader(type)
@@ -284,12 +293,24 @@ export function MeshGradientBackground() {
       render()
     } catch (error) {
       console.error("Mesh gradient initialization failed:", error)
+      setWebglFailed(true)
     }
 
     return () => {
       resizeObserver?.disconnect()
     }
   }, [])
+
+  if (webglFailed) {
+    return (
+      <img
+        src="/hero-fallback.jpg"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 block h-full w-full object-cover"
+      />
+    )
+  }
 
   return (
     <canvas
